@@ -23,10 +23,36 @@ using UnityEngine.UI;
  */
 public class BtnSoundManager : MonoBehaviour
 {
+    private static BtnSoundManager instance;
+
+    public static BtnSoundManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<BtnSoundManager>();
+                if (instance == null)
+                {
+                    Debug.LogError("BtnSoundManager 인스턴스를 찾을 수 없습니다.");
+                }
+            }
+            return instance;
+        }
+    }
     public Button[] btn;
 
     private AudioSource audioSource; // AudioSource 변수 추가
-    public AudioClip ClickBtnSoundClip; // AudioClip 변수 선언
+
+    // 0 Normal click | 1 Receive | 2 Reinforce | 3 Equip | 4 Tutorial Success | 5 Mob Summons
+    public AudioClip[] BtnSoundClip; // AudioClip 변수 선언
+
+    public Button[] ReceiveBtn;
+
+    public Button ReinforceBtn;
+    public Button[] EquipBtn;
+    public Button TutorialSuccessBtn;
+    public Button MobSummonsBtn;
 
     // Start is called before the first frame update
     void Start()
@@ -40,10 +66,29 @@ public class BtnSoundManager : MonoBehaviour
 
             btn[index].onClick.AddListener(PlaySound);
         }
+        for(int i = 0; i < ReceiveBtn.Length; i++)
+        {
+            int index = i;
+
+            ReceiveBtn[index].onClick.AddListener(() => audioSource.PlayOneShot(BtnSoundClip[1], 1.5f));
+        }
+
+        ReinforceBtn.onClick.AddListener(() => audioSource.PlayOneShot(BtnSoundClip[2], 1f));
+        EquipBtn[0].onClick.AddListener(() => audioSource.PlayOneShot(BtnSoundClip[3], 1f));
+        EquipBtn[1].onClick.AddListener(() => audioSource.PlayOneShot(BtnSoundClip[3], 1f));
+        MobSummonsBtn.onClick.AddListener(() => audioSource.PlayOneShot(BtnSoundClip[5], 1f));
+        TutorialSuccessBtn.onClick.AddListener(TutorialSuccessPlay);
+    }
+
+    public void TutorialSuccessPlay()
+    {
+        if(TutorialManager.tutorialclear == true) audioSource.PlayOneShot(BtnSoundClip[4], 0.6f);
+        else audioSource.PlayOneShot(BtnSoundClip[0], 1.5f);
+
     }
 
     private void PlaySound()
     {
-        audioSource.PlayOneShot(ClickBtnSoundClip, 0.5f); // soundClip은 AudioClip 변수, volume은 소리의 크기 조절값입니다.
+        audioSource.PlayOneShot(BtnSoundClip[0], 1.5f); // soundClip은 AudioClip 변수, volume은 소리의 크기 조절값입니다.
     }
 }
