@@ -9,33 +9,33 @@ public struct NormalRock
     public string name;
     public float Curhealth;
     public float Maxhealth;
-    public float BrownDust;
-    public float OrangeDust;
-    public float LimeDust;
-    public float BlackDust;
-    public float RedDust;
-    public float YellowDust;
-    public float DirtDust;
-    public float BlueDust;
-    public float PurpleDust;
+    public float HaveStarGrey;
+    public float HaveStarBrown;
+    public float HaveStarBlue;
+    public float HaveStarGreen;
+    public float HaveStarRed;
+    public float HaveStarYellow;
+    public float HaveStarPurple;
+    public float HaveStarOrange;
+    public float HaveStarDark;
     public float ReinforceScroll;
      
     // 몬스터 정보를 설정하는 메서드
-    public void SetRockInfo(string newName, float currentHealth, float maxHealth, float _BrownDust, float _OrangeDust, float _LimeDust, float _BlackDust, float _RedDust, float _YellowDust,
-        float _DirtDust, float _BlueDust, float _PurpleDust, float _ReinforceScroll)
+    public void SetRockInfo(string newName, float currentHealth, float maxHealth, float _HaveStarGrey, float _HaveStarBrown, float _HaveStarBlue, float _HaveStarGreen, float _HaveStarRed, float _HaveStarYellow,
+        float _HaveStarPurple, float _HaveStarOrange, float _HaveStarDark, float _ReinforceScroll)
     {
         name = newName;
         Curhealth = currentHealth;
         Maxhealth = maxHealth;
-        BrownDust = _BrownDust;
-        OrangeDust = _OrangeDust;
-        LimeDust = _LimeDust;
-        BlackDust = _BlackDust;
-        RedDust = _RedDust;
-        YellowDust = _YellowDust;
-        DirtDust = _DirtDust;
-        BlueDust = _BlueDust;
-        PurpleDust = _PurpleDust;
+        HaveStarGrey = _HaveStarGrey;
+        HaveStarBrown = _HaveStarBrown;
+        HaveStarBlue = _HaveStarBlue;
+        HaveStarGreen = _HaveStarGreen;
+        HaveStarRed = _HaveStarRed;
+        HaveStarYellow = _HaveStarYellow;
+        HaveStarPurple = _HaveStarPurple;
+        HaveStarOrange = _HaveStarOrange;
+        HaveStarDark = _HaveStarDark;
         ReinforceScroll = _ReinforceScroll;
     }
 }
@@ -60,78 +60,46 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
 
     public Image[] Upstair_HaveImg;
 
-    public Image[] PickaxeNeedImg_1;
-    public Image[] PickaxeNeedImg_2;
-    public Image[] PickaxeNeedImg_3;
+    public Image[] MineUpgradeImg;
+    public Sprite[] MineUpgradeSprite;
 
-    public Image[] MineralNeedImg_1;
-    public Image[] MineralNeedImg_2;
-    public Image[] MineralNeedImg_3;
+    public Image[] MineNeedImg_1;
+    public Image[] MineNeedImg_2;
+    public Image[] MineNeedImg_3;
 
-    public Image[] OptionNeedImg_1;
-    public Image[] OptionNeedImg_2;
-    public Image[] OptionNeedImg_3;
+    public Image[] MineFrame;
+
+    public Text[] MineNeedItemText_1;               //  필요한 광물 텍스트  EX) 곡괭이 데미지 증가때 사용
+    public Text[] MineNeedItemText_2;               //  필요한 광물 텍스트  EX) 곡괭이 크리티컬 데미지 증가때 사용
+    public Text[] MineNeedItemText_3;               //  필요한 광물 텍스트  EX) 곡괭이 크리티컬 확률 증가때 사용
+
+    public Text[] MineUpgradeInTitle;
+
+    public Text[] MineLevelText;                    //  광산 레벨 텍스트
+    public Text[] MineLeftText;                     //  광산 능력치 증가전 표시
+    public Text[] MineRightText;                    //  광산 능력치 증가후 표시
+
+    public Button[] MineLevelUpBtn;                 //  레벨업 버튼
+    public Button[] MineSelBtn;
+    public Button[] MineUpgradePanelOpenBtn;
 
     public Text[] Own_MineralText;                  //  가지고 있는 광물 텍스트
     public Text[] BasicInfo;                        //  광산 기본 정보
-
-    public Text[] Pickaxe_DamageNeeditem;           //  필요한 광물 텍스트  EX) 곡괭이 데미지 증가때 사용
-    public Text[] Pickaxe_CriDamageNeeditem;        //  필요한 광물 텍스트  EX) 곡괭이 크리티컬 데미지 증가때 사용
-    public Text[] Pickaxe_CriChanceNeeditem;        //  필요한 광물 텍스트  EX) 곡괭이 크리티컬 확률 증가때 사용
-
-    public Text[] Mineral_NeeditemMI;               //  광물 증가량      Mineral acquisition amount
-    public Text[] Mineral_NeeditemHP;               //  광물 약점        Mineral Weakness
-    public Text[] Mineral_NeeditemRS;               //  강화 스크롤      Reinforce Scroll
-
-    public Text[] Option_NeeditemPMA;               //  데미지 증폭      Pickaxe Damage amplification Scroll
-    public Text[] Option_NeeditemMB;                //  럭키 광물        Mineral Bomb
-    public Text[] Option_NeeditemPFD;               //  치명적 피해      Pickaxe Fatal Damage
 
     public Text Rocks_Name;                         //  돌 이름
     public Slider Rocks_Slider;                     //  돌 체력 슬라이더
     public Text Rocks_HPText;                       //  돌 체력 텍스트
 
-    public Button[] PickaxeLevelUpBtn;              //  곡괭이 레벨업
-    public Button[] MineralLevelUpBtn;              //  광물 레벨업
-    public Button[] OptionLevelUpBtn;               //  옵션 레벨업
-
-    public Text[] PickaxeLevelText;                 //  곡괭이 레벨 텍스트
-    public Text[] PickaxeLeftText;                  //  곡괭이 능력치 증가전 표시
-    public Text[] PickaxeRightText;                 //  곡괭이 능력치 증가후 표시
-
-    public Text[] MineralLevelText;                 //  광물 레벨 텍스트
-    public Text[] MineralLeftText;                  //  광물 능력치 증가전 표시
-    public Text[] MineralRightText;                 //  광물 능력치 증가후 표시
-
-    public Text[] OptionLevelText;                  //  옵션 레벨 텍스트
-    public Text[] OptionLeftText;                   //  옵션 능력치 증가전 표시
-    public Text[] OptionRightText;                  //  옵션 능력치 증가후 표시
-
-    public Button[] PickaxeUpgradeBtn;
-    public Button[] MineralUpgradeBtn;
-    public Button[] OptionUpgradeBtn;
     public GameObject PickaxeUpgradePanel;
-    public GameObject MineralUpgradePanel;
-    public GameObject OptionUpgradePanel;
     public GameObject BasicPanel;
     public GameObject UpgradePanel;
     public Text UpgradeTitleText;
-
-    //public GameObject OptionUpgradePanel;
-
-    //public GameObject TouchPanel;  // 특정 GameObject로 터치 영역을 지정합니다.
-    //public RectTransform TouchpanelRect;  // 패널의 RectTransform을 Unity 에디터에서 할당해야 함
 
     public static float RocksCurHP;
     public static float RocksMaxHP;
 
     public static float RocksNormalDamage;
     public static float RocksCriticalDamage;
-    private bool isPickaxeActive = false;
-    private bool isMineralActive = false;
-    private bool isOptionActive = false;
-
-    // private bool isOptionActive = false;
 
     public GameObject effectPrefab; // 이펙트 프리팹
     public RectTransform parentRectTransform; // 부모 Rect Transform
@@ -161,6 +129,34 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
     public GameObject lackBG;
     public Button lackoutBtn;
 
+    private int InUpgradePanel = -1;
+
+    private bool check = false;
+
+    // 업그레이드 패널 선택 이름
+    private string[] UpgradeSelTitleString = new string[3]
+        {
+            "곡괭이 강화",
+            "광물 강화",
+            "옵션 강화",
+        };
+
+    // 업그레이드 장비 업그레이드 이름
+    private string[] UpgradeInTitleString = new string[9]
+        {
+            "곡괭이 공격력",
+            "크리티컬 확률",
+            "크리티컬 데미지",
+
+            "광물 클릭 제한",
+            "광물 약점",
+            "강화 스크롤 확률",
+
+            "데미지 증폭",
+            "럭키 광물",
+            "치명적 피해",
+        };
+
     void Start()
     {
         // 돌 생성 및 설정
@@ -179,13 +175,15 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         rock.n_rocks[10].SetRockInfo("일반 돌덩이 <color=lime>X</color>", 150, 150, 90f, 8.6f, 1.2f, 0, 0, 0, 0, 0, 0, 0.2f);
         rock.n_rocks[11].SetRockInfo("일반 돌덩이 <color=lime>XI</color>", 180, 180, 88f, 9.6f, 2, 0.2f, 0, 0, 0, 0, 0, 0.2f);
 
-        
+
 
         ChangeRockInfo(0);
         Rock_Summons(); // 첫 번째 적 생성
 
         // AudioSource 컴포넌트 초기화
         audioSource = GetComponent<AudioSource>();
+
+        InUpgradePanel = 0;
 
         RocksCurHP = RocksMaxHP;
 
@@ -196,30 +194,21 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         RockListExitBtn.onClick.AddListener(RockListExitPanel);
         Rock_SummonsBtn.onClick.AddListener(Rock_Summons);
 
-        PickaxeUpgradeBtn[0].onClick.AddListener(PickaxeChange);
-        PickaxeUpgradeBtn[1].onClick.AddListener(PickaxeChange);
+        for (int i = 0; i < MineSelBtn.Length; i++)
+        {
+            int index = i;
 
-        MineralUpgradeBtn[0].onClick.AddListener(MineralChange);
-        MineralUpgradeBtn[1].onClick.AddListener(MineralChange);
-
-        OptionUpgradeBtn[0].onClick.AddListener(OptionChange);
-        OptionUpgradeBtn[1].onClick.AddListener(OptionChange);
-
+            MineSelBtn[index].onClick.AddListener(() => MineUpgradeChange(index));
+            MineUpgradePanelOpenBtn[index].onClick.AddListener(() => UpgradeOpen(index));
+        }
+        
         for (int i = 0; i < 9; i++)
         {
             Upstair_HaveImg[i].sprite = GameManager.GemSprites[i];
 
-            PickaxeNeedImg_1[i].sprite = GameManager.GemSprites[i];
-            PickaxeNeedImg_2[i].sprite = GameManager.GemSprites[i];
-            PickaxeNeedImg_3[i].sprite = GameManager.GemSprites[i];
-
-            MineralNeedImg_1[i].sprite = GameManager.GemSprites[i];
-            MineralNeedImg_2[i].sprite = GameManager.GemSprites[i];
-            MineralNeedImg_3[i].sprite = GameManager.GemSprites[i];
-
-            OptionNeedImg_1[i].sprite = GameManager.GemSprites[i];
-            OptionNeedImg_2[i].sprite = GameManager.GemSprites[i];
-            OptionNeedImg_3[i].sprite = GameManager.GemSprites[i];
+            MineNeedImg_1[i].sprite = GameManager.GemSprites[i];
+            MineNeedImg_2[i].sprite = GameManager.GemSprites[i];
+            MineNeedImg_3[i].sprite = GameManager.GemSprites[i];
         }
 
         for (int i = 0; i < Rock_LevelSelBtn.Length; i++)
@@ -237,182 +226,61 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
             Rock_DifficultyBtn[index].onClick.AddListener(() => RockDifficultyOpen(index));
         }
 
-        // 곡괭이 레벨업 리스너
-        for (int i = 0; i < PickaxeLevelUpBtn.Length; i++)
+        // 광산 레벨업 리스너
+        for (int i = 0; i < MineLevelUpBtn.Length; i++)
         {
             int index = i;
 
-            PickaxeLevelUpBtn[i].onClick.AddListener(() => PickaxeLevelUP(index));
+            MineLevelUpBtn[index].onClick.AddListener(() => MineLevelUP(index));
         }
 
-        // 광물 레벨업 리스너
-        for (int i = 0; i < MineralLevelUpBtn.Length; i++)
-        {
-            int index = i;
-
-            MineralLevelUpBtn[i].onClick.AddListener(() => MineralLevelUP(index));
-        }
-
-        // 옵션 레벨업 리스너
-        for (int i = 0; i < OptionLevelUpBtn.Length; i++)
-        {
-            int index = i;
-
-            OptionLevelUpBtn[i].onClick.AddListener(() => OptionLevelUP(index));
-        }
-
-        
         UpdateHealth();
-
-        Pickaxe_DamageNeeditem[0].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedBrownDust[GameManager.Pickaxe_DamageLv - 1]) + "";
-        if (GameManager.Pickaxe_DamageLv >= 10) Pickaxe_DamageNeeditem[1].text =   TextFormatter.GetThousandCommaText(GameManager.BasicNeedOrangeDust[GameManager.Pickaxe_DamageLv - 1]) + "";
-        if (GameManager.Pickaxe_DamageLv >= 30) Pickaxe_DamageNeeditem[2].text =   TextFormatter.GetThousandCommaText(GameManager.BasicNeedLimeDust[GameManager.Pickaxe_DamageLv - 1]) + "";
-        if (GameManager.Pickaxe_DamageLv >= 60) Pickaxe_DamageNeeditem[3].text =   TextFormatter.GetThousandCommaText(GameManager.BasicNeedBlackDust[GameManager.Pickaxe_DamageLv - 1]) + "";
-        if (GameManager.Pickaxe_DamageLv >= 120) Pickaxe_DamageNeeditem[4].text =  TextFormatter.GetThousandCommaText(GameManager.BasicNeedRedDust[GameManager.Pickaxe_DamageLv - 1]) + "";
-        if (GameManager.Pickaxe_DamageLv >= 240) Pickaxe_DamageNeeditem[5].text =  TextFormatter.GetThousandCommaText(GameManager.BasicNeedYellowDust[GameManager.Pickaxe_DamageLv - 1]) + "";
-        if (GameManager.Pickaxe_DamageLv >= 480) Pickaxe_DamageNeeditem[6].text =  TextFormatter.GetThousandCommaText(GameManager.BasicNeedDirtDust[GameManager.Pickaxe_DamageLv - 1]) + "";
-        if (GameManager.Pickaxe_DamageLv >= 800) Pickaxe_DamageNeeditem[7].text =  TextFormatter.GetThousandCommaText(GameManager.BasicNeedBlueDust[GameManager.Pickaxe_DamageLv - 1]) + "";
-        if (GameManager.Pickaxe_DamageLv >= 1500) Pickaxe_DamageNeeditem[8].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedPurpleDust[GameManager.Pickaxe_DamageLv - 1]) + "";
-
-        Pickaxe_CriDamageNeeditem[0].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedBrownDust[GameManager.Pickaxe_CriticalDamage_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalDamage_Level >= 10) Pickaxe_CriChanceNeeditem[1].text =    TextFormatter.GetThousandCommaText(GameManager.BasicNeedOrangeDust[GameManager.Pickaxe_CriticalDamage_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalDamage_Level >= 30) Pickaxe_CriChanceNeeditem[2].text =    TextFormatter.GetThousandCommaText(GameManager.BasicNeedLimeDust[GameManager.Pickaxe_CriticalDamage_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalDamage_Level >= 60) Pickaxe_CriChanceNeeditem[3].text =    TextFormatter.GetThousandCommaText(GameManager.BasicNeedBlackDust[GameManager.Pickaxe_CriticalDamage_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalDamage_Level >= 120) Pickaxe_CriChanceNeeditem[4].text =   TextFormatter.GetThousandCommaText(GameManager.BasicNeedRedDust[GameManager.Pickaxe_CriticalDamage_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalDamage_Level >= 240) Pickaxe_CriChanceNeeditem[5].text =   TextFormatter.GetThousandCommaText(GameManager.BasicNeedYellowDust[GameManager.Pickaxe_CriticalDamage_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalDamage_Level >= 480) Pickaxe_CriChanceNeeditem[6].text =   TextFormatter.GetThousandCommaText(GameManager.BasicNeedDirtDust[GameManager.Pickaxe_CriticalDamage_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalDamage_Level >= 800) Pickaxe_CriChanceNeeditem[7].text =   TextFormatter.GetThousandCommaText(GameManager.BasicNeedBlueDust[GameManager.Pickaxe_CriticalDamage_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalDamage_Level >= 1500) Pickaxe_CriChanceNeeditem[8].text =  TextFormatter.GetThousandCommaText(GameManager.BasicNeedPurpleDust[GameManager.Pickaxe_CriticalDamage_Level - 1]) + "";
-
-        Pickaxe_CriChanceNeeditem[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBrownDust[GameManager.Pickaxe_CriticalChance_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalChance_Level >= 10) Pickaxe_CriChanceNeeditem[1].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedOrangeDust[GameManager.Pickaxe_CriticalChance_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalChance_Level >= 30) Pickaxe_CriChanceNeeditem[2].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedLimeDust[GameManager.Pickaxe_CriticalChance_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalChance_Level >= 60) Pickaxe_CriChanceNeeditem[3].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlackDust[GameManager.Pickaxe_CriticalChance_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalChance_Level >= 120) Pickaxe_CriChanceNeeditem[4].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedRedDust[GameManager.Pickaxe_CriticalChance_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalChance_Level >= 240) Pickaxe_CriChanceNeeditem[5].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedYellowDust[GameManager.Pickaxe_CriticalChance_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalChance_Level >= 480) Pickaxe_CriChanceNeeditem[6].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedDirtDust[GameManager.Pickaxe_CriticalChance_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalChance_Level >= 800) Pickaxe_CriChanceNeeditem[7].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlueDust[GameManager.Pickaxe_CriticalChance_Level - 1]) + "";
-        if (GameManager.Pickaxe_CriticalChance_Level >= 1500) Pickaxe_CriChanceNeeditem[8].text =  TextFormatter.GetThousandCommaText(GameManager.SpecialNeedPurpleDust[GameManager.Pickaxe_CriticalChance_Level - 1]) + "";
-
-        // 광물
-
-        Mineral_NeeditemMI[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBrownDust[GameManager.Mineral_LevelMI - 1]) + "";
-        if (GameManager.Mineral_LevelMI >= 10) Mineral_NeeditemMI[1].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedOrangeDust[GameManager.Mineral_LevelMI - 1]) + "";
-        if (GameManager.Mineral_LevelMI >= 30) Mineral_NeeditemMI[2].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedLimeDust[GameManager.Mineral_LevelMI - 1]) + "";
-        if (GameManager.Mineral_LevelMI >= 60) Mineral_NeeditemMI[3].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlackDust[GameManager.Mineral_LevelMI - 1]) + "";
-        if (GameManager.Mineral_LevelMI >= 120) Mineral_NeeditemMI[4].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedRedDust[GameManager.Mineral_LevelMI - 1]) + "";
-        if (GameManager.Mineral_LevelMI >= 240) Mineral_NeeditemMI[5].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedYellowDust[GameManager.Mineral_LevelMI - 1]) + "";
-        if (GameManager.Mineral_LevelMI >= 480) Mineral_NeeditemMI[6].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedDirtDust[GameManager.Mineral_LevelMI - 1]) + "";
-        if (GameManager.Mineral_LevelMI >= 800) Mineral_NeeditemMI[7].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlueDust[GameManager.Mineral_LevelMI - 1]) + "";
-        if (GameManager.Mineral_LevelMI >= 1500) Mineral_NeeditemMI[8].text =  TextFormatter.GetThousandCommaText(GameManager.SpecialNeedPurpleDust[GameManager.Mineral_LevelMI - 1]) + "";
-
-        Mineral_NeeditemHP[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBrownDust[GameManager.Mineral_LevelHP - 1]) + "";
-        if (GameManager.Mineral_LevelHP >= 10) Mineral_NeeditemHP[1].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedOrangeDust[GameManager.Mineral_LevelHP - 1]) + "";
-        if (GameManager.Mineral_LevelHP >= 30) Mineral_NeeditemHP[2].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedLimeDust[GameManager.Mineral_LevelHP - 1]) + "";
-        if (GameManager.Mineral_LevelHP >= 60) Mineral_NeeditemHP[3].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlackDust[GameManager.Mineral_LevelHP - 1]) + "";
-        if (GameManager.Mineral_LevelHP >= 120) Mineral_NeeditemHP[4].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedRedDust[GameManager.Mineral_LevelHP - 1]) + "";
-        if (GameManager.Mineral_LevelHP >= 240) Mineral_NeeditemHP[5].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedYellowDust[GameManager.Mineral_LevelHP - 1]) + "";
-        if (GameManager.Mineral_LevelHP >= 480) Mineral_NeeditemHP[6].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedDirtDust[GameManager.Mineral_LevelHP - 1]) + "";
-        if (GameManager.Mineral_LevelHP >= 800) Mineral_NeeditemHP[7].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlueDust[GameManager.Mineral_LevelHP - 1]) + "";
-        if (GameManager.Mineral_LevelHP >= 1500) Mineral_NeeditemHP[8].text =  TextFormatter.GetThousandCommaText(GameManager.SpecialNeedPurpleDust[GameManager.Mineral_LevelHP - 1]) + "";
-
-        Mineral_NeeditemRS[0].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedOrangeDust[GameManager.Mineral_LevelRS - 1]) + "";
-        if (GameManager.Mineral_LevelRS >= 10) Mineral_NeeditemRS[1].text =    TextFormatter.GetThousandCommaText(GameManager.BasicNeedOrangeDust[GameManager.Mineral_LevelRS - 1]) + "";
-        if (GameManager.Mineral_LevelRS >= 30) Mineral_NeeditemRS[2].text =    TextFormatter.GetThousandCommaText(GameManager.BasicNeedLimeDust[GameManager.Mineral_LevelRS - 1]) + "";
-        if (GameManager.Mineral_LevelRS >= 60) Mineral_NeeditemRS[3].text =    TextFormatter.GetThousandCommaText(GameManager.BasicNeedBlackDust[GameManager.Mineral_LevelRS - 1]) + "";
-        if (GameManager.Mineral_LevelRS >= 120) Mineral_NeeditemRS[4].text =   TextFormatter.GetThousandCommaText(GameManager.BasicNeedRedDust[GameManager.Mineral_LevelRS - 1]) + "";
-        if (GameManager.Mineral_LevelRS >= 240) Mineral_NeeditemRS[5].text =   TextFormatter.GetThousandCommaText(GameManager.BasicNeedYellowDust[GameManager.Mineral_LevelRS - 1]) + "";
-        if (GameManager.Mineral_LevelRS >= 480) Mineral_NeeditemRS[6].text =   TextFormatter.GetThousandCommaText(GameManager.BasicNeedDirtDust[GameManager.Mineral_LevelRS - 1]) + "";
-        if (GameManager.Mineral_LevelRS >= 800) Mineral_NeeditemRS[7].text =   TextFormatter.GetThousandCommaText(GameManager.BasicNeedBlueDust[GameManager.Mineral_LevelRS - 1]) + "";
-        if (GameManager.Mineral_LevelRS >= 1500) Mineral_NeeditemRS[8].text =  TextFormatter.GetThousandCommaText(GameManager.BasicNeedPurpleDust[GameManager.Mineral_LevelRS - 1]) + "";
-
-        // 옵션
-
-        Option_NeeditemPMA[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedOrangeDust[GameManager.Option_LevelPMA - 1]) + "";
-        if (GameManager.Option_LevelPMA >= 10) Option_NeeditemPMA[1].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedOrangeDust[GameManager.Option_LevelPMA - 1]) + "";
-        if (GameManager.Option_LevelPMA >= 30) Option_NeeditemPMA[2].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedLimeDust[GameManager.Option_LevelPMA - 1]) + "";
-        if (GameManager.Option_LevelPMA >= 60) Option_NeeditemPMA[3].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlackDust[GameManager.Option_LevelPMA - 1]) + "";
-        if (GameManager.Option_LevelPMA >= 120) Option_NeeditemPMA[4].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedRedDust[GameManager.Option_LevelPMA - 1]) + "";
-        if (GameManager.Option_LevelPMA >= 240) Option_NeeditemPMA[5].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedYellowDust[GameManager.Option_LevelPMA - 1]) + "";
-        if (GameManager.Option_LevelPMA >= 480) Option_NeeditemPMA[6].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedDirtDust[GameManager.Option_LevelPMA - 1]) + "";
-        if (GameManager.Option_LevelPMA >= 800) Option_NeeditemPMA[7].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlueDust[GameManager.Option_LevelPMA - 1]) + "";
-        if (GameManager.Option_LevelPMA >= 1500) Option_NeeditemPMA[8].text =  TextFormatter.GetThousandCommaText(GameManager.SpecialNeedPurpleDust[GameManager.Option_LevelPMA - 1]) + "";
-
-        Option_NeeditemMB[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedOrangeDust[GameManager.Option_LevelMB - 1]) + "";
-        if (GameManager.Option_LevelMB >= 10) Option_NeeditemMB[1].text =      TextFormatter.GetThousandCommaText(GameManager.SpecialNeedOrangeDust[GameManager.Option_LevelMB - 1]) + "";
-        if (GameManager.Option_LevelMB >= 30) Option_NeeditemMB[2].text =      TextFormatter.GetThousandCommaText(GameManager.SpecialNeedLimeDust[GameManager.Option_LevelMB - 1]) + "";
-        if (GameManager.Option_LevelMB >= 60) Option_NeeditemMB[3].text =      TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlackDust[GameManager.Option_LevelMB - 1]) + "";
-        if (GameManager.Option_LevelMB >= 120) Option_NeeditemMB[4].text =     TextFormatter.GetThousandCommaText(GameManager.SpecialNeedRedDust[GameManager.Option_LevelMB - 1]) + "";
-        if (GameManager.Option_LevelMB >= 240) Option_NeeditemMB[5].text =     TextFormatter.GetThousandCommaText(GameManager.SpecialNeedYellowDust[GameManager.Option_LevelMB - 1]) + "";
-        if (GameManager.Option_LevelMB >= 480) Option_NeeditemMB[6].text =     TextFormatter.GetThousandCommaText(GameManager.SpecialNeedDirtDust[GameManager.Option_LevelMB - 1]) + "";
-        if (GameManager.Option_LevelMB >= 800) Option_NeeditemMB[7].text =     TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlueDust[GameManager.Option_LevelMB - 1]) + "";
-        if (GameManager.Option_LevelMB >= 1500) Option_NeeditemMB[8].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedPurpleDust[GameManager.Option_LevelMB - 1]) + "";
-
-        Option_NeeditemPFD[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedOrangeDust[GameManager.Option_LevelPFD - 1]) + "";
-        if (GameManager.Option_LevelPFD >= 10) Option_NeeditemPFD[1].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedOrangeDust[GameManager.Option_LevelPFD - 1]) + "";
-        if (GameManager.Option_LevelPFD >= 30) Option_NeeditemPFD[2].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedLimeDust[GameManager.Option_LevelPFD - 1]) + "";
-        if (GameManager.Option_LevelPFD >= 60) Option_NeeditemPFD[3].text =    TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlackDust[GameManager.Option_LevelPFD - 1]) + "";
-        if (GameManager.Option_LevelPFD >= 120) Option_NeeditemPFD[4].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedRedDust[GameManager.Option_LevelPFD - 1]) + "";
-        if (GameManager.Option_LevelPFD >= 240) Option_NeeditemPFD[5].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedYellowDust[GameManager.Option_LevelPFD - 1]) + "";
-        if (GameManager.Option_LevelPFD >= 480) Option_NeeditemPFD[6].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedDirtDust[GameManager.Option_LevelPFD - 1]) + "";
-        if (GameManager.Option_LevelPFD >= 800) Option_NeeditemPFD[7].text =   TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlueDust[GameManager.Option_LevelPFD - 1]) + "";
-        if (GameManager.Option_LevelPFD >= 1500) Option_NeeditemPFD[8].text =  TextFormatter.GetThousandCommaText(GameManager.SpecialNeedPurpleDust[GameManager.Option_LevelPFD - 1]) + "";
-
-
-        PickaxeLevelText[0].text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Pickaxe_DamageLv);
-        PickaxeLevelText[1].text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Pickaxe_CriticalChance_Level);
-        PickaxeLevelText[2].text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Pickaxe_CriticalDamage_Level);
-
-        PickaxeLeftText[0].text = TextFormatter.GetFloatPointCommaText_0(GameManager.Pickaxe_Damage) + "";
-        PickaxeLeftText[1].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Pickaxe_CriticalChance) + "%";
-        PickaxeLeftText[2].text = TextFormatter.GetFloatPointCommaText_0(GameManager.Pickaxe_CriticalDamage) + "%";
-
-        PickaxeRightText[0].text = TextFormatter.GetFloatPointCommaText_0(GameManager.Pickaxe_Damage + 1f) + "";
-        PickaxeRightText[1].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Pickaxe_CriticalChance + 0.1m) + "%";
-        PickaxeRightText[2].text = TextFormatter.GetFloatPointCommaText_0(GameManager.Pickaxe_CriticalDamage + 1f) + "%";
-
-        MineralLevelText[0].text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Mineral_LevelMI);
-        MineralLevelText[1].text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Mineral_LevelHP);
-        MineralLevelText[2].text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Mineral_LevelRS);
-
-        MineralLeftText[0].text = TextFormatter.GetThousandCommaText(GameManager.Mineral_MI) + "";
-        MineralLeftText[1].text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Mineral_HP) + "%";
-        MineralLeftText[2].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Mineral_RS) + "%";
-
-        MineralRightText[0].text = TextFormatter.GetThousandCommaText(GameManager.Mineral_MI + 1) + "";
-        MineralRightText[1].text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Mineral_HP + 0.01m) + "%";
-        MineralRightText[2].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Mineral_RS + 0.1m) + "%";
-
-        OptionLevelText[0].text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Option_LevelPMA);
-        OptionLevelText[1].text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Option_LevelMB);
-        OptionLevelText[2].text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Option_LevelPFD);
-
-        OptionLeftText[0].text = TextFormatter.GetThousandCommaText((long)GameManager.Option_PMA) + "%";
-        OptionLeftText[1].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Option_MB) + "%";
-        OptionLeftText[2].text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Option_PFD) + "%";
-
-        OptionRightText[0].text = TextFormatter.GetThousandCommaText((long)GameManager.Option_PMA + 1) + "%";
-        OptionRightText[1].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Option_MB + 0.1m) + "%";
-        OptionRightText[2].text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Option_PFD + 0.01m) + "%";
-
         UpgradeTitleText.text = "Upgrade";
         UpdateBasicInfo();
         UpdateInfoValue();
-        
+
+    }
+
+    private void UpgradeOpen(int index)
+    {
+        InUpgradePanel = index;
+        UpgradeTitleText.text = UpgradeSelTitleString[index];
+        if (index == 0) UpdateMineLeftRightText(index, GameManager.Pickaxe_Damage, GameManager.Pickaxe_CriticalChance, GameManager.Pickaxe_CriticalDamage);
+        else if(index == 1) UpdateMineLeftRightText(index, GameManager.Mineral_MI, GameManager.Mineral_HP, GameManager.Mineral_RS);
+        else if (index == 2) UpdateMineLeftRightText(index, GameManager.Option_PMA, GameManager.Option_MB, GameManager.Option_PFD);
+
+        for (int i = 0; i < MineUpgradeImg.Length; i++)
+        {
+            MineUpgradeImg[i].sprite = MineUpgradeSprite[i + 3 * index];
+            MineUpgradeInTitle[i].text = UpgradeInTitleString[i + 3 * index];
+            if (index == 2)
+            {
+                MineFrame[i].color = ColorManager.ColorChange("검정색");
+                MineFrame[i].sprite = MineUpgradeSprite[10];
+            }
+            else
+            {
+                MineFrame[i].color = ColorManager.ColorChange("하얀색");
+                MineFrame[i].sprite = MineUpgradeSprite[9];
+            }
+
+        }
+        BasicPanel.SetActive(false);
+        UpgradePanel.SetActive(true);
     }
 
     [System.Obsolete]
     void Update()
     {
-        Own_MineralText[0].text = TextFormatter.GetThousandCommaText(GameManager.BrownDust) + "";
-        Own_MineralText[1].text = TextFormatter.GetThousandCommaText(GameManager.OrangeDust) + "";
-        Own_MineralText[2].text = TextFormatter.GetThousandCommaText(GameManager.LimeDust) + "";
-        Own_MineralText[3].text = TextFormatter.GetThousandCommaText(GameManager.BlackDust) + "";
-        Own_MineralText[4].text = TextFormatter.GetThousandCommaText(GameManager.RedDust) + "";
-        Own_MineralText[5].text = TextFormatter.GetThousandCommaText(GameManager.YellowDust) + "";
-        Own_MineralText[6].text = TextFormatter.GetThousandCommaText(GameManager.DirtDust) + "";
-        Own_MineralText[7].text = TextFormatter.GetThousandCommaText(GameManager.BlueDust) + "";
-        Own_MineralText[8].text = TextFormatter.GetThousandCommaText(GameManager.PurpleDust) + "";
+        Own_MineralText[0].text = TextFormatter.GetThousandCommaText(GameManager.HaveStarGrey) + "";
+        Own_MineralText[1].text = TextFormatter.GetThousandCommaText(GameManager.HaveStarBrown) + "";
+        Own_MineralText[2].text = TextFormatter.GetThousandCommaText(GameManager.HaveStarBlue) + "";
+        Own_MineralText[3].text = TextFormatter.GetThousandCommaText(GameManager.HaveStarGreen) + "";
+        Own_MineralText[4].text = TextFormatter.GetThousandCommaText(GameManager.HaveStarRed) + "";
+        Own_MineralText[5].text = TextFormatter.GetThousandCommaText(GameManager.HaveStarYellow) + "";
+        Own_MineralText[6].text = TextFormatter.GetThousandCommaText(GameManager.HaveStarPurple) + "";
+        Own_MineralText[7].text = TextFormatter.GetThousandCommaText(GameManager.HaveStarOrange) + "";
+        Own_MineralText[8].text = TextFormatter.GetThousandCommaText(GameManager.HaveStarDark) + "";
 
         if (RocksInfoOpen == true && (Input.GetMouseButtonDown(0) || Input.touchCount > 0))
         {
@@ -428,7 +296,9 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         else RocksCurHP = RocksMaxHP;
     }
 
-    readonly int maxExecutions = 3;
+    public static int maxExecutions = 3;
+
+    // 클릭 초기화 1초에 N번 클릭가능
     public static IEnumerator ResetExecutionsAfterDelay()
     {
         while (true)
@@ -438,6 +308,8 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
             Debug.Log("광물 초기화!");
         }
     }
+
+    // 클릭 포인터 받기
     [System.Obsolete]
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -448,7 +320,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         if (touchableArea.rect.Contains(localPoint))
         {
             // 최대 3번까지만 HandleTouchInput 실행
-            if (executions > maxExecutions) return;
+            if (executions >= maxExecutions + (int)GameManager.Mineral_MI) return;
 
             HandleTouchInput();
 
@@ -459,10 +331,10 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                     HandleTouchInput();
                 }
             }
-            
+
         }
     }
-    
+
 
     // 광물 클릭 관리
     [System.Obsolete]
@@ -471,8 +343,8 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         executions++;
         audioSource.PlayOneShot(MiningSoundClip, 1f);
 
-        RocksNormalDamage = (GameManager.Pickaxe_Damage) * (1 + (float)GameManager.Option_PMA / 100);
-        RocksCriticalDamage = (GameManager.Pickaxe_Damage + GameManager.Pickaxe_CriticalDamage) * (1 + (float)GameManager.Option_PMA / 100);
+        RocksNormalDamage = (float)GameManager.Pickaxe_Damage * (1 + (float)GameManager.Option_PMA / 100);
+        RocksCriticalDamage = (float)(GameManager.Pickaxe_Damage + GameManager.Pickaxe_CriticalDamage) * (1 + (float)GameManager.Option_PMA / 100);
 
         int Random_Critical = Random.RandomRange(0, 100); // 크리티컬 확률 조건
         int FatalDamage = Random.RandomRange(0, 100); // 치명적 피해 확률 조건
@@ -529,6 +401,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         Destroy(effectInstance, 1f);
     }
 
+    // 광물 부족 알림 패널
     private void LackOut()
     {
         lackBG.SetActive(false);
@@ -537,16 +410,16 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
     // 업그레이드 총합 정보 관리
     private void UpdateBasicInfo()
     {
-        BasicInfo[0].text = TextFormatter.GetFloatPointCommaText_0(GameManager.Pickaxe_Damage) + "";
+        BasicInfo[0].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Pickaxe_Damage) + "";
         BasicInfo[1].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Pickaxe_CriticalChance) + "%";
-        BasicInfo[2].text = TextFormatter.GetFloatPointCommaText_0(GameManager.Pickaxe_CriticalDamage) + "";
+        BasicInfo[2].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Pickaxe_CriticalDamage) + "%";
 
-        BasicInfo[3].text = TextFormatter.GetThousandCommaText(GameManager.Mineral_MI) + "";
-        BasicInfo[4].text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Mineral_HP) + "%";
-        BasicInfo[5].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Mineral_RS) + "%";
+        BasicInfo[3].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Mineral_MI + maxExecutions) + "번";
+        BasicInfo[4].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Mineral_HP) + "%";
+        BasicInfo[5].text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Mineral_RS) + "%";
 
-        BasicInfo[6].text = TextFormatter.GetThousandCommaText((long)GameManager.Option_PMA) + "%";
-        BasicInfo[7].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Option_MB) + "%";
+        BasicInfo[6].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Option_PMA) + "%";
+        BasicInfo[7].text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Option_MB) + "%";
         BasicInfo[8].text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Option_PFD) + "%";
     }
 
@@ -567,15 +440,15 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
     private void UpdateInfoValue()
     {
         Rock_InfoText[0].text = "<color=lightblue>" + TextFormatter.GetThousandCommaText((long)rock.n_rocks[GameManager.Rock_InfoStage].Maxhealth) + "</color>";
-        Rock_InfoText[1].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].BrownDust) + "%</color>";
-        Rock_InfoText[2].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].OrangeDust) + "%</color>";
-        Rock_InfoText[3].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].LimeDust) + "%</color>";
-        Rock_InfoText[4].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].BlackDust) + "%</color>";
-        Rock_InfoText[5].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].RedDust) + "%</color>";
-        Rock_InfoText[6].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].YellowDust) + "%</color>";
-        Rock_InfoText[7].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].DirtDust) + "%</color>";
-        Rock_InfoText[8].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].BlueDust) + "%</color>";
-        Rock_InfoText[9].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].PurpleDust) + "%</color>";
+        Rock_InfoText[1].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].HaveStarGrey) + "%</color>";
+        Rock_InfoText[2].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].HaveStarBrown) + "%</color>";
+        Rock_InfoText[3].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].HaveStarBlue) + "%</color>";
+        Rock_InfoText[4].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].HaveStarGreen) + "%</color>";
+        Rock_InfoText[5].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].HaveStarRed) + "%</color>";
+        Rock_InfoText[6].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].HaveStarYellow) + "%</color>";
+        Rock_InfoText[7].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].HaveStarPurple) + "%</color>";
+        Rock_InfoText[8].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].HaveStarOrange) + "%</color>";
+        Rock_InfoText[9].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].HaveStarDark) + "%</color>";
         Rock_InfoText[10].text = "<color=lightblue>" + TextFormatter.GetFloatPointCommaText(rock.n_rocks[GameManager.Rock_InfoStage].ReinforceScroll) + "%</color>";
     }
 
@@ -674,351 +547,347 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         Rock_LevelSelPanel.SetActive(true);
     }
 
-    // 곡괭이 강화 화면 변경
-    private void PickaxeChange()
+
+
+    private long ExchangeNeedStar(int level, string grade)
     {
-        UpgradeTitleText.text = "곡괭이 강화";
+        long ReturnValue;
 
-        isPickaxeActive = !isPickaxeActive;
-
-        PickaxeUpgradePanel.SetActive(isPickaxeActive);
-        UpgradePanel.SetActive(isPickaxeActive);
-        BasicPanel.SetActive(!isPickaxeActive);
-
-        if (isMineralActive)
+        if (grade == "일반")
         {
-            MineralUpgradePanel.SetActive(false);
-            isMineralActive = false;
-            
+            ReturnValue = level * 5;
         }
-        if (isOptionActive)
+        else
         {
-            OptionUpgradePanel.SetActive(false);
-            isOptionActive = false;
+            ReturnValue = level * 15;
         }
 
-        UpdateBasicInfo();
+        return ReturnValue;
     }
 
-    // 광물 강화 화면 변경
-    private void MineralChange()
+    // 레벨 체크하기
+    private int[] DevideLevel = new int[9]
     {
-        UpgradeTitleText.text = "광물 강화";
+        0,
+        10,
+        30,
+        60,
+        120,
+        240,
+        480,
+        800,
+        1500,
+    };
 
-        isMineralActive = !isMineralActive;
-
-        MineralUpgradePanel.SetActive(isMineralActive);
-        UpgradePanel.SetActive(isMineralActive);
-        BasicPanel.SetActive(!isMineralActive);
-
-        if (isPickaxeActive)
+    // 필요 아이템 개수 업데이트
+    private void UpdateMineNeedItemText(Text[] texts, string grade, int level)
+    {
+        for(int i = 0; i < 9; i++)
         {
-            PickaxeUpgradePanel.SetActive(false);
-            isPickaxeActive = false;
-
+            if (level >= DevideLevel[i] && i != 0) texts[i].text = TextFormatter.GetThousandCommaText(ExchangeNeedStar(level - DevideLevel[i] + 1, grade)) + "";
+            else if (i == 0) texts[0].text = TextFormatter.GetThousandCommaText(ExchangeNeedStar(level, grade)) + "";
+            else texts[i].text = "0";
         }
-        if (isOptionActive)
-        {
-            OptionUpgradePanel.SetActive(false);
-            isOptionActive = false;
-        }
+        
 
-        UpdateBasicInfo();
     }
 
-    // 옵션 강화 화면 변경
-    private void OptionChange()
+    // 업그레이드 좌우 값 변경
+    private void UpdateMineLeftRightText(int index, decimal Value_1, decimal Value_2, decimal Value_3)
     {
-        UpgradeTitleText.text = "옵션 강화";
-
-        isOptionActive = !isOptionActive;
-        OptionUpgradePanel.SetActive(isOptionActive);
-        UpgradePanel.SetActive(isOptionActive); // UpgradePanel의 활성/비활성 상태를 isOptionActive에 따라 역으로 설정
-        BasicPanel.SetActive(!isOptionActive);
-
-        if (isPickaxeActive)
-        {
-            PickaxeUpgradePanel.SetActive(false);
-            isPickaxeActive = false;
-
-        }
-        if (isMineralActive)
-        {
-            MineralUpgradePanel.SetActive(false);
-            isMineralActive = false;
-        }
-
-        UpdateBasicInfo();
-    }
-    // 곡괭이 업그레이드
-    private void PickaxeLevelUP(int index)
-    {
-        bool check = false;
-
-        //  곡괭이 데미지 증가
+        // 곡괭이 패널
         if (index == 0)
         {
-            if (GameManager.BrownDust < GameManager.BasicNeedBrownDust[GameManager.Pickaxe_DamageLv - 1]) check = true;
+            MineLeftText[0].text = TextFormatter.GetDecimalPointCommaText_0(Value_1) + "";
+            MineLeftText[1].text = TextFormatter.GetDecimalPointCommaText_0(Value_2) + "%";
+            MineLeftText[2].text = TextFormatter.GetDecimalPointCommaText_0(Value_3) + "%";
 
-            if (GameManager.Pickaxe_DamageLv >= 10)
-                if (GameManager.OrangeDust < GameManager.BasicNeedOrangeDust[GameManager.Pickaxe_DamageLv - 10]) check = true;
-            if (GameManager.Pickaxe_DamageLv >= 30)
-                if (GameManager.LimeDust < GameManager.BasicNeedLimeDust[GameManager.Pickaxe_DamageLv - 30]) check = true;
-            if (GameManager.Pickaxe_DamageLv >= 60)
-                if (GameManager.BlackDust < GameManager.BasicNeedBlackDust[GameManager.Pickaxe_DamageLv - 60]) check = true;
-            if (GameManager.Pickaxe_DamageLv >= 120)
-                if (GameManager.RedDust < GameManager.BasicNeedRedDust[GameManager.Pickaxe_DamageLv - 120]) check = true;
-            if (GameManager.Pickaxe_DamageLv >= 240)
-                if (GameManager.YellowDust < GameManager.BasicNeedYellowDust[GameManager.Pickaxe_DamageLv - 240]) check = true;
-            if (GameManager.Pickaxe_DamageLv >= 480)
-                if (GameManager.DirtDust < GameManager.BasicNeedDirtDust[GameManager.Pickaxe_DamageLv - 480]) check = true;
-            if (GameManager.Pickaxe_DamageLv >= 800)
-                if (GameManager.BlueDust < GameManager.BasicNeedBlueDust[GameManager.Pickaxe_DamageLv - 800]) check = true;
-            if (GameManager.Pickaxe_DamageLv >= 1500)
-                if (GameManager.PurpleDust < GameManager.BasicNeedPurpleDust[GameManager.Pickaxe_DamageLv - 1500]) check = true;
-
-            if (check == true)
-            {
-                lackBG.SetActive(true);
-                return;
-            }
-
-            GameManager.Pickaxe_DamageLv++;
-            GameManager.Pickaxe_Damage += 1f;
-
-
-            PickaxeLevelText[0].text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Pickaxe_DamageLv);
-            PickaxeLeftText[0].text = TextFormatter.GetFloatPointCommaText_0(GameManager.Pickaxe_Damage) + "";
-            PickaxeRightText[0].text = TextFormatter.GetFloatPointCommaText_0(GameManager.Pickaxe_Damage + 1f) + "";
-
-            Pickaxe_DamageNeeditem[0].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedBrownDust[GameManager.Pickaxe_DamageLv - 1]) + "";
-            GameManager.BrownDust -= GameManager.BasicNeedBrownDust[GameManager.Pickaxe_DamageLv - 2];
-
-            if (GameManager.Pickaxe_DamageLv >= 10)
-            {
-                Pickaxe_DamageNeeditem[1].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedOrangeDust[GameManager.Pickaxe_DamageLv - 10]) + "";
-                if (GameManager.Pickaxe_DamageLv != 10) GameManager.OrangeDust -= GameManager.BasicNeedOrangeDust[GameManager.Pickaxe_DamageLv - 11];
-            }
-
-            if (GameManager.Pickaxe_DamageLv >= 30)
-            {
-                Pickaxe_DamageNeeditem[2].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedLimeDust[GameManager.Pickaxe_DamageLv - 30]) + "";
-                if (GameManager.Pickaxe_DamageLv != 30) GameManager.LimeDust -= GameManager.BasicNeedLimeDust[GameManager.Pickaxe_DamageLv - 31];
-            }
-
-            if (GameManager.Pickaxe_DamageLv >= 60)
-            {
-                Pickaxe_DamageNeeditem[3].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedBlackDust[GameManager.Pickaxe_DamageLv - 60]) + "";
-                if (GameManager.Pickaxe_DamageLv != 60) GameManager.BlackDust -= GameManager.BasicNeedBlackDust[GameManager.Pickaxe_DamageLv - 61];
-            }
-
-            if (GameManager.Pickaxe_DamageLv >= 120)
-            {
-                Pickaxe_DamageNeeditem[4].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedRedDust[GameManager.Pickaxe_DamageLv - 120]) + "";
-                if (GameManager.Pickaxe_DamageLv != 120) GameManager.RedDust -= GameManager.BasicNeedRedDust[GameManager.Pickaxe_DamageLv - 121];
-            }
-
-            if (GameManager.Pickaxe_DamageLv >= 240)
-            {
-                Pickaxe_DamageNeeditem[5].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedYellowDust[GameManager.Pickaxe_DamageLv - 240]) + "";
-                if (GameManager.Pickaxe_DamageLv != 240) GameManager.YellowDust -= GameManager.BasicNeedYellowDust[GameManager.Pickaxe_DamageLv - 241];
-            }
-
-            if (GameManager.Pickaxe_DamageLv >= 480)
-            {
-                Pickaxe_DamageNeeditem[6].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedDirtDust[GameManager.Pickaxe_DamageLv - 480]) + "";
-                if (GameManager.Pickaxe_DamageLv != 480) GameManager.DirtDust -= GameManager.BasicNeedDirtDust[GameManager.Pickaxe_DamageLv - 481];
-            }
-
-            if (GameManager.Pickaxe_DamageLv >= 800)
-            {
-                Pickaxe_DamageNeeditem[7].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedBlueDust[GameManager.Pickaxe_DamageLv - 800]) + "";
-                if (GameManager.Pickaxe_DamageLv != 800) GameManager.BlueDust -= GameManager.BasicNeedBlueDust[GameManager.Pickaxe_DamageLv - 801];
-            }
-
-            if (GameManager.Pickaxe_DamageLv >= 1500)
-            {
-                Pickaxe_DamageNeeditem[8].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedPurpleDust[GameManager.Pickaxe_DamageLv - 1500]) + "";
-                if (GameManager.Pickaxe_DamageLv != 1500) GameManager.PurpleDust -= GameManager.BasicNeedPurpleDust[GameManager.Pickaxe_DamageLv - 1501];
-            }
-
+            MineRightText[0].text = TextFormatter.GetDecimalPointCommaText_0(Value_1 + 1m) + "";
+            MineRightText[1].text = TextFormatter.GetDecimalPointCommaText_0(Value_2 + 0.1m) + "%";
+            MineRightText[2].text = TextFormatter.GetDecimalPointCommaText_0(Value_3 + 1m) + "%";
         }
-        //  곡괭이 크리티컬 확률 증가
-        else if (index == 1)
+        // 광물 패널
+        if (index == 1)
         {
-            if (GameManager.BrownDust < GameManager.SpecialNeedBrownDust[GameManager.Pickaxe_CriticalChance_Level - 1]) check = true;
+            MineLeftText[0].text = TextFormatter.GetDecimalPointCommaText_0(Value_1) + "번";
+            MineLeftText[1].text = TextFormatter.GetDecimalPointCommaText_0(Value_2) + "%";
+            MineLeftText[2].text = TextFormatter.GetDecimalPointCommaText_00(Value_3) + "%";
 
-            if (GameManager.Pickaxe_CriticalChance_Level >= 10)
-                if (GameManager.OrangeDust < GameManager.SpecialNeedOrangeDust[GameManager.Pickaxe_CriticalChance_Level - 10]) check = true;
-            if (GameManager.Pickaxe_CriticalChance_Level >= 30)
-                if (GameManager.LimeDust < GameManager.SpecialNeedLimeDust[GameManager.Pickaxe_CriticalChance_Level - 30]) check = true;
-            if (GameManager.Pickaxe_CriticalChance_Level >= 60)
-                if (GameManager.BlackDust < GameManager.SpecialNeedBlackDust[GameManager.Pickaxe_CriticalChance_Level - 60]) check = true;
-            if (GameManager.Pickaxe_CriticalChance_Level >= 120)
-                if (GameManager.RedDust < GameManager.SpecialNeedRedDust[GameManager.Pickaxe_CriticalChance_Level - 120]) check = true;
-            if (GameManager.Pickaxe_CriticalChance_Level >= 240)
-                if (GameManager.YellowDust < GameManager.SpecialNeedYellowDust[GameManager.Pickaxe_CriticalChance_Level - 240]) check = true;
-            if (GameManager.Pickaxe_CriticalChance_Level >= 480)
-                if (GameManager.DirtDust < GameManager.SpecialNeedDirtDust[GameManager.Pickaxe_CriticalChance_Level - 480]) check = true;
-            if (GameManager.Pickaxe_CriticalChance_Level >= 800)
-                if (GameManager.BlueDust < GameManager.SpecialNeedBlueDust[GameManager.Pickaxe_CriticalChance_Level - 800]) check = true;
-            if (GameManager.Pickaxe_CriticalChance_Level >= 1500)
-                if (GameManager.PurpleDust < GameManager.SpecialNeedPurpleDust[GameManager.Pickaxe_CriticalChance_Level - 1500]) check = true;
-
-            if (check == true)
-            {
-                lackBG.SetActive(true);
-                return;
-            }
-
-            GameManager.Pickaxe_CriticalChance_Level++;
-            GameManager.Pickaxe_CriticalChance += 0.1m;
-
-            PickaxeLevelText[1].text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Pickaxe_CriticalChance_Level);
-            PickaxeLeftText[1].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Pickaxe_CriticalChance) + "%";
-            PickaxeRightText[1].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Pickaxe_CriticalChance + 0.1m) + "%";
-
-            Pickaxe_CriChanceNeeditem[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBrownDust[GameManager.Pickaxe_CriticalChance_Level - 1]) + "";
-            GameManager.BrownDust -= GameManager.SpecialNeedBrownDust[GameManager.Pickaxe_CriticalChance_Level - 2];
-
-
-            if (GameManager.Pickaxe_CriticalChance_Level >= 10)
-            {
-                Pickaxe_CriChanceNeeditem[1].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedOrangeDust[GameManager.Pickaxe_CriticalChance_Level - 10]) + "";
-                if (GameManager.Pickaxe_CriticalChance_Level != 10) GameManager.OrangeDust -= GameManager.SpecialNeedOrangeDust[GameManager.Pickaxe_CriticalChance_Level - 11];
-            }
-
-            if (GameManager.Pickaxe_CriticalChance_Level >= 30)
-            {
-                Pickaxe_CriChanceNeeditem[2].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedLimeDust[GameManager.Pickaxe_CriticalChance_Level - 30]) + "";
-                if (GameManager.Pickaxe_CriticalChance_Level != 30) GameManager.LimeDust -= GameManager.SpecialNeedLimeDust[GameManager.Pickaxe_CriticalChance_Level - 31];
-            }
-
-            if (GameManager.Pickaxe_CriticalChance_Level >= 60)
-            {
-                Pickaxe_CriChanceNeeditem[3].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlackDust[GameManager.Pickaxe_CriticalChance_Level - 60]) + "";
-                if (GameManager.Pickaxe_CriticalChance_Level != 60) GameManager.BlackDust -= GameManager.SpecialNeedBlackDust[GameManager.Pickaxe_CriticalChance_Level - 61];
-            }
-
-            if (GameManager.Pickaxe_CriticalChance_Level >= 120)
-            {
-                Pickaxe_CriChanceNeeditem[4].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedRedDust[GameManager.Pickaxe_CriticalChance_Level - 120]) + "";
-                if (GameManager.Pickaxe_CriticalChance_Level != 120) GameManager.RedDust -= GameManager.SpecialNeedRedDust[GameManager.Pickaxe_CriticalChance_Level - 121];
-            }
-
-            if (GameManager.Pickaxe_CriticalChance_Level >= 240)
-            {
-                Pickaxe_CriChanceNeeditem[5].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedYellowDust[GameManager.Pickaxe_CriticalChance_Level - 240]) + "";
-                if (GameManager.Pickaxe_CriticalChance_Level != 240) GameManager.YellowDust -= GameManager.SpecialNeedYellowDust[GameManager.Pickaxe_CriticalChance_Level - 241];
-            }
-
-            if (GameManager.Pickaxe_CriticalChance_Level >= 480)
-            {
-                Pickaxe_CriChanceNeeditem[6].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedDirtDust[GameManager.Pickaxe_CriticalChance_Level - 480]) + "";
-                if (GameManager.Pickaxe_CriticalChance_Level != 480) GameManager.DirtDust -= GameManager.SpecialNeedDirtDust[GameManager.Pickaxe_CriticalChance_Level - 481];
-            }
-
-            if (GameManager.Pickaxe_CriticalChance_Level >= 800)
-            {
-                Pickaxe_CriChanceNeeditem[7].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlueDust[GameManager.Pickaxe_CriticalChance_Level - 800]) + "";
-                if (GameManager.Pickaxe_CriticalChance_Level != 800) GameManager.BlueDust -= GameManager.SpecialNeedBlueDust[GameManager.Pickaxe_CriticalChance_Level - 801];
-            }
-
-            if (GameManager.Pickaxe_CriticalChance_Level >= 1500)
-            {
-                Pickaxe_CriChanceNeeditem[8].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedPurpleDust[GameManager.Pickaxe_CriticalChance_Level - 1500]) + "";
-                if (GameManager.Pickaxe_CriticalChance_Level != 1500) GameManager.PurpleDust -= GameManager.SpecialNeedPurpleDust[GameManager.Pickaxe_CriticalChance_Level - 1501];
-            }
+            MineRightText[0].text = TextFormatter.GetDecimalPointCommaText_0(Value_1 + 0.2m) + "번";
+            MineRightText[1].text = TextFormatter.GetDecimalPointCommaText_0(Value_2 + 0.1m) + "%";
+            MineRightText[2].text = TextFormatter.GetDecimalPointCommaText_00(Value_3 + 0.01m) + "%";
         }
-        //  곡괭이 크리티컬 데미지 증가
-        else if (index == 2)
+        // 옵션 패널
+        if (index == 2)
         {
-            if (GameManager.BrownDust < GameManager.BasicNeedBrownDust[GameManager.Pickaxe_CriticalDamage_Level - 1]) check = true;
+            MineLeftText[0].text = TextFormatter.GetDecimalPointCommaText_0(Value_1) + "%";
+            MineLeftText[1].text = TextFormatter.GetDecimalPointCommaText_00(Value_2) + "%";
+            MineLeftText[2].text = TextFormatter.GetDecimalPointCommaText_00(Value_3) + "%";
 
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 10)
-                if (GameManager.OrangeDust < GameManager.BasicNeedOrangeDust[GameManager.Pickaxe_CriticalDamage_Level - 10]) check = true;
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 30)
-                if (GameManager.LimeDust < GameManager.BasicNeedLimeDust[GameManager.Pickaxe_CriticalDamage_Level - 30]) check = true;
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 60)
-                if (GameManager.BlackDust < GameManager.BasicNeedBlackDust[GameManager.Pickaxe_CriticalDamage_Level - 60]) check = true;
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 120)
-                if (GameManager.RedDust < GameManager.BasicNeedRedDust[GameManager.Pickaxe_CriticalDamage_Level - 120]) check = true;
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 240)
-                if (GameManager.YellowDust < GameManager.BasicNeedYellowDust[GameManager.Pickaxe_CriticalDamage_Level - 240]) check = true;
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 480)
-                if (GameManager.DirtDust < GameManager.BasicNeedDirtDust[GameManager.Pickaxe_CriticalDamage_Level - 480]) check = true;
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 800)
-                if (GameManager.BlueDust < GameManager.BasicNeedBlueDust[GameManager.Pickaxe_CriticalDamage_Level - 800]) check = true;
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 1500)
-                if (GameManager.PurpleDust < GameManager.BasicNeedPurpleDust[GameManager.Pickaxe_CriticalDamage_Level - 1500]) check = true;
-
-            if (check == true)
-            {
-                lackBG.SetActive(true);
-                return;
-            }
-
-            GameManager.Pickaxe_CriticalDamage_Level++;
-            GameManager.Pickaxe_CriticalDamage += 1f;
-
-            PickaxeLevelText[2].text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Pickaxe_CriticalDamage_Level);
-            PickaxeLeftText[2].text = TextFormatter.GetFloatPointCommaText_0(GameManager.Pickaxe_CriticalDamage) + "%";
-            PickaxeRightText[2].text = TextFormatter.GetFloatPointCommaText_0(GameManager.Pickaxe_CriticalDamage + 1f) + "%";
-
-            Pickaxe_CriDamageNeeditem[0].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedBrownDust[GameManager.Pickaxe_CriticalDamage_Level - 1]) + "";
-            GameManager.BrownDust -= GameManager.BasicNeedBrownDust[GameManager.Pickaxe_CriticalDamage_Level - 2];
-
-
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 10)
-            {
-                Pickaxe_CriDamageNeeditem[1].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedOrangeDust[GameManager.Pickaxe_CriticalDamage_Level - 10]) + "";
-                if (GameManager.Pickaxe_CriticalDamage_Level != 10) GameManager.OrangeDust -= GameManager.BasicNeedOrangeDust[GameManager.Pickaxe_CriticalDamage_Level - 11];
-            }
-
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 30)
-            {
-                Pickaxe_CriDamageNeeditem[2].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedLimeDust[GameManager.Pickaxe_CriticalDamage_Level - 30]) + "";
-                if (GameManager.Pickaxe_CriticalDamage_Level != 30) GameManager.LimeDust -= GameManager.BasicNeedLimeDust[GameManager.Pickaxe_CriticalDamage_Level - 31];
-            }
-
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 60)
-            {
-                Pickaxe_CriDamageNeeditem[3].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedBlackDust[GameManager.Pickaxe_CriticalDamage_Level - 60]) + "";
-                if (GameManager.Pickaxe_CriticalDamage_Level != 60) GameManager.BlackDust -= GameManager.BasicNeedBlackDust[GameManager.Pickaxe_CriticalDamage_Level - 61];
-            }
-
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 120)
-            {
-                Pickaxe_CriDamageNeeditem[4].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedRedDust[GameManager.Pickaxe_CriticalDamage_Level - 120]) + "";
-                if (GameManager.Pickaxe_CriticalDamage_Level != 120) GameManager.RedDust -= GameManager.BasicNeedRedDust[GameManager.Pickaxe_CriticalDamage_Level - 121];
-            }
-
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 240)
-            {
-                Pickaxe_CriDamageNeeditem[5].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedYellowDust[GameManager.Pickaxe_CriticalDamage_Level - 240]) + "";
-                if (GameManager.Pickaxe_CriticalDamage_Level != 240) GameManager.YellowDust -= GameManager.BasicNeedYellowDust[GameManager.Pickaxe_CriticalDamage_Level - 241];
-            }
-
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 480)
-            {
-                Pickaxe_CriDamageNeeditem[6].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedDirtDust[GameManager.Pickaxe_CriticalDamage_Level - 480]) + "";
-                if (GameManager.Pickaxe_CriticalDamage_Level != 480) GameManager.DirtDust -= GameManager.BasicNeedDirtDust[GameManager.Pickaxe_CriticalDamage_Level - 481];
-            }
-
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 800)
-            {
-                Pickaxe_CriDamageNeeditem[7].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedBlueDust[GameManager.Pickaxe_CriticalDamage_Level - 800]) + "";
-                if (GameManager.Pickaxe_CriticalDamage_Level != 800) GameManager.BlueDust -= GameManager.BasicNeedBlueDust[GameManager.Pickaxe_CriticalDamage_Level - 801];
-            }
-
-            if (GameManager.Pickaxe_CriticalDamage_Level >= 1500)
-            {
-                Pickaxe_CriDamageNeeditem[8].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedPurpleDust[GameManager.Pickaxe_CriticalDamage_Level - 1500]) + "";
-                if (GameManager.Pickaxe_CriticalDamage_Level != 1500) GameManager.PurpleDust -= GameManager.BasicNeedPurpleDust[GameManager.Pickaxe_CriticalDamage_Level - 1501];
-            }
+            MineRightText[0].text = TextFormatter.GetDecimalPointCommaText_0(Value_1 + 1.2m) + "%";
+            MineRightText[1].text = TextFormatter.GetDecimalPointCommaText_00(Value_2 + 0.05m) + "%";
+            MineRightText[2].text = TextFormatter.GetDecimalPointCommaText_00(Value_3 + 0.01m) + "%";
         }
     }
+
+    // 곡괭이 강화 화면 변경
+    private void MineUpgradeChange(int index)
+    {
+        if(InUpgradePanel == index)
+        {
+            BasicPanel.SetActive(true);
+            UpgradePanel.SetActive(false);
+            return;
+        }
+
+        InUpgradePanel = index;
+
+        // 다시 누르면 Basic으로 돌아가는거 제작
+        Debug.Log("체인지 버튼 누름");
+        if (index == 0)
+        {
+            UpdateMineLevelText(GameManager.Pickaxe_DamageLv, GameManager.Pickaxe_CriticalChance_Level, GameManager.Pickaxe_CriticalDamage_Level);
+            UpdateMineLeftRightText(index, GameManager.Pickaxe_Damage, GameManager.Pickaxe_CriticalChance, GameManager.Pickaxe_CriticalDamage);
+            UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Pickaxe_DamageLv);
+            UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Pickaxe_CriticalChance_Level);
+            UpdateMineNeedItemText(MineNeedItemText_3, "일반", GameManager.Pickaxe_CriticalDamage_Level);
+        }
+        else if (index == 1)
+        {
+            UpdateMineLevelText(GameManager.Mineral_LevelMI, GameManager.Mineral_LevelHP, GameManager.Mineral_LevelRS);
+            UpdateMineLeftRightText(index, GameManager.Mineral_MI, GameManager.Mineral_HP, GameManager.Mineral_RS);
+            UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Mineral_LevelMI);
+            UpdateMineNeedItemText(MineNeedItemText_2, "일반", GameManager.Mineral_LevelHP);
+            UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Mineral_LevelRS);
+        }
+        else if (index == 2)
+        {
+            UpdateMineLevelText(GameManager.Mineral_LevelMI, GameManager.Mineral_LevelHP, GameManager.Mineral_LevelRS);
+            UpdateMineLeftRightText(index, GameManager.Option_PMA, GameManager.Option_MB, GameManager.Option_PFD);
+            UpdateMineNeedItemText(MineNeedItemText_1, "고급", GameManager.Option_LevelPMA);
+            UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Option_LevelMB);
+            UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Option_LevelPFD);
+        }
+
+        for (int i = 0; i < MineUpgradeImg.Length; i++)
+        {
+            MineUpgradeImg[i].sprite = MineUpgradeSprite[i + 3 * index];
+            MineUpgradeInTitle[i].text = UpgradeInTitleString[i + 3 * index];
+
+            if (index == 2)
+            {
+                MineFrame[i].color = ColorManager.ColorChange("검정색");
+                MineFrame[i].sprite = MineUpgradeSprite[10];
+            }
+            else
+            {
+                MineFrame[i].color = ColorManager.ColorChange("하얀색");
+                MineFrame[i].sprite = MineUpgradeSprite[9];
+            }
+        }
+        
+        UpgradeTitleText.text = UpgradeSelTitleString[index];
+
+        UpdateBasicInfo();
+    }
+
+    private void UpdateMineLevelText(int Level_1, int Level_2, int Level_3)
+    {
+        MineLevelText[0].text = "Lv. " + TextFormatter.GetThousandCommaText(Level_1);
+        MineLevelText[1].text = "Lv. " + TextFormatter.GetThousandCommaText(Level_2);
+        MineLevelText[2].text = "Lv. " + TextFormatter.GetThousandCommaText(Level_3);
+    }
+
     
+    private bool BuyChecking(int level, string grade)
+    {
+        Debug.Log("검사 들어갔음 : " + level + " Grade : " + grade);
+        if (level >= DevideLevel[0] && GameManager.HaveStarGrey < ExchangeNeedStar(level - DevideLevel[0]   - 0, grade)) check = true;
+        if (level >= DevideLevel[1] && GameManager.HaveStarBrown < ExchangeNeedStar(level - DevideLevel[1]  + 1, grade)) check = true;
+        if (level >= DevideLevel[2] && GameManager.HaveStarBlue < ExchangeNeedStar(level - DevideLevel[2]   + 1, grade)) check = true;
+        if (level >= DevideLevel[3] && GameManager.HaveStarGreen < ExchangeNeedStar(level - DevideLevel[3]  + 1, grade)) check = true;
+        if (level >= DevideLevel[4] && GameManager.HaveStarRed < ExchangeNeedStar(level - DevideLevel[4]    + 1, grade)) check = true;
+        if (level >= DevideLevel[5] && GameManager.HaveStarYellow < ExchangeNeedStar(level - DevideLevel[5] + 1, grade)) check = true;
+        if (level >= DevideLevel[6] && GameManager.HaveStarPurple < ExchangeNeedStar(level - DevideLevel[6] + 1, grade)) check = true;
+        if (level >= DevideLevel[7] && GameManager.HaveStarOrange < ExchangeNeedStar(level - DevideLevel[7] + 1, grade)) check = true;
+        if (level >= DevideLevel[8] && GameManager.HaveStarDark < ExchangeNeedStar(level - DevideLevel[8]   + 1, grade)) check = true;
+
+        return check;
+    }
+
+    // 곡괭이 업그레이드
+
+    private void TakeUpgradeStar(int level, string grade)
+    {
+        Debug.Log("뺏었음 : " + level + " Grade : " + grade);
+        if (level >= DevideLevel[0]) GameManager.HaveStarGrey -= ExchangeNeedStar(level - DevideLevel[0]    + 0, grade);
+        if (level >= DevideLevel[1]) GameManager.HaveStarBrown -= ExchangeNeedStar(level - DevideLevel[1]   + 1, grade);
+        if (level >= DevideLevel[2]) GameManager.HaveStarBlue -= ExchangeNeedStar(level - DevideLevel[2]    + 1, grade);
+        if (level >= DevideLevel[3]) GameManager.HaveStarGreen -= ExchangeNeedStar(level - DevideLevel[3]   + 1, grade);
+        if (level >= DevideLevel[4]) GameManager.HaveStarRed -= ExchangeNeedStar(level - DevideLevel[4]     + 1, grade);
+        if (level >= DevideLevel[5]) GameManager.HaveStarYellow -= ExchangeNeedStar(level - DevideLevel[5]  + 1, grade);
+        if (level >= DevideLevel[6]) GameManager.HaveStarPurple -= ExchangeNeedStar(level - DevideLevel[6]  + 1, grade);
+        if (level >= DevideLevel[7]) GameManager.HaveStarOrange -= ExchangeNeedStar(level - DevideLevel[7]  + 1, grade);
+        if (level >= DevideLevel[8]) GameManager.HaveStarDark -= ExchangeNeedStar(level - DevideLevel[8]    + 1, grade);
+    }
+
+    private void MineLevelUP(int index)
+    {
+        check = false;
+        Debug.Log("마인 패널 : " + InUpgradePanel);
+        if (InUpgradePanel == 0)
+        {
+            if (index == 0)
+            {
+                Debug.Log("검사 들어옴  : " + index);
+                if (BuyChecking(GameManager.Pickaxe_DamageLv, "일반") == true)
+                {
+                    lackBG.SetActive(true);
+                    return;
+                }
+                TakeUpgradeStar(GameManager.Pickaxe_DamageLv, "일반");
+
+                GameManager.Pickaxe_DamageLv++;
+                GameManager.Pickaxe_Damage += 1m;
+
+                UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Pickaxe_DamageLv);
+            }
+            else if (index == 1)
+            {
+                Debug.Log("검사 들어옴  : " + index);
+
+                if (BuyChecking(GameManager.Pickaxe_CriticalChance_Level, "고급") == true)
+                {
+                    lackBG.SetActive(true);
+                    return;
+                }
+                TakeUpgradeStar(GameManager.Pickaxe_CriticalChance_Level, "고급");
+                GameManager.Pickaxe_CriticalChance_Level++;
+                GameManager.Pickaxe_CriticalChance += 0.1m;
+
+
+                UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Pickaxe_CriticalChance_Level);
+            }
+            else if (index == 2)
+            {
+                Debug.Log("검사 들어옴  : " + index);
+
+                if (BuyChecking(GameManager.Pickaxe_CriticalDamage_Level, "일반") == true)
+                {
+                    lackBG.SetActive(true);
+                    return;
+                }
+                TakeUpgradeStar(GameManager.Pickaxe_CriticalDamage_Level, "일반");
+
+                GameManager.Pickaxe_CriticalDamage_Level++;
+                GameManager.Pickaxe_CriticalDamage += 1m;
+
+                UpdateMineNeedItemText(MineNeedItemText_3, "일반", GameManager.Pickaxe_CriticalDamage_Level);
+            }
+
+            UpdateMineLevelText(GameManager.Pickaxe_DamageLv, GameManager.Pickaxe_CriticalChance_Level, GameManager.Pickaxe_CriticalDamage_Level);
+            UpdateMineLeftRightText(InUpgradePanel, GameManager.Pickaxe_Damage, GameManager.Pickaxe_CriticalChance, GameManager.Pickaxe_CriticalDamage);
+
+        }
+        if (InUpgradePanel == 1)
+        {
+            if (index == 0)
+            {
+                if (BuyChecking(GameManager.Mineral_LevelMI, "일반") == true)
+                {
+                    lackBG.SetActive(true);
+                    return;
+                }
+                TakeUpgradeStar(GameManager.Mineral_LevelMI, "일반");
+
+                GameManager.Mineral_LevelMI++;
+                GameManager.Mineral_MI += 0.2m;
+
+                UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Mineral_LevelMI);
+            }
+            else if (index == 1)
+            {
+                if (BuyChecking(GameManager.Mineral_LevelHP, "고급") == true)
+                {
+                    lackBG.SetActive(true);
+                    return;
+                }
+                TakeUpgradeStar(GameManager.Mineral_LevelHP, "고급");
+                GameManager.Mineral_LevelHP++;
+                GameManager.Mineral_HP += 0.1m;
+
+
+                UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Mineral_LevelHP);
+            }
+            else if (index == 2)
+            {
+                if (BuyChecking(GameManager.Mineral_LevelRS, "고급") == true)
+                {
+                    lackBG.SetActive(true);
+                    return;
+                }
+                TakeUpgradeStar(GameManager.Mineral_LevelRS, "고급");
+
+                GameManager.Mineral_LevelRS++;
+                GameManager.Mineral_RS += 0.01m;
+
+                UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Mineral_LevelRS);
+            }
+
+            UpdateMineLevelText(GameManager.Mineral_LevelMI, GameManager.Mineral_LevelHP, GameManager.Mineral_LevelRS);
+            UpdateMineLeftRightText(InUpgradePanel, GameManager.Mineral_MI, GameManager.Mineral_HP, GameManager.Mineral_RS);
+
+        }
+        if (InUpgradePanel == 2)
+        {
+            if (index == 0)
+            {
+                if (BuyChecking(GameManager.Option_LevelPMA, "고급") == true)
+                {
+                    lackBG.SetActive(true);
+                    return;
+                }
+                TakeUpgradeStar(GameManager.Option_LevelPMA, "고급");
+
+                GameManager.Option_LevelPMA++;
+                GameManager.Option_PMA += 1.2m;
+
+                UpdateMineNeedItemText(MineNeedItemText_1, "고급", GameManager.Option_LevelPMA);
+            }
+            else if (index == 1)
+            {
+                if (BuyChecking(GameManager.Option_LevelMB, "고급") == true)
+                {
+                    lackBG.SetActive(true);
+                    return;
+                }
+                TakeUpgradeStar(GameManager.Option_LevelMB, "고급");
+                GameManager.Option_LevelMB++;
+                GameManager.Option_MB += 0.05m;
+
+
+                UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Option_LevelMB);
+            }
+            else if (index == 2)
+            {
+                if (BuyChecking(GameManager.Option_LevelPFD, "고급") == true)
+                {
+                    lackBG.SetActive(true);
+                    return;
+                }
+                TakeUpgradeStar(GameManager.Option_LevelPFD, "고급");
+
+                GameManager.Option_LevelPFD++;
+                GameManager.Option_PFD += 0.01m;
+
+                UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Option_LevelPFD);
+            }
+
+            UpdateMineLevelText(GameManager.Option_LevelPMA, GameManager.Option_LevelMB, GameManager.Option_LevelPFD);
+            UpdateMineLeftRightText(InUpgradePanel, GameManager.Option_PMA, GameManager.Option_MB, GameManager.Option_PFD);
+        }
+    }
+
     // 광물 고민
     /*
      * 광산 레벨업을 하려면 광물이필요
@@ -1035,30 +904,31 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
      */
 
     // 광물 업그레이드
+    /*
     private void MineralLevelUP(int index)
     {
         bool check = false;
         //  광물 증가량 업그레이드
         if (index == 0)
         {
-            if (GameManager.BrownDust < GameManager.SpecialNeedBrownDust[GameManager.Mineral_LevelMI - 1]) check = true;
+            if (GameManager.HaveStarGrey < GameManager.SpecialNeedHaveStarGrey[GameManager.Mineral_LevelMI - 1]) check = true;
 
             if (GameManager.Mineral_LevelMI >= 10)
-                if (GameManager.OrangeDust < GameManager.SpecialNeedOrangeDust[GameManager.Mineral_LevelMI - 10]) check = true;
+                if (GameManager.HaveStarBrown < GameManager.SpecialNeedHaveStarBrown[GameManager.Mineral_LevelMI - 10]) check = true;
             if (GameManager.Mineral_LevelMI >= 30)
-                if (GameManager.LimeDust < GameManager.SpecialNeedLimeDust[GameManager.Mineral_LevelMI - 30]) check = true;
+                if (GameManager.HaveStarBlue < GameManager.SpecialNeedHaveStarBlue[GameManager.Mineral_LevelMI - 30]) check = true;
             if (GameManager.Mineral_LevelMI >= 60)
-                if (GameManager.BlackDust < GameManager.SpecialNeedBlackDust[GameManager.Mineral_LevelMI - 60]) check = true;
+                if (GameManager.HaveStarGreen < GameManager.SpecialNeedHaveStarGreen[GameManager.Mineral_LevelMI - 60]) check = true;
             if (GameManager.Mineral_LevelMI >= 120)
-                if (GameManager.RedDust < GameManager.SpecialNeedRedDust[GameManager.Mineral_LevelMI - 120]) check = true;
+                if (GameManager.HaveStarRed < GameManager.SpecialNeedHaveStarRed[GameManager.Mineral_LevelMI - 120]) check = true;
             if (GameManager.Mineral_LevelMI >= 240)
-                if (GameManager.YellowDust < GameManager.SpecialNeedYellowDust[GameManager.Mineral_LevelMI - 240]) check = true;
+                if (GameManager.HaveStarYellow < GameManager.SpecialNeedHaveStarYellow[GameManager.Mineral_LevelMI - 240]) check = true;
             if (GameManager.Mineral_LevelMI >= 480)
-                if (GameManager.DirtDust < GameManager.SpecialNeedDirtDust[GameManager.Mineral_LevelMI - 480]) check = true;
+                if (GameManager.HaveStarPurple < GameManager.SpecialNeedHaveStarPurple[GameManager.Mineral_LevelMI - 480]) check = true;
             if (GameManager.Mineral_LevelMI >= 800)
-                if (GameManager.BlueDust < GameManager.SpecialNeedBlueDust[GameManager.Mineral_LevelMI - 800]) check = true;
+                if (GameManager.HaveStarOrange < GameManager.SpecialNeedHaveStarOrange[GameManager.Mineral_LevelMI - 800]) check = true;
             if (GameManager.Mineral_LevelMI >= 1500)
-                if (GameManager.PurpleDust < GameManager.SpecialNeedPurpleDust[GameManager.Mineral_LevelMI - 1500]) check = true;
+                if (GameManager.HaveStarDark < GameManager.SpecialNeedHaveStarDark[GameManager.Mineral_LevelMI - 1500]) check = true;
 
 
             if (check == true)
@@ -1075,78 +945,78 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
             MineralLeftText[0].text = TextFormatter.GetThousandCommaText(GameManager.Mineral_MI) + "";
             MineralRightText[0].text = TextFormatter.GetThousandCommaText(GameManager.Mineral_MI + 1) + "";
 
-            Mineral_NeeditemMI[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBrownDust[GameManager.Mineral_LevelMI - 1]) + "";
-            GameManager.BrownDust -= GameManager.SpecialNeedBrownDust[GameManager.Mineral_LevelMI - 2];
+            Mineral_NeeditemMI[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarGrey[GameManager.Mineral_LevelMI - 1]) + "";
+            GameManager.HaveStarGrey -= GameManager.SpecialNeedHaveStarGrey[GameManager.Mineral_LevelMI - 2];
 
             if (GameManager.Mineral_LevelMI >= 10)
             {
-                Mineral_NeeditemMI[1].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedOrangeDust[GameManager.Mineral_LevelMI - 10]) + "";
-                if (GameManager.Mineral_LevelMI != 10) GameManager.OrangeDust -= GameManager.SpecialNeedOrangeDust[GameManager.Mineral_LevelMI - 11];
+                Mineral_NeeditemMI[1].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarBrown[GameManager.Mineral_LevelMI - 10]) + "";
+                if (GameManager.Mineral_LevelMI != 10) GameManager.HaveStarBrown -= GameManager.SpecialNeedHaveStarBrown[GameManager.Mineral_LevelMI - 11];
             }
 
             if (GameManager.Mineral_LevelMI >= 30)
             {
-                Mineral_NeeditemMI[2].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedLimeDust[GameManager.Mineral_LevelMI - 30]) + "";
-                if (GameManager.Mineral_LevelMI != 30) GameManager.LimeDust -= GameManager.SpecialNeedLimeDust[GameManager.Mineral_LevelMI - 31];
+                Mineral_NeeditemMI[2].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarBlue[GameManager.Mineral_LevelMI - 30]) + "";
+                if (GameManager.Mineral_LevelMI != 30) GameManager.HaveStarBlue -= GameManager.SpecialNeedHaveStarBlue[GameManager.Mineral_LevelMI - 31];
             }
 
             if (GameManager.Mineral_LevelMI >= 60)
             {
-                Mineral_NeeditemMI[3].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlackDust[GameManager.Mineral_LevelMI - 60]) + "";
-                if (GameManager.Mineral_LevelMI != 60) GameManager.BlackDust -= GameManager.SpecialNeedBlackDust[GameManager.Mineral_LevelMI - 61];
+                Mineral_NeeditemMI[3].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarGreen[GameManager.Mineral_LevelMI - 60]) + "";
+                if (GameManager.Mineral_LevelMI != 60) GameManager.HaveStarGreen -= GameManager.SpecialNeedHaveStarGreen[GameManager.Mineral_LevelMI - 61];
             }
 
             if (GameManager.Mineral_LevelMI >= 120)
             {
-                Mineral_NeeditemMI[4].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedRedDust[GameManager.Mineral_LevelMI - 120]) + "";
-                if (GameManager.Mineral_LevelMI != 120) GameManager.RedDust -= GameManager.SpecialNeedRedDust[GameManager.Mineral_LevelMI - 121];
+                Mineral_NeeditemMI[4].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarRed[GameManager.Mineral_LevelMI - 120]) + "";
+                if (GameManager.Mineral_LevelMI != 120) GameManager.HaveStarRed -= GameManager.SpecialNeedHaveStarRed[GameManager.Mineral_LevelMI - 121];
             }
 
             if (GameManager.Mineral_LevelMI >= 240)
             {
-                Mineral_NeeditemMI[5].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedYellowDust[GameManager.Mineral_LevelMI - 240]) + "";
-                if (GameManager.Mineral_LevelMI != 240) GameManager.YellowDust -= GameManager.SpecialNeedYellowDust[GameManager.Mineral_LevelMI - 241];
+                Mineral_NeeditemMI[5].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarYellow[GameManager.Mineral_LevelMI - 240]) + "";
+                if (GameManager.Mineral_LevelMI != 240) GameManager.HaveStarYellow -= GameManager.SpecialNeedHaveStarYellow[GameManager.Mineral_LevelMI - 241];
             }
 
             if (GameManager.Mineral_LevelMI >= 480)
             {
-                Mineral_NeeditemMI[6].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedDirtDust[GameManager.Mineral_LevelMI - 480]) + "";
-                if (GameManager.Mineral_LevelMI != 480) GameManager.DirtDust -= GameManager.SpecialNeedDirtDust[GameManager.Mineral_LevelMI - 481];
+                Mineral_NeeditemMI[6].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarPurple[GameManager.Mineral_LevelMI - 480]) + "";
+                if (GameManager.Mineral_LevelMI != 480) GameManager.HaveStarPurple -= GameManager.SpecialNeedHaveStarPurple[GameManager.Mineral_LevelMI - 481];
             }
 
             if (GameManager.Mineral_LevelMI >= 800)
             {
-                Mineral_NeeditemMI[7].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlueDust[GameManager.Mineral_LevelMI - 800]) + "";
-                if (GameManager.Mineral_LevelMI != 800) GameManager.BlueDust -= GameManager.SpecialNeedBlueDust[GameManager.Mineral_LevelMI - 801];
+                Mineral_NeeditemMI[7].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarOrange[GameManager.Mineral_LevelMI - 800]) + "";
+                if (GameManager.Mineral_LevelMI != 800) GameManager.HaveStarOrange -= GameManager.SpecialNeedHaveStarOrange[GameManager.Mineral_LevelMI - 801];
             }
 
             if (GameManager.Mineral_LevelMI >= 1500)
             {
-                Mineral_NeeditemMI[8].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedPurpleDust[GameManager.Mineral_LevelMI - 1500]) + "";
-                if (GameManager.Mineral_LevelMI != 1500) GameManager.PurpleDust -= GameManager.SpecialNeedPurpleDust[GameManager.Mineral_LevelMI - 1501];
+                Mineral_NeeditemMI[8].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarDark[GameManager.Mineral_LevelMI - 1500]) + "";
+                if (GameManager.Mineral_LevelMI != 1500) GameManager.HaveStarDark -= GameManager.SpecialNeedHaveStarDark[GameManager.Mineral_LevelMI - 1501];
             }
         }
         //  광물 약점 업그레이드
         else if (index == 1)
         {
-            if (GameManager.BrownDust < GameManager.SpecialNeedBrownDust[GameManager.Mineral_LevelHP - 1]) check = true;
+            if (GameManager.HaveStarGrey < GameManager.SpecialNeedHaveStarGrey[GameManager.Mineral_LevelHP - 1]) check = true;
 
             if (GameManager.Mineral_LevelHP >= 10)
-                if (GameManager.OrangeDust < GameManager.SpecialNeedOrangeDust[GameManager.Mineral_LevelHP - 10]) check = true;
+                if (GameManager.HaveStarBrown < GameManager.SpecialNeedHaveStarBrown[GameManager.Mineral_LevelHP - 10]) check = true;
             if (GameManager.Mineral_LevelHP >= 30)
-                if (GameManager.LimeDust < GameManager.SpecialNeedLimeDust[GameManager.Mineral_LevelHP - 30]) check = true;
+                if (GameManager.HaveStarBlue < GameManager.SpecialNeedHaveStarBlue[GameManager.Mineral_LevelHP - 30]) check = true;
             if (GameManager.Mineral_LevelHP >= 60)
-                if (GameManager.BlackDust < GameManager.SpecialNeedBlackDust[GameManager.Mineral_LevelHP - 60]) check = true;
+                if (GameManager.HaveStarGreen < GameManager.SpecialNeedHaveStarGreen[GameManager.Mineral_LevelHP - 60]) check = true;
             if (GameManager.Mineral_LevelHP >= 120)
-                if (GameManager.RedDust < GameManager.SpecialNeedRedDust[GameManager.Mineral_LevelHP - 120]) check = true;
+                if (GameManager.HaveStarRed < GameManager.SpecialNeedHaveStarRed[GameManager.Mineral_LevelHP - 120]) check = true;
             if (GameManager.Mineral_LevelHP >= 240)
-                if (GameManager.YellowDust < GameManager.SpecialNeedYellowDust[GameManager.Mineral_LevelHP - 240]) check = true;
+                if (GameManager.HaveStarYellow < GameManager.SpecialNeedHaveStarYellow[GameManager.Mineral_LevelHP - 240]) check = true;
             if (GameManager.Mineral_LevelHP >= 480)
-                if (GameManager.DirtDust < GameManager.SpecialNeedDirtDust[GameManager.Mineral_LevelHP - 480]) check = true;
+                if (GameManager.HaveStarPurple < GameManager.SpecialNeedHaveStarPurple[GameManager.Mineral_LevelHP - 480]) check = true;
             if (GameManager.Mineral_LevelHP >= 800)
-                if (GameManager.BlueDust < GameManager.SpecialNeedBlueDust[GameManager.Mineral_LevelHP - 800]) check = true;
+                if (GameManager.HaveStarOrange < GameManager.SpecialNeedHaveStarOrange[GameManager.Mineral_LevelHP - 800]) check = true;
             if (GameManager.Mineral_LevelHP >= 1500)
-                if (GameManager.PurpleDust < GameManager.SpecialNeedPurpleDust[GameManager.Mineral_LevelHP - 1500]) check = true;
+                if (GameManager.HaveStarDark < GameManager.SpecialNeedHaveStarDark[GameManager.Mineral_LevelHP - 1500]) check = true;
 
 
             if (check == true)
@@ -1163,78 +1033,78 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
             MineralLeftText[1].text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Mineral_HP) + "%";
             MineralRightText[1].text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Mineral_HP + 0.01m) + "%";
 
-            Mineral_NeeditemHP[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBrownDust[GameManager.Mineral_LevelHP - 1]) + "";
-            GameManager.BrownDust -= GameManager.SpecialNeedBrownDust[GameManager.Mineral_LevelHP - 2];
+            Mineral_NeeditemHP[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarGrey[GameManager.Mineral_LevelHP - 1]) + "";
+            GameManager.HaveStarGrey -= GameManager.SpecialNeedHaveStarGrey[GameManager.Mineral_LevelHP - 2];
 
             if (GameManager.Mineral_LevelHP >= 10)
             {
-                Mineral_NeeditemHP[1].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedOrangeDust[GameManager.Mineral_LevelHP - 10]) + "";
-                if (GameManager.Mineral_LevelHP != 10) GameManager.OrangeDust -= GameManager.SpecialNeedOrangeDust[GameManager.Mineral_LevelHP - 11];
+                Mineral_NeeditemHP[1].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarBrown[GameManager.Mineral_LevelHP - 10]) + "";
+                if (GameManager.Mineral_LevelHP != 10) GameManager.HaveStarBrown -= GameManager.SpecialNeedHaveStarBrown[GameManager.Mineral_LevelHP - 11];
             }
 
             if (GameManager.Mineral_LevelHP >= 30)
             {
-                Mineral_NeeditemHP[2].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedLimeDust[GameManager.Mineral_LevelHP - 30]) + "";
-                if (GameManager.Mineral_LevelHP != 30) GameManager.LimeDust -= GameManager.SpecialNeedLimeDust[GameManager.Mineral_LevelHP - 31];
+                Mineral_NeeditemHP[2].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarBlue[GameManager.Mineral_LevelHP - 30]) + "";
+                if (GameManager.Mineral_LevelHP != 30) GameManager.HaveStarBlue -= GameManager.SpecialNeedHaveStarBlue[GameManager.Mineral_LevelHP - 31];
             }
 
             if (GameManager.Mineral_LevelHP >= 60)
             {
-                Mineral_NeeditemHP[3].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlackDust[GameManager.Mineral_LevelHP - 60]) + "";
-                if (GameManager.Mineral_LevelHP != 60) GameManager.BlackDust -= GameManager.SpecialNeedBlackDust[GameManager.Mineral_LevelHP - 61];
+                Mineral_NeeditemHP[3].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarGreen[GameManager.Mineral_LevelHP - 60]) + "";
+                if (GameManager.Mineral_LevelHP != 60) GameManager.HaveStarGreen -= GameManager.SpecialNeedHaveStarGreen[GameManager.Mineral_LevelHP - 61];
             }
 
             if (GameManager.Mineral_LevelHP >= 120)
             {
-                Mineral_NeeditemHP[4].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedRedDust[GameManager.Mineral_LevelHP - 120]) + "";
-                if (GameManager.Mineral_LevelHP != 120) GameManager.RedDust -= GameManager.SpecialNeedRedDust[GameManager.Mineral_LevelHP - 121];
+                Mineral_NeeditemHP[4].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarRed[GameManager.Mineral_LevelHP - 120]) + "";
+                if (GameManager.Mineral_LevelHP != 120) GameManager.HaveStarRed -= GameManager.SpecialNeedHaveStarRed[GameManager.Mineral_LevelHP - 121];
             }
 
             if (GameManager.Mineral_LevelHP >= 240)
             {
-                Mineral_NeeditemHP[5].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedYellowDust[GameManager.Mineral_LevelHP - 240]) + "";
-                if (GameManager.Mineral_LevelHP != 240) GameManager.YellowDust -= GameManager.SpecialNeedYellowDust[GameManager.Mineral_LevelHP - 241];
+                Mineral_NeeditemHP[5].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarYellow[GameManager.Mineral_LevelHP - 240]) + "";
+                if (GameManager.Mineral_LevelHP != 240) GameManager.HaveStarYellow -= GameManager.SpecialNeedHaveStarYellow[GameManager.Mineral_LevelHP - 241];
             }
 
             if (GameManager.Mineral_LevelHP >= 480)
             {
-                Mineral_NeeditemHP[6].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedDirtDust[GameManager.Mineral_LevelHP - 480]) + "";
-                if (GameManager.Mineral_LevelHP != 480) GameManager.DirtDust -= GameManager.SpecialNeedDirtDust[GameManager.Mineral_LevelHP - 481];
+                Mineral_NeeditemHP[6].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarPurple[GameManager.Mineral_LevelHP - 480]) + "";
+                if (GameManager.Mineral_LevelHP != 480) GameManager.HaveStarPurple -= GameManager.SpecialNeedHaveStarPurple[GameManager.Mineral_LevelHP - 481];
             }
 
             if (GameManager.Mineral_LevelHP >= 800)
             {
-                Mineral_NeeditemHP[7].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlueDust[GameManager.Mineral_LevelHP - 800]) + "";
-                if (GameManager.Mineral_LevelHP != 800) GameManager.BlueDust -= GameManager.SpecialNeedBlueDust[GameManager.Mineral_LevelHP - 801];
+                Mineral_NeeditemHP[7].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarOrange[GameManager.Mineral_LevelHP - 800]) + "";
+                if (GameManager.Mineral_LevelHP != 800) GameManager.HaveStarOrange -= GameManager.SpecialNeedHaveStarOrange[GameManager.Mineral_LevelHP - 801];
             }
 
             if (GameManager.Mineral_LevelHP >= 1500)
             {
-                Mineral_NeeditemHP[8].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedPurpleDust[GameManager.Mineral_LevelHP - 1500]) + "";
-                if (GameManager.Mineral_LevelHP != 1500) GameManager.PurpleDust -= GameManager.SpecialNeedPurpleDust[GameManager.Mineral_LevelHP - 1501];
+                Mineral_NeeditemHP[8].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarDark[GameManager.Mineral_LevelHP - 1500]) + "";
+                if (GameManager.Mineral_LevelHP != 1500) GameManager.HaveStarDark -= GameManager.SpecialNeedHaveStarDark[GameManager.Mineral_LevelHP - 1501];
             }
         }
         //  강화 스크롤 업그레이드
         else if (index == 2)
         {
-            if (GameManager.BrownDust < GameManager.BasicNeedBrownDust[GameManager.Mineral_LevelRS - 1]) check = true;
+            if (GameManager.HaveStarGrey < GameManager.BasicNeedHaveStarGrey[GameManager.Mineral_LevelRS - 1]) check = true;
 
             if (GameManager.Mineral_LevelRS >= 10)
-                if (GameManager.OrangeDust < GameManager.BasicNeedOrangeDust[GameManager.Mineral_LevelRS - 10]) check = true;
+                if (GameManager.HaveStarBrown < GameManager.BasicNeedHaveStarBrown[GameManager.Mineral_LevelRS - 10]) check = true;
             if (GameManager.Mineral_LevelRS >= 30)
-                if (GameManager.LimeDust < GameManager.BasicNeedLimeDust[GameManager.Mineral_LevelRS - 30]) check = true;
+                if (GameManager.HaveStarBlue < GameManager.BasicNeedHaveStarBlue[GameManager.Mineral_LevelRS - 30]) check = true;
             if (GameManager.Mineral_LevelRS >= 60)
-                if (GameManager.BlackDust < GameManager.BasicNeedBlackDust[GameManager.Mineral_LevelRS - 60]) check = true;
+                if (GameManager.HaveStarGreen < GameManager.BasicNeedHaveStarGreen[GameManager.Mineral_LevelRS - 60]) check = true;
             if (GameManager.Mineral_LevelRS >= 120)
-                if (GameManager.RedDust < GameManager.BasicNeedRedDust[GameManager.Mineral_LevelRS - 120]) check = true;
+                if (GameManager.HaveStarRed < GameManager.BasicNeedHaveStarRed[GameManager.Mineral_LevelRS - 120]) check = true;
             if (GameManager.Mineral_LevelRS >= 240)
-                if (GameManager.YellowDust < GameManager.BasicNeedYellowDust[GameManager.Mineral_LevelRS - 240]) check = true;
+                if (GameManager.HaveStarYellow < GameManager.BasicNeedHaveStarYellow[GameManager.Mineral_LevelRS - 240]) check = true;
             if (GameManager.Mineral_LevelRS >= 480)
-                if (GameManager.DirtDust < GameManager.BasicNeedDirtDust[GameManager.Mineral_LevelRS - 480]) check = true;
+                if (GameManager.HaveStarPurple < GameManager.BasicNeedHaveStarPurple[GameManager.Mineral_LevelRS - 480]) check = true;
             if (GameManager.Mineral_LevelRS >= 800)
-                if (GameManager.BlueDust < GameManager.BasicNeedBlueDust[GameManager.Mineral_LevelRS - 800]) check = true;
+                if (GameManager.HaveStarOrange < GameManager.BasicNeedHaveStarOrange[GameManager.Mineral_LevelRS - 800]) check = true;
             if (GameManager.Mineral_LevelRS >= 1500)
-                if (GameManager.PurpleDust < GameManager.BasicNeedPurpleDust[GameManager.Mineral_LevelRS - 1500]) check = true;
+                if (GameManager.HaveStarDark < GameManager.BasicNeedHaveStarDark[GameManager.Mineral_LevelRS - 1500]) check = true;
 
             if (check == true)
             {
@@ -1250,55 +1120,55 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
             MineralLeftText[2].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Mineral_RS) + "%";
             MineralRightText[2].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Mineral_RS + 0.1m) + "%";
 
-            Mineral_NeeditemRS[0].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedBrownDust[GameManager.Mineral_LevelRS - 1]) + "";
-            GameManager.BrownDust -= GameManager.BasicNeedBrownDust[GameManager.Mineral_LevelRS - 2];
+            Mineral_NeeditemRS[0].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedHaveStarGrey[GameManager.Mineral_LevelRS - 1]) + "";
+            GameManager.HaveStarGrey -= GameManager.BasicNeedHaveStarGrey[GameManager.Mineral_LevelRS - 2];
 
             if (GameManager.Mineral_LevelRS >= 10)
             {
-                Mineral_NeeditemRS[1].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedOrangeDust[GameManager.Mineral_LevelRS - 10]) + "";
-                if (GameManager.Mineral_LevelRS != 10) GameManager.OrangeDust -= GameManager.BasicNeedOrangeDust[GameManager.Mineral_LevelRS - 11];
+                Mineral_NeeditemRS[1].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedHaveStarBrown[GameManager.Mineral_LevelRS - 10]) + "";
+                if (GameManager.Mineral_LevelRS != 10) GameManager.HaveStarBrown -= GameManager.BasicNeedHaveStarBrown[GameManager.Mineral_LevelRS - 11];
             }
 
             if (GameManager.Mineral_LevelRS >= 30)
             {
-                Mineral_NeeditemRS[2].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedLimeDust[GameManager.Mineral_LevelRS - 30]) + "";
-                if (GameManager.Mineral_LevelRS != 30) GameManager.LimeDust -= GameManager.BasicNeedLimeDust[GameManager.Mineral_LevelRS - 31];
+                Mineral_NeeditemRS[2].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedHaveStarBlue[GameManager.Mineral_LevelRS - 30]) + "";
+                if (GameManager.Mineral_LevelRS != 30) GameManager.HaveStarBlue -= GameManager.BasicNeedHaveStarBlue[GameManager.Mineral_LevelRS - 31];
             }
 
             if (GameManager.Mineral_LevelRS >= 60)
             {
-                Mineral_NeeditemRS[3].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedBlackDust[GameManager.Mineral_LevelRS - 60]) + "";
-                if (GameManager.Mineral_LevelRS != 60) GameManager.BlackDust -= GameManager.BasicNeedBlackDust[GameManager.Mineral_LevelRS - 61];
+                Mineral_NeeditemRS[3].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedHaveStarGreen[GameManager.Mineral_LevelRS - 60]) + "";
+                if (GameManager.Mineral_LevelRS != 60) GameManager.HaveStarGreen -= GameManager.BasicNeedHaveStarGreen[GameManager.Mineral_LevelRS - 61];
             }
 
             if (GameManager.Mineral_LevelRS >= 120)
             {
-                Mineral_NeeditemRS[4].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedRedDust[GameManager.Mineral_LevelRS - 120]) + "";
-                if (GameManager.Mineral_LevelRS != 120) GameManager.RedDust -= GameManager.BasicNeedRedDust[GameManager.Mineral_LevelRS - 121];
+                Mineral_NeeditemRS[4].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedHaveStarRed[GameManager.Mineral_LevelRS - 120]) + "";
+                if (GameManager.Mineral_LevelRS != 120) GameManager.HaveStarRed -= GameManager.BasicNeedHaveStarRed[GameManager.Mineral_LevelRS - 121];
             }
 
             if (GameManager.Mineral_LevelRS >= 240)
             {
-                Mineral_NeeditemRS[5].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedYellowDust[GameManager.Mineral_LevelRS - 240]) + "";
-                if (GameManager.Mineral_LevelRS != 240) GameManager.YellowDust -= GameManager.BasicNeedYellowDust[GameManager.Mineral_LevelRS - 241];
+                Mineral_NeeditemRS[5].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedHaveStarYellow[GameManager.Mineral_LevelRS - 240]) + "";
+                if (GameManager.Mineral_LevelRS != 240) GameManager.HaveStarYellow -= GameManager.BasicNeedHaveStarYellow[GameManager.Mineral_LevelRS - 241];
             }
 
             if (GameManager.Mineral_LevelRS >= 480)
             {
-                Mineral_NeeditemRS[6].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedDirtDust[GameManager.Mineral_LevelRS - 480]) + "";
-                if (GameManager.Mineral_LevelRS != 480) GameManager.DirtDust -= GameManager.BasicNeedDirtDust[GameManager.Mineral_LevelRS - 481];
+                Mineral_NeeditemRS[6].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedHaveStarPurple[GameManager.Mineral_LevelRS - 480]) + "";
+                if (GameManager.Mineral_LevelRS != 480) GameManager.HaveStarPurple -= GameManager.BasicNeedHaveStarPurple[GameManager.Mineral_LevelRS - 481];
             }
 
             if (GameManager.Mineral_LevelRS >= 800)
             {
-                Mineral_NeeditemRS[7].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedBlueDust[GameManager.Mineral_LevelRS - 800]) + "";
-                if (GameManager.Mineral_LevelRS != 800) GameManager.BlueDust -= GameManager.BasicNeedBlueDust[GameManager.Mineral_LevelRS - 801];
+                Mineral_NeeditemRS[7].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedHaveStarOrange[GameManager.Mineral_LevelRS - 800]) + "";
+                if (GameManager.Mineral_LevelRS != 800) GameManager.HaveStarOrange -= GameManager.BasicNeedHaveStarOrange[GameManager.Mineral_LevelRS - 801];
             }
 
             if (GameManager.Mineral_LevelRS >= 1500)
             {
-                Mineral_NeeditemRS[8].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedPurpleDust[GameManager.Mineral_LevelRS - 1500]) + "";
-                if (GameManager.Mineral_LevelRS != 1500) GameManager.PurpleDust -= GameManager.BasicNeedPurpleDust[GameManager.Mineral_LevelRS - 1501];
+                Mineral_NeeditemRS[8].text = TextFormatter.GetThousandCommaText(GameManager.BasicNeedHaveStarDark[GameManager.Mineral_LevelRS - 1500]) + "";
+                if (GameManager.Mineral_LevelRS != 1500) GameManager.HaveStarDark -= GameManager.BasicNeedHaveStarDark[GameManager.Mineral_LevelRS - 1501];
             }
         }
     }
@@ -1309,24 +1179,24 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         //  옵션 데미지 증폭 업그레이드
         if (index == 0)
         {
-            if (GameManager.BrownDust < GameManager.SpecialNeedBrownDust[GameManager.Option_LevelPMA - 1]) check = true;
+            if (GameManager.HaveStarGrey < GameManager.SpecialNeedHaveStarGrey[GameManager.Option_LevelPMA - 1]) check = true;
 
             if (GameManager.Option_LevelPMA >= 10)
-                if (GameManager.OrangeDust < GameManager.SpecialNeedOrangeDust[GameManager.Option_LevelPMA - 10]) check = true;
+                if (GameManager.HaveStarBrown < GameManager.SpecialNeedHaveStarBrown[GameManager.Option_LevelPMA - 10]) check = true;
             if (GameManager.Option_LevelPMA >= 30)
-                if (GameManager.LimeDust < GameManager.SpecialNeedLimeDust[GameManager.Option_LevelPMA - 30]) check = true;
+                if (GameManager.HaveStarBlue < GameManager.SpecialNeedHaveStarBlue[GameManager.Option_LevelPMA - 30]) check = true;
             if (GameManager.Option_LevelPMA >= 60)
-                if (GameManager.BlackDust < GameManager.SpecialNeedBlackDust[GameManager.Option_LevelPMA - 60]) check = true;
+                if (GameManager.HaveStarGreen < GameManager.SpecialNeedHaveStarGreen[GameManager.Option_LevelPMA - 60]) check = true;
             if (GameManager.Option_LevelPMA >= 120)
-                if (GameManager.RedDust < GameManager.SpecialNeedRedDust[GameManager.Option_LevelPMA - 120]) check = true;
+                if (GameManager.HaveStarRed < GameManager.SpecialNeedHaveStarRed[GameManager.Option_LevelPMA - 120]) check = true;
             if (GameManager.Option_LevelPMA >= 240)
-                if (GameManager.YellowDust < GameManager.SpecialNeedYellowDust[GameManager.Option_LevelPMA - 240]) check = true;
+                if (GameManager.HaveStarYellow < GameManager.SpecialNeedHaveStarYellow[GameManager.Option_LevelPMA - 240]) check = true;
             if (GameManager.Option_LevelPMA >= 480)
-                if (GameManager.DirtDust < GameManager.SpecialNeedDirtDust[GameManager.Option_LevelPMA - 480]) check = true;
+                if (GameManager.HaveStarPurple < GameManager.SpecialNeedHaveStarPurple[GameManager.Option_LevelPMA - 480]) check = true;
             if (GameManager.Option_LevelPMA >= 800)
-                if (GameManager.BlueDust < GameManager.SpecialNeedBlueDust[GameManager.Option_LevelPMA - 800]) check = true;
+                if (GameManager.HaveStarOrange < GameManager.SpecialNeedHaveStarOrange[GameManager.Option_LevelPMA - 800]) check = true;
             if (GameManager.Option_LevelPMA >= 1500)
-                if (GameManager.PurpleDust < GameManager.SpecialNeedPurpleDust[GameManager.Option_LevelPMA - 1500]) check = true;
+                if (GameManager.HaveStarDark < GameManager.SpecialNeedHaveStarDark[GameManager.Option_LevelPMA - 1500]) check = true;
 
             if (check == true)
             {
@@ -1342,78 +1212,78 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
             OptionLeftText[0].text = TextFormatter.GetThousandCommaText((long)GameManager.Option_PMA) + "%";
             OptionRightText[0].text = TextFormatter.GetThousandCommaText((long)GameManager.Option_PMA + 1) + "%";
 
-            Option_NeeditemPMA[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBrownDust[GameManager.Option_LevelPMA - 1]) + "";
-            GameManager.BrownDust -= GameManager.SpecialNeedBrownDust[GameManager.Option_LevelPMA - 2];
+            Option_NeeditemPMA[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarGrey[GameManager.Option_LevelPMA - 1]) + "";
+            GameManager.HaveStarGrey -= GameManager.SpecialNeedHaveStarGrey[GameManager.Option_LevelPMA - 2];
 
             if (GameManager.Option_LevelPMA >= 10)
             {
-                Option_NeeditemPMA[1].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedOrangeDust[GameManager.Option_LevelPMA - 10]) + "";
-                if (GameManager.Option_LevelPMA != 10) GameManager.OrangeDust -= GameManager.SpecialNeedOrangeDust[GameManager.Option_LevelPMA - 11];
+                Option_NeeditemPMA[1].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarBrown[GameManager.Option_LevelPMA - 10]) + "";
+                if (GameManager.Option_LevelPMA != 10) GameManager.HaveStarBrown -= GameManager.SpecialNeedHaveStarBrown[GameManager.Option_LevelPMA - 11];
             }
 
             if (GameManager.Option_LevelPMA >= 30)
             {
-                Option_NeeditemPMA[2].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedLimeDust[GameManager.Option_LevelPMA - 30]) + "";
-                if (GameManager.Option_LevelPMA != 30) GameManager.LimeDust -= GameManager.SpecialNeedLimeDust[GameManager.Option_LevelPMA - 31];
+                Option_NeeditemPMA[2].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarBlue[GameManager.Option_LevelPMA - 30]) + "";
+                if (GameManager.Option_LevelPMA != 30) GameManager.HaveStarBlue -= GameManager.SpecialNeedHaveStarBlue[GameManager.Option_LevelPMA - 31];
             }
 
             if (GameManager.Option_LevelPMA >= 60)
             {
-                Option_NeeditemPMA[3].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlackDust[GameManager.Option_LevelPMA - 60]) + "";
-                if (GameManager.Option_LevelPMA != 60) GameManager.BlackDust -= GameManager.SpecialNeedBlackDust[GameManager.Option_LevelPMA - 61];
+                Option_NeeditemPMA[3].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarGreen[GameManager.Option_LevelPMA - 60]) + "";
+                if (GameManager.Option_LevelPMA != 60) GameManager.HaveStarGreen -= GameManager.SpecialNeedHaveStarGreen[GameManager.Option_LevelPMA - 61];
             }
 
             if (GameManager.Option_LevelPMA >= 120)
             {
-                Option_NeeditemPMA[4].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedRedDust[GameManager.Option_LevelPMA - 120]) + "";
-                if (GameManager.Option_LevelPMA != 120) GameManager.RedDust -= GameManager.SpecialNeedRedDust[GameManager.Option_LevelPMA - 121];
+                Option_NeeditemPMA[4].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarRed[GameManager.Option_LevelPMA - 120]) + "";
+                if (GameManager.Option_LevelPMA != 120) GameManager.HaveStarRed -= GameManager.SpecialNeedHaveStarRed[GameManager.Option_LevelPMA - 121];
             }
 
             if (GameManager.Option_LevelPMA >= 240)
             {
-                Option_NeeditemPMA[5].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedYellowDust[GameManager.Option_LevelPMA - 240]) + "";
-                if (GameManager.Option_LevelPMA != 240) GameManager.YellowDust -= GameManager.SpecialNeedYellowDust[GameManager.Option_LevelPMA - 241];
+                Option_NeeditemPMA[5].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarYellow[GameManager.Option_LevelPMA - 240]) + "";
+                if (GameManager.Option_LevelPMA != 240) GameManager.HaveStarYellow -= GameManager.SpecialNeedHaveStarYellow[GameManager.Option_LevelPMA - 241];
             }
 
             if (GameManager.Option_LevelPMA >= 480)
             {
-                Option_NeeditemPMA[6].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedDirtDust[GameManager.Option_LevelPMA - 480]) + "";
-                if (GameManager.Option_LevelPMA != 480) GameManager.DirtDust -= GameManager.SpecialNeedDirtDust[GameManager.Option_LevelPMA - 481];
+                Option_NeeditemPMA[6].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarPurple[GameManager.Option_LevelPMA - 480]) + "";
+                if (GameManager.Option_LevelPMA != 480) GameManager.HaveStarPurple -= GameManager.SpecialNeedHaveStarPurple[GameManager.Option_LevelPMA - 481];
             }
 
             if (GameManager.Option_LevelPMA >= 800)
             {
-                Option_NeeditemPMA[7].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlueDust[GameManager.Option_LevelPMA - 800]) + "";
-                if (GameManager.Option_LevelPMA != 800) GameManager.BlueDust -= GameManager.SpecialNeedBlueDust[GameManager.Option_LevelPMA - 801];
+                Option_NeeditemPMA[7].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarOrange[GameManager.Option_LevelPMA - 800]) + "";
+                if (GameManager.Option_LevelPMA != 800) GameManager.HaveStarOrange -= GameManager.SpecialNeedHaveStarOrange[GameManager.Option_LevelPMA - 801];
             }
 
             if (GameManager.Option_LevelPMA >= 1500)
             {
-                Option_NeeditemPMA[8].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedPurpleDust[GameManager.Option_LevelPMA - 1500]) + "";
-                if (GameManager.Option_LevelPMA != 1500) GameManager.PurpleDust -= GameManager.SpecialNeedPurpleDust[GameManager.Option_LevelPMA - 1501];
+                Option_NeeditemPMA[8].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarDark[GameManager.Option_LevelPMA - 1500]) + "";
+                if (GameManager.Option_LevelPMA != 1500) GameManager.HaveStarDark -= GameManager.SpecialNeedHaveStarDark[GameManager.Option_LevelPMA - 1501];
             }
         }
         //  옵션 럭키 광물 업그레이드
         else if (index == 1)
         {
-            if (GameManager.BrownDust < GameManager.SpecialNeedBrownDust[GameManager.Option_LevelMB - 1]) check = true;
+            if (GameManager.HaveStarGrey < GameManager.SpecialNeedHaveStarGrey[GameManager.Option_LevelMB - 1]) check = true;
 
             if (GameManager.Option_LevelMB >= 10)
-                if (GameManager.OrangeDust < GameManager.SpecialNeedOrangeDust[GameManager.Option_LevelMB - 10]) check = true;
+                if (GameManager.HaveStarBrown < GameManager.SpecialNeedHaveStarBrown[GameManager.Option_LevelMB - 10]) check = true;
             if (GameManager.Option_LevelMB >= 30)
-                if (GameManager.LimeDust < GameManager.SpecialNeedLimeDust[GameManager.Option_LevelMB - 30]) check = true;
+                if (GameManager.HaveStarBlue < GameManager.SpecialNeedHaveStarBlue[GameManager.Option_LevelMB - 30]) check = true;
             if (GameManager.Option_LevelMB >= 60)
-                if (GameManager.BlackDust < GameManager.SpecialNeedBlackDust[GameManager.Option_LevelMB - 60]) check = true;
+                if (GameManager.HaveStarGreen < GameManager.SpecialNeedHaveStarGreen[GameManager.Option_LevelMB - 60]) check = true;
             if (GameManager.Option_LevelMB >= 120)
-                if (GameManager.RedDust < GameManager.SpecialNeedRedDust[GameManager.Option_LevelMB - 120]) check = true;
+                if (GameManager.HaveStarRed < GameManager.SpecialNeedHaveStarRed[GameManager.Option_LevelMB - 120]) check = true;
             if (GameManager.Option_LevelMB >= 240)
-                if (GameManager.YellowDust < GameManager.SpecialNeedYellowDust[GameManager.Option_LevelMB - 240]) check = true;
+                if (GameManager.HaveStarYellow < GameManager.SpecialNeedHaveStarYellow[GameManager.Option_LevelMB - 240]) check = true;
             if (GameManager.Option_LevelMB >= 480)
-                if (GameManager.DirtDust < GameManager.SpecialNeedDirtDust[GameManager.Option_LevelMB - 480]) check = true;
+                if (GameManager.HaveStarPurple < GameManager.SpecialNeedHaveStarPurple[GameManager.Option_LevelMB - 480]) check = true;
             if (GameManager.Option_LevelMB >= 800)
-                if (GameManager.BlueDust < GameManager.SpecialNeedBlueDust[GameManager.Option_LevelMB - 800]) check = true;
+                if (GameManager.HaveStarOrange < GameManager.SpecialNeedHaveStarOrange[GameManager.Option_LevelMB - 800]) check = true;
             if (GameManager.Option_LevelMB >= 1500)
-                if (GameManager.PurpleDust < GameManager.SpecialNeedPurpleDust[GameManager.Option_LevelMB - 1500]) check = true;
+                if (GameManager.HaveStarDark < GameManager.SpecialNeedHaveStarDark[GameManager.Option_LevelMB - 1500]) check = true;
 
             if (check == true)
             {
@@ -1429,78 +1299,78 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
             OptionLeftText[1].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Option_MB) + "%";
             OptionRightText[1].text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Option_MB + 0.1m) + "%";
 
-            Option_NeeditemMB[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBrownDust[GameManager.Option_LevelMB - 1]) + "";
-            GameManager.BrownDust -= GameManager.SpecialNeedBrownDust[GameManager.Option_LevelMB - 2];
+            Option_NeeditemMB[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarGrey[GameManager.Option_LevelMB - 1]) + "";
+            GameManager.HaveStarGrey -= GameManager.SpecialNeedHaveStarGrey[GameManager.Option_LevelMB - 2];
 
             if (GameManager.Option_LevelMB >= 10)
             {
-                Option_NeeditemMB[1].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedOrangeDust[GameManager.Option_LevelMB - 10]) + "";
-                if (GameManager.Option_LevelMB != 10) GameManager.OrangeDust -= GameManager.SpecialNeedOrangeDust[GameManager.Option_LevelMB - 11];
+                Option_NeeditemMB[1].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarBrown[GameManager.Option_LevelMB - 10]) + "";
+                if (GameManager.Option_LevelMB != 10) GameManager.HaveStarBrown -= GameManager.SpecialNeedHaveStarBrown[GameManager.Option_LevelMB - 11];
             }
 
             if (GameManager.Option_LevelMB >= 30)
             {
-                Option_NeeditemMB[2].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedLimeDust[GameManager.Option_LevelMB - 30]) + "";
-                if (GameManager.Option_LevelMB != 30) GameManager.LimeDust -= GameManager.SpecialNeedLimeDust[GameManager.Option_LevelMB - 31];
+                Option_NeeditemMB[2].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarBlue[GameManager.Option_LevelMB - 30]) + "";
+                if (GameManager.Option_LevelMB != 30) GameManager.HaveStarBlue -= GameManager.SpecialNeedHaveStarBlue[GameManager.Option_LevelMB - 31];
             }
 
             if (GameManager.Option_LevelMB >= 60)
             {
-                Option_NeeditemMB[3].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlackDust[GameManager.Option_LevelMB - 60]) + "";
-                if (GameManager.Option_LevelMB != 60) GameManager.BlackDust -= GameManager.SpecialNeedBlackDust[GameManager.Option_LevelMB - 61];
+                Option_NeeditemMB[3].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarGreen[GameManager.Option_LevelMB - 60]) + "";
+                if (GameManager.Option_LevelMB != 60) GameManager.HaveStarGreen -= GameManager.SpecialNeedHaveStarGreen[GameManager.Option_LevelMB - 61];
             }
 
             if (GameManager.Option_LevelMB >= 120)
             {
-                Option_NeeditemMB[4].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedRedDust[GameManager.Option_LevelMB - 120]) + "";
-                if (GameManager.Option_LevelMB != 120) GameManager.RedDust -= GameManager.SpecialNeedRedDust[GameManager.Option_LevelMB - 121];
+                Option_NeeditemMB[4].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarRed[GameManager.Option_LevelMB - 120]) + "";
+                if (GameManager.Option_LevelMB != 120) GameManager.HaveStarRed -= GameManager.SpecialNeedHaveStarRed[GameManager.Option_LevelMB - 121];
             }
 
             if (GameManager.Option_LevelMB >= 240)
             {
-                Option_NeeditemMB[5].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedYellowDust[GameManager.Option_LevelMB - 240]) + "";
-                if (GameManager.Option_LevelMB != 240) GameManager.YellowDust -= GameManager.SpecialNeedYellowDust[GameManager.Option_LevelMB - 241];
+                Option_NeeditemMB[5].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarYellow[GameManager.Option_LevelMB - 240]) + "";
+                if (GameManager.Option_LevelMB != 240) GameManager.HaveStarYellow -= GameManager.SpecialNeedHaveStarYellow[GameManager.Option_LevelMB - 241];
             }
 
             if (GameManager.Option_LevelMB >= 480)
             {
-                Option_NeeditemMB[6].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedDirtDust[GameManager.Option_LevelMB - 480]) + "";
-                if (GameManager.Option_LevelMB != 480) GameManager.DirtDust -= GameManager.SpecialNeedDirtDust[GameManager.Option_LevelMB - 481];
+                Option_NeeditemMB[6].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarPurple[GameManager.Option_LevelMB - 480]) + "";
+                if (GameManager.Option_LevelMB != 480) GameManager.HaveStarPurple -= GameManager.SpecialNeedHaveStarPurple[GameManager.Option_LevelMB - 481];
             }
 
             if (GameManager.Option_LevelMB >= 800)
             {
-                Option_NeeditemMB[7].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlueDust[GameManager.Option_LevelMB - 800]) + "";
-                if (GameManager.Option_LevelMB != 800) GameManager.BlueDust -= GameManager.SpecialNeedBlueDust[GameManager.Option_LevelMB - 801];
+                Option_NeeditemMB[7].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarOrange[GameManager.Option_LevelMB - 800]) + "";
+                if (GameManager.Option_LevelMB != 800) GameManager.HaveStarOrange -= GameManager.SpecialNeedHaveStarOrange[GameManager.Option_LevelMB - 801];
             }
 
             if (GameManager.Option_LevelMB >= 1500)
             {
-                Option_NeeditemMB[8].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedPurpleDust[GameManager.Option_LevelMB - 1500]) + "";
-                if (GameManager.Option_LevelMB != 1500) GameManager.PurpleDust -= GameManager.SpecialNeedPurpleDust[GameManager.Option_LevelMB - 1501];
+                Option_NeeditemMB[8].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarDark[GameManager.Option_LevelMB - 1500]) + "";
+                if (GameManager.Option_LevelMB != 1500) GameManager.HaveStarDark -= GameManager.SpecialNeedHaveStarDark[GameManager.Option_LevelMB - 1501];
             }
         }
         //  옵션 치명적 피해 업그레이드
         else if (index == 2)
         {
-            if (GameManager.BrownDust < GameManager.SpecialNeedBrownDust[GameManager.Option_LevelPFD - 1]) check = true;
+            if (GameManager.HaveStarGrey < GameManager.SpecialNeedHaveStarGrey[GameManager.Option_LevelPFD - 1]) check = true;
 
             if (GameManager.Option_LevelPFD >= 10)
-                if (GameManager.OrangeDust < GameManager.SpecialNeedOrangeDust[GameManager.Option_LevelPFD - 10]) check = true;
+                if (GameManager.HaveStarBrown < GameManager.SpecialNeedHaveStarBrown[GameManager.Option_LevelPFD - 10]) check = true;
             if (GameManager.Option_LevelPFD >= 30)
-                if (GameManager.LimeDust < GameManager.SpecialNeedLimeDust[GameManager.Option_LevelPFD - 30]) check = true;
+                if (GameManager.HaveStarBlue < GameManager.SpecialNeedHaveStarBlue[GameManager.Option_LevelPFD - 30]) check = true;
             if (GameManager.Option_LevelPFD >= 60)
-                if (GameManager.BlackDust < GameManager.SpecialNeedBlackDust[GameManager.Option_LevelPFD - 60]) check = true;
+                if (GameManager.HaveStarGreen < GameManager.SpecialNeedHaveStarGreen[GameManager.Option_LevelPFD - 60]) check = true;
             if (GameManager.Option_LevelPFD >= 120)
-                if (GameManager.RedDust < GameManager.SpecialNeedRedDust[GameManager.Option_LevelPFD - 120]) check = true;
+                if (GameManager.HaveStarRed < GameManager.SpecialNeedHaveStarRed[GameManager.Option_LevelPFD - 120]) check = true;
             if (GameManager.Option_LevelPFD >= 240)
-                if (GameManager.YellowDust < GameManager.SpecialNeedYellowDust[GameManager.Option_LevelPFD - 240]) check = true;
+                if (GameManager.HaveStarYellow < GameManager.SpecialNeedHaveStarYellow[GameManager.Option_LevelPFD - 240]) check = true;
             if (GameManager.Option_LevelPFD >= 480)
-                if (GameManager.DirtDust < GameManager.SpecialNeedDirtDust[GameManager.Option_LevelPFD - 480]) check = true;
+                if (GameManager.HaveStarPurple < GameManager.SpecialNeedHaveStarPurple[GameManager.Option_LevelPFD - 480]) check = true;
             if (GameManager.Option_LevelPFD >= 800)
-                if (GameManager.BlueDust < GameManager.SpecialNeedBlueDust[GameManager.Option_LevelPFD - 800]) check = true;
+                if (GameManager.HaveStarOrange < GameManager.SpecialNeedHaveStarOrange[GameManager.Option_LevelPFD - 800]) check = true;
             if (GameManager.Option_LevelPFD >= 1500)
-                if (GameManager.PurpleDust < GameManager.SpecialNeedPurpleDust[GameManager.Option_LevelPFD - 1500]) check = true;
+                if (GameManager.HaveStarDark < GameManager.SpecialNeedHaveStarDark[GameManager.Option_LevelPFD - 1500]) check = true;
 
             if (check == true)
             {
@@ -1516,59 +1386,59 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
             OptionLeftText[2].text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Option_PFD) + "%";
             OptionRightText[2].text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Option_PFD + 0.01m) + "%";
 
-            Option_NeeditemPFD[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBrownDust[GameManager.Option_LevelPFD - 1]) + "";
-            GameManager.BrownDust -= GameManager.SpecialNeedBrownDust[GameManager.Option_LevelPFD - 2];
+            Option_NeeditemPFD[0].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarGrey[GameManager.Option_LevelPFD - 1]) + "";
+            GameManager.HaveStarGrey -= GameManager.SpecialNeedHaveStarGrey[GameManager.Option_LevelPFD - 2];
 
             if (GameManager.Option_LevelPFD >= 10)
             {
-                Option_NeeditemPFD[1].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedOrangeDust[GameManager.Option_LevelPFD - 10]) + "";
-                if (GameManager.Option_LevelPFD != 10) GameManager.OrangeDust -= GameManager.SpecialNeedOrangeDust[GameManager.Option_LevelPFD - 11];
+                Option_NeeditemPFD[1].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarBrown[GameManager.Option_LevelPFD - 10]) + "";
+                if (GameManager.Option_LevelPFD != 10) GameManager.HaveStarBrown -= GameManager.SpecialNeedHaveStarBrown[GameManager.Option_LevelPFD - 11];
             }
 
             if (GameManager.Option_LevelPFD >= 30)
             {
-                Option_NeeditemPFD[2].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedLimeDust[GameManager.Option_LevelPFD - 30]) + "";
-                if (GameManager.Option_LevelPFD != 30) GameManager.LimeDust -= GameManager.SpecialNeedLimeDust[GameManager.Option_LevelPFD - 31];
+                Option_NeeditemPFD[2].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarBlue[GameManager.Option_LevelPFD - 30]) + "";
+                if (GameManager.Option_LevelPFD != 30) GameManager.HaveStarBlue -= GameManager.SpecialNeedHaveStarBlue[GameManager.Option_LevelPFD - 31];
             }
 
             if (GameManager.Option_LevelPFD >= 60)
             {
-                Option_NeeditemPFD[3].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlackDust[GameManager.Option_LevelPFD - 60]) + "";
-                if (GameManager.Option_LevelPFD != 60) GameManager.BlackDust -= GameManager.SpecialNeedBlackDust[GameManager.Option_LevelPFD - 61];
+                Option_NeeditemPFD[3].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarGreen[GameManager.Option_LevelPFD - 60]) + "";
+                if (GameManager.Option_LevelPFD != 60) GameManager.HaveStarGreen -= GameManager.SpecialNeedHaveStarGreen[GameManager.Option_LevelPFD - 61];
             }
 
             if (GameManager.Option_LevelPFD >= 120)
             {
-                Option_NeeditemPFD[4].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedRedDust[GameManager.Option_LevelPFD - 120]) + "";
-                if (GameManager.Option_LevelPFD != 120) GameManager.RedDust -= GameManager.SpecialNeedRedDust[GameManager.Option_LevelPFD - 121];
+                Option_NeeditemPFD[4].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarRed[GameManager.Option_LevelPFD - 120]) + "";
+                if (GameManager.Option_LevelPFD != 120) GameManager.HaveStarRed -= GameManager.SpecialNeedHaveStarRed[GameManager.Option_LevelPFD - 121];
             }
 
             if (GameManager.Option_LevelPFD >= 240)
             {
-                Option_NeeditemPFD[5].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedYellowDust[GameManager.Option_LevelPFD - 240]) + "";
-                if (GameManager.Option_LevelPFD != 240) GameManager.YellowDust -= GameManager.SpecialNeedYellowDust[GameManager.Option_LevelPFD - 241];
+                Option_NeeditemPFD[5].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarYellow[GameManager.Option_LevelPFD - 240]) + "";
+                if (GameManager.Option_LevelPFD != 240) GameManager.HaveStarYellow -= GameManager.SpecialNeedHaveStarYellow[GameManager.Option_LevelPFD - 241];
             }
 
             if (GameManager.Option_LevelPFD >= 480)
             {
-                Option_NeeditemPFD[6].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedDirtDust[GameManager.Option_LevelPFD - 480]) + "";
-                if (GameManager.Option_LevelPFD != 480) GameManager.DirtDust -= GameManager.SpecialNeedDirtDust[GameManager.Option_LevelPFD - 481];
+                Option_NeeditemPFD[6].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarPurple[GameManager.Option_LevelPFD - 480]) + "";
+                if (GameManager.Option_LevelPFD != 480) GameManager.HaveStarPurple -= GameManager.SpecialNeedHaveStarPurple[GameManager.Option_LevelPFD - 481];
             }
 
             if (GameManager.Option_LevelPFD >= 800)
             {
-                Option_NeeditemPFD[7].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedBlueDust[GameManager.Option_LevelPFD - 800]) + "";
-                if (GameManager.Option_LevelPFD != 800) GameManager.BlueDust -= GameManager.SpecialNeedBlueDust[GameManager.Option_LevelPFD - 801];
+                Option_NeeditemPFD[7].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarOrange[GameManager.Option_LevelPFD - 800]) + "";
+                if (GameManager.Option_LevelPFD != 800) GameManager.HaveStarOrange -= GameManager.SpecialNeedHaveStarOrange[GameManager.Option_LevelPFD - 801];
             }
 
             if (GameManager.Option_LevelPFD >= 1500)
             {
-                Option_NeeditemPFD[8].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedPurpleDust[GameManager.Option_LevelPFD - 1500]) + "";
-                if (GameManager.Option_LevelPFD != 1500) GameManager.PurpleDust -= GameManager.SpecialNeedPurpleDust[GameManager.Option_LevelPFD - 1501];
+                Option_NeeditemPFD[8].text = TextFormatter.GetThousandCommaText(GameManager.SpecialNeedHaveStarDark[GameManager.Option_LevelPFD - 1500]) + "";
+                if (GameManager.Option_LevelPFD != 1500) GameManager.HaveStarDark -= GameManager.SpecialNeedHaveStarDark[GameManager.Option_LevelPFD - 1501];
             }
         }
     }
-
+    */
     private int Save_index = 0;
     private int Check = 0;
 
@@ -1577,40 +1447,30 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
     {
         float Reward_RocksRandom = Random.value;
 
-        int Reward_BrownDust;
-        int Reward_OrangeDust;
-        int Reward_LimeDust;
-        int Reward_BlackDust;
-        int Reward_RedDust;
-        int Reward_YellowDust;
-        int Reward_DirtDust;
-        int Reward_BlueDust;
-        int Reward_PurpleDust;
-        int Reward_ReinforceScroll;
+        int Reward_HaveStarGrey = 0;
+        int Reward_HaveStarBrown = 0;
+        int Reward_HaveStarBlue = 0;
+        int Reward_HaveStarGreen = 0;
+        int Reward_HaveStarRed = 0;
+        int Reward_HaveStarYellow = 0;
+        int Reward_HaveStarPurple = 0;
+        int Reward_HaveStarOrange = 0;
+        int Reward_HaveStarDark = 0;
+        int Reward_ReinforceScroll = 0;
 
-        Reward_BrownDust = 0;
-        Reward_OrangeDust = 0;
-        Reward_LimeDust = 0;
-        Reward_BlackDust = 0;
-        Reward_RedDust = 0;
-        Reward_YellowDust = 0;
-        Reward_DirtDust = 0;
-        Reward_BlueDust = 0;
-        Reward_PurpleDust = 0;
-        Reward_ReinforceScroll = 0;
 
         // 광물의 정보를 가져와서 해당 보상을 계산
 
         float[] dustProbabilities = {
-            rock.n_rocks[Rock_defeatedIndex].BrownDust,
-            rock.n_rocks[Rock_defeatedIndex].OrangeDust,
-            rock.n_rocks[Rock_defeatedIndex].LimeDust,
-            rock.n_rocks[Rock_defeatedIndex].BlackDust,
-            rock.n_rocks[Rock_defeatedIndex].RedDust,
-            rock.n_rocks[Rock_defeatedIndex].YellowDust,
-            rock.n_rocks[Rock_defeatedIndex].DirtDust,
-            rock.n_rocks[Rock_defeatedIndex].BlueDust,
-            rock.n_rocks[Rock_defeatedIndex].PurpleDust,
+            rock.n_rocks[Rock_defeatedIndex].HaveStarGrey,
+            rock.n_rocks[Rock_defeatedIndex].HaveStarBrown,
+            rock.n_rocks[Rock_defeatedIndex].HaveStarBlue,
+            rock.n_rocks[Rock_defeatedIndex].HaveStarGreen,
+            rock.n_rocks[Rock_defeatedIndex].HaveStarRed,
+            rock.n_rocks[Rock_defeatedIndex].HaveStarYellow,
+            rock.n_rocks[Rock_defeatedIndex].HaveStarPurple,
+            rock.n_rocks[Rock_defeatedIndex].HaveStarOrange,
+            rock.n_rocks[Rock_defeatedIndex].HaveStarDark,
             rock.n_rocks[Rock_defeatedIndex].ReinforceScroll
         };
 
@@ -1622,26 +1482,26 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
             cumulativeProbability += dustProbabilities[i] / 100f;
             if (Reward_RocksRandom < cumulativeProbability)
             {
-                dustRewards[i] = GameManager.Rock_defeatedIndex + 1 + GameManager.Mineral_MI;
+                dustRewards[i] = GameManager.Rock_defeatedIndex + 1;
                 break; // 보상이 결정되면 루프 종료
             }
         }
 
         // 각 보상 변수에 값 할당
-        Reward_BrownDust = dustRewards[0];
-        Reward_OrangeDust = dustRewards[1];
-        Reward_LimeDust = dustRewards[2];
-        Reward_BlackDust = dustRewards[3];
-        Reward_RedDust = dustRewards[4];
-        Reward_YellowDust = dustRewards[5];
-        Reward_DirtDust = dustRewards[6];
-        Reward_BlueDust = dustRewards[7];
-        Reward_PurpleDust = dustRewards[8];
+        Reward_HaveStarGrey = dustRewards[0];
+        Reward_HaveStarBrown = dustRewards[1];
+        Reward_HaveStarBlue = dustRewards[2];
+        Reward_HaveStarGreen = dustRewards[3];
+        Reward_HaveStarRed = dustRewards[4];
+        Reward_HaveStarYellow = dustRewards[5];
+        Reward_HaveStarPurple = dustRewards[6];
+        Reward_HaveStarOrange = dustRewards[7];
+        Reward_HaveStarDark = dustRewards[8];
         Reward_ReinforceScroll = dustRewards[9];
 
-        Debug.Log("광물 확률 : " + rock.n_rocks[Rock_defeatedIndex].BrownDust / 100f + " | " + Reward_RocksRandom);
-        Debug.Log("광물 확률 : " + rock.n_rocks[Rock_defeatedIndex].OrangeDust / 100f + " | " + Reward_RocksRandom);
-        Debug.Log("광물 확률 : " + rock.n_rocks[Rock_defeatedIndex].LimeDust / 100f + " | " + Reward_RocksRandom);
+        Debug.Log("광물 확률 : " + rock.n_rocks[Rock_defeatedIndex].HaveStarGrey / 100f + " | " + Reward_RocksRandom);
+        Debug.Log("광물 확률 : " + rock.n_rocks[Rock_defeatedIndex].HaveStarBrown / 100f + " | " + Reward_RocksRandom);
+        Debug.Log("광물 확률 : " + rock.n_rocks[Rock_defeatedIndex].HaveStarBlue / 100f + " | " + Reward_RocksRandom);
 
         // 권능
 
@@ -1649,15 +1509,15 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         if (MineAdManager.AdPlaying[2] == true) Bonus += MineAdManager.AdPowerValue[2];
 
         // 플레이어에게 보상 지급
-        GameManager.BrownDust += Reward_BrownDust * Bonus;
-        GameManager.OrangeDust += Reward_OrangeDust * Bonus;
-        GameManager.LimeDust += Reward_LimeDust * Bonus;
-        GameManager.BlackDust += Reward_BlackDust * Bonus;
-        GameManager.RedDust += Reward_RedDust * Bonus;
-        GameManager.YellowDust += Reward_YellowDust * Bonus;
-        GameManager.DirtDust += Reward_DirtDust * Bonus;
-        GameManager.BlueDust += Reward_BlueDust * Bonus;
-        GameManager.PurpleDust += Reward_PurpleDust * Bonus;
+        GameManager.HaveStarGrey += Reward_HaveStarGrey * Bonus;
+        GameManager.HaveStarBrown += Reward_HaveStarBrown * Bonus;
+        GameManager.HaveStarBlue += Reward_HaveStarBlue * Bonus;
+        GameManager.HaveStarGreen += Reward_HaveStarGreen * Bonus;
+        GameManager.HaveStarRed += Reward_HaveStarRed * Bonus;
+        GameManager.HaveStarYellow += Reward_HaveStarYellow * Bonus;
+        GameManager.HaveStarPurple += Reward_HaveStarPurple * Bonus;
+        GameManager.HaveStarOrange += Reward_HaveStarOrange * Bonus;
+        GameManager.HaveStarDark += Reward_HaveStarDark * Bonus;
         //GameManager.ReinforceScroll += Reward_ReinforceScroll;
 
         RocksCurHP = RocksMaxHP;
