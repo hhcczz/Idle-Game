@@ -36,6 +36,9 @@ public class MineAdManager : MonoBehaviour
     public Text[] AdLevelText;
     public Text[] AdValue;
     public Text[] AdSelText;
+    public Text[] AdTimeText;
+
+    public Image[] AdPlayingImg;
 
     public static int[] AdPowerValue;
 
@@ -85,7 +88,23 @@ public class MineAdManager : MonoBehaviour
             180,
             180,
             180,
-        };
+        }; 
+        
+        for (int i = 0; i < AdPlayingImg.Length; i++)
+        {
+            int index = i;
+
+            if (AdPlaying[index] == true)
+            {
+                AdPlayingImg[index].color = ColorManager.ColorChange("하얀색");
+                AdTimeText[index].gameObject.SetActive(true);
+            }
+            else
+            {
+                AdPlayingImg[index].color = ColorManager.ColorChange("검정색");
+                AdTimeText[index].gameObject.SetActive(false);
+            }
+        }
     }
 
     private void OnEnable()
@@ -160,7 +179,9 @@ public class MineAdManager : MonoBehaviour
     private IEnumerator DecreaseAdDuration(int index, int duration)
     {
         Image btnimg = AdSelBtn[index].GetComponent<Image>();
+        AdPlayingImg[index].color = ColorManager.ColorChange("하얀색");
 
+        AdTimeText[index].gameObject.SetActive(true);
         // 광고 지속 시간이 0보다 큰 동안 반복
         while (duration > 0)
         {
@@ -168,15 +189,21 @@ public class MineAdManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             duration--; // 광고 지속 시간 감소
                         // 텍스트 업데이트
+            if (duration >= 3600) AdTimeText[index].text = duration / 3600 + "h";
+            else if (duration >= 60) AdTimeText[index].text = duration / 60 + "m";
+            else AdTimeText[index].text = duration + "s";
             AdSelText[index].text = "남은 지속 시간 : " + duration + "초";
         }
 
         // 광고 종료 시 버튼 색상과 텍스트 복구
+
+        AdTimeText[index].gameObject.SetActive(false);
         btnimg.color = ColorManager.ColorChange("하얀색");
         AdSelBtn[index].interactable = true;
         AdSelText[index].text = "<size=24>광고 보기</size>";
         adDurationSeconds[index] = 180;
         // AdPlaying을 false로 설정
         AdPlaying[index] = false;
+        AdPlayingImg[index].color = ColorManager.ColorChange("검정색");
     }
 }
