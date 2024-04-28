@@ -131,6 +131,7 @@ public class MineAdManager : MonoBehaviour
 
     private void AdPlay(int index)
     {
+        StatisticsManager.ImmutabilityMineAdCount++;
         Image btnimg = AdSelBtn[index].GetComponent<Image>();
         if (index == 0 && !AdPlaying[index]) // 광고를 보지 않았을 때만 실행되도록 체크
         {
