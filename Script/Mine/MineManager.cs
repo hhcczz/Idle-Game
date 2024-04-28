@@ -159,10 +159,32 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
     private void UpgradeOpen(int index)
     {
         InUpgradePanel = index;
-        UpgradeTitleText.text = UpgradeSelTitleString[index];
-        if (index == 0) UpdateMineLeftRightText(index, GameManager.Pickaxe_Damage, GameManager.Pickaxe_CriticalChance, GameManager.Pickaxe_CriticalDamage);
-        else if(index == 1) UpdateMineLeftRightText(index, GameManager.Mineral_MI, GameManager.Mineral_HP, GameManager.Mineral_RS);
-        else if (index == 2) UpdateMineLeftRightText(index, GameManager.Option_PMA, GameManager.Option_MB, GameManager.Option_PFD);
+        UpgradeTitleText.text = UpgradeSelTitleString[index]; 
+        
+        if (index == 0)
+        {
+            UpdateMineLevelText(GameManager.Pickaxe_DamageLv, GameManager.Pickaxe_CriticalChance_Level, GameManager.Pickaxe_CriticalDamage_Level);
+            UpdateMineLeftRightText(index, GameManager.Pickaxe_Damage, GameManager.Pickaxe_CriticalChance, GameManager.Pickaxe_CriticalDamage);
+            UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Pickaxe_DamageLv);
+            UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Pickaxe_CriticalChance_Level);
+            UpdateMineNeedItemText(MineNeedItemText_3, "일반", GameManager.Pickaxe_CriticalDamage_Level);
+        }
+        else if (index == 1)
+        {
+            UpdateMineLevelText(GameManager.Mineral_LevelMI, GameManager.Mineral_LevelHP, GameManager.Mineral_LevelRS);
+            UpdateMineLeftRightText(index, GameManager.Mineral_MI, GameManager.Mineral_HP, GameManager.Mineral_RS);
+            UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Mineral_LevelMI);
+            UpdateMineNeedItemText(MineNeedItemText_2, "일반", GameManager.Mineral_LevelHP);
+            UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Mineral_LevelRS);
+        }
+        else if (index == 2)
+        {
+            UpdateMineLevelText(GameManager.Mineral_LevelMI, GameManager.Mineral_LevelHP, GameManager.Mineral_LevelRS);
+            UpdateMineLeftRightText(index, GameManager.Option_PMA, GameManager.Option_MB, GameManager.Option_PFD);
+            UpdateMineNeedItemText(MineNeedItemText_1, "고급", GameManager.Option_LevelPMA);
+            UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Option_LevelMB);
+            UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Option_LevelPFD);
+        }
 
         for (int i = 0; i < MineUpgradeImg.Length; i++)
         {
@@ -180,6 +202,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
             }
 
         }
+
         BasicPanel.SetActive(false);
         UpgradePanel.SetActive(true);
     }
@@ -250,6 +273,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
     [System.Obsolete]
     public void HandleTouchInput()
     {
+        StatisticsManager.ImmutabilityMineClickCount++;
         executions++;
         audioSource.PlayOneShot(MiningSoundClip, 1f);
 
@@ -293,9 +317,20 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         RockManager.currentHP -= damageAmount;
 
         int MineralBomb = Random.RandomRange(0, 100); // 광물 폭탄 확률 조건
+
+        
+
         if (RockManager.currentHP <= 0)
         {
-            if (GameManager.RockstageClearDict[RockManager.Instance.RockType][RockManager.Rock_defeatedIndex + 1] == false)
+            StatisticsManager.ImmutabilityMineBreakCount++;
+            if (RockManager.Rock_defeatedIndex == 17)
+            {
+                if (RockManager.RockFixDifficulty == 0 && GameManager.RockstageClearDict["중급 돌덩이"][0] == false) GameManager.RockstageClearDict["중급"][0] = true;
+                if (RockManager.RockFixDifficulty == 1 && GameManager.RockstageClearDict["상급 돌덩이"][0] == false) GameManager.RockstageClearDict["상급"][0] = true;
+                if (RockManager.RockFixDifficulty == 2 && GameManager.RockstageClearDict["최상급 돌덩이"][0] == false) GameManager.RockstageClearDict["최상급"][0] = true;
+            }
+
+            else if (GameManager.RockstageClearDict[RockManager.Instance.RockType][RockManager.Rock_defeatedIndex + 1] == false)
             {
                 GameManager.RockstageClearDict[RockManager.Instance.RockType][RockManager.Rock_defeatedIndex + 1] = true;
             }
@@ -528,11 +563,12 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                     return;
                 }
                 TakeUpgradeStar(GameManager.Pickaxe_DamageLv, "일반");
-
+                
                 GameManager.Pickaxe_DamageLv++;
                 GameManager.Pickaxe_Damage += 1m;
 
                 UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Pickaxe_DamageLv);
+                StatisticsManager.ImmutabilityPickaxeUpgradeCount++;
             }
             else if (index == 1)
             {
@@ -549,6 +585,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
 
 
                 UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Pickaxe_CriticalChance_Level);
+                StatisticsManager.ImmutabilityPickaxeUpgradeCount++;
             }
             else if (index == 2)
             {
@@ -565,6 +602,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                 GameManager.Pickaxe_CriticalDamage += 1m;
 
                 UpdateMineNeedItemText(MineNeedItemText_3, "일반", GameManager.Pickaxe_CriticalDamage_Level);
+                StatisticsManager.ImmutabilityPickaxeUpgradeCount++;
             }
 
             UpdateMineLevelText(GameManager.Pickaxe_DamageLv, GameManager.Pickaxe_CriticalChance_Level, GameManager.Pickaxe_CriticalDamage_Level);
@@ -586,6 +624,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                 GameManager.Mineral_MI += 0.2m;
 
                 UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Mineral_LevelMI);
+                StatisticsManager.ImmutabilityMineralUpgradeCount++;
             }
             else if (index == 1)
             {
@@ -600,6 +639,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
 
 
                 UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Mineral_LevelHP);
+                StatisticsManager.ImmutabilityMineralUpgradeCount++;
             }
             else if (index == 2)
             {
@@ -614,6 +654,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                 GameManager.Mineral_RS += 0.01m;
 
                 UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Mineral_LevelRS);
+                StatisticsManager.ImmutabilityMineralUpgradeCount++;
             }
 
             UpdateMineLevelText(GameManager.Mineral_LevelMI, GameManager.Mineral_LevelHP, GameManager.Mineral_LevelRS);
@@ -635,6 +676,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                 GameManager.Option_PMA += 1.2m;
 
                 UpdateMineNeedItemText(MineNeedItemText_1, "고급", GameManager.Option_LevelPMA);
+                StatisticsManager.ImmutabilityOptionUpgradeCount++;
             }
             else if (index == 1)
             {
@@ -649,6 +691,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
 
 
                 UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Option_LevelMB);
+                StatisticsManager.ImmutabilityOptionUpgradeCount++;
             }
             else if (index == 2)
             {
@@ -663,6 +706,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                 GameManager.Option_PFD += 0.01m;
 
                 UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Option_LevelPFD);
+                StatisticsManager.ImmutabilityOptionUpgradeCount++;
             }
 
             UpdateMineLevelText(GameManager.Option_LevelPMA, GameManager.Option_LevelMB, GameManager.Option_LevelPFD);
