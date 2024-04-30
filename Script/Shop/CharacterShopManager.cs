@@ -43,6 +43,7 @@ public class CharacterShopManager : MonoBehaviour
     private float holdDuration = 0.5f; // 버튼을 누른 상태로 유지할 시
 
     private decimal[] IncreaseValue;
+    private int[] MaxValue;
 
     private void Start()
     {
@@ -71,6 +72,15 @@ public class CharacterShopManager : MonoBehaviour
             1m,
         };
 
+        MaxValue = new int[5]
+        {
+            99999,
+            100,
+            2000,
+            99999,
+            500,
+        };
+
         for(int i = 0; i < 5; i++)
         {
             int index = i;
@@ -90,7 +100,13 @@ public class CharacterShopManager : MonoBehaviour
             {
                 holdingplay = true;
             }
-            if(holdingplay == true) PPUpgrade(holdIndex);
+            if (holdIndex == 0 && GameManager.Player_PPUP_DamageLevel >= MaxValue[0] + 1) EndHold();
+            else if (holdIndex == 1 && GameManager.Player_PPUP_AttackSpeedLevel >= MaxValue[1] + 1) EndHold();
+            else if (holdIndex == 2 && GameManager.Player_PPUP_CriticalChanceLevel >= MaxValue[2] + 1) EndHold();
+            else if (holdIndex == 3 && GameManager.Player_PPUP_CriticalDamageLevel >= MaxValue[3] + 1) EndHold();
+            else if (holdIndex == 4 && GameManager.Player_PPUP_ArmorPenetrationLevel >= MaxValue[4] + 1) EndHold();
+
+            if (holdingplay == true) PPUpgrade(holdIndex);
         }
     }
 
@@ -98,34 +114,78 @@ public class CharacterShopManager : MonoBehaviour
     {
         if(index == 0)
         {
-            Player_PPUP_Damage_Level.text = "Lv. " + GameManager.Player_PPUP_DamageLevel;
-            Player_PPUP_Damage_Left.text = GameManager.Player_Damage + "";
-            Player_PPUP_Damage_Right.text = GameManager.Player_Damage + IncreaseValue[index] + "";
+            if (GameManager.Player_PPUP_DamageLevel >= MaxValue[index])
+            {
+                Player_PPUP_Damage_Level.text = "<color=cyan>Lv. MAX</color>";
+                Player_PPUP_Damage_Left.text = GameManager.Player_Damage + "";
+                Player_PPUP_Damage_Right.text = GameManager.Player_Damage + "";
+            }
+            else
+            {
+                Player_PPUP_Damage_Level.text = "Lv. " + GameManager.Player_PPUP_DamageLevel;
+                Player_PPUP_Damage_Left.text = GameManager.Player_Damage + "";
+                Player_PPUP_Damage_Right.text = GameManager.Player_Damage + IncreaseValue[index] + "";
+            }
         }
         else if (index == 1)
         {
-            Player_PPUP_AttackSpeed_Level.text = "Lv. " + GameManager.Player_PPUP_AttackSpeedLevel;
-            Player_PPUP_AttackSpeed_Left.text = GameManager.Player_AttackSpeed + "%";
-            Player_PPUP_AttackSpeed_Right.text = GameManager.Player_AttackSpeed + IncreaseValue[index] + "%";
-
+            if (GameManager.Player_PPUP_AttackSpeedLevel >= MaxValue[index])
+            {
+                Player_PPUP_AttackSpeed_Level.text = "<color=cyan>Lv. MAX</color>";
+                Player_PPUP_AttackSpeed_Left.text = GameManager.Player_AttackSpeed + "%";
+                Player_PPUP_AttackSpeed_Right.text = GameManager.Player_AttackSpeed + "%";
+            }
+            else
+            {
+                Player_PPUP_AttackSpeed_Level.text = "Lv. " + GameManager.Player_PPUP_AttackSpeedLevel;
+                Player_PPUP_AttackSpeed_Left.text = GameManager.Player_AttackSpeed + "%";
+                Player_PPUP_AttackSpeed_Right.text = GameManager.Player_AttackSpeed + IncreaseValue[index] + "%";
+            }
         }
         else if(index == 2)
         {
-            Player_PPUP_CriticalChance_Level.text = "Lv. " + GameManager.Player_PPUP_CriticalChanceLevel;
-            Player_PPUP_CriticalChance_Left.text = GameManager.Player_CriticalChance + "%";
-            Player_PPUP_CriticalChance_Right.text = GameManager.Player_CriticalChance + IncreaseValue[index] + "%";
+            if (GameManager.Player_PPUP_CriticalChanceLevel >= MaxValue[index])
+            {
+                Player_PPUP_CriticalChance_Level.text = "<color=cyan>Lv. MAX</color>";
+                Player_PPUP_CriticalChance_Left.text = GameManager.Player_CriticalChance + "%";
+                Player_PPUP_CriticalChance_Right.text = GameManager.Player_CriticalChance + "%";
+            }
+            else
+            {
+                Player_PPUP_CriticalChance_Level.text = "Lv. " + GameManager.Player_PPUP_CriticalChanceLevel;
+                Player_PPUP_CriticalChance_Left.text = GameManager.Player_CriticalChance + "%";
+                Player_PPUP_CriticalChance_Right.text = GameManager.Player_CriticalChance + IncreaseValue[index] + "%";
+            }
         }
         else if (index == 3)
         {
-            Player_PPUP_CriticalDamage_Level.text = "Lv. " + GameManager.Player_PPUP_CriticalDamageLevel;
-            Player_PPUP_CriticalDamage_Left.text = GameManager.Player_CriticalDamage + "";
-            Player_PPUP_CriticalDamage_Right.text = GameManager.Player_CriticalDamage + IncreaseValue[index] + "";
+            if (GameManager.Player_PPUP_CriticalDamageLevel >= MaxValue[index])
+            {
+                Player_PPUP_CriticalDamage_Level.text = "<color=cyan>Lv. MAX</color>";
+                Player_PPUP_CriticalDamage_Left.text = GameManager.Player_CriticalDamage + "";
+                Player_PPUP_CriticalDamage_Right.text = GameManager.Player_CriticalDamage + "";
+            }
+            else
+            {
+                Player_PPUP_CriticalDamage_Level.text = "Lv. " + GameManager.Player_PPUP_CriticalDamageLevel;
+                Player_PPUP_CriticalDamage_Left.text = GameManager.Player_CriticalDamage + "";
+                Player_PPUP_CriticalDamage_Right.text = GameManager.Player_CriticalDamage + IncreaseValue[index] + "";
+            }
         }
         else if (index == 4)
         {
-            Player_PPUP_ArmorPenetration_Level.text = "Lv. " + GameManager.Player_PPUP_ArmorPenetrationLevel;
-            Player_PPUP_ArmorPenetration_Left.text = GameManager.Player_ArmorPenetration + "";
-            Player_PPUP_ArmorPenetration_Right.text = GameManager.Player_ArmorPenetration + (int)IncreaseValue[index] + "";
+            if (GameManager.Player_PPUP_ArmorPenetrationLevel >= MaxValue[index])
+            {
+                Player_PPUP_ArmorPenetration_Level.text = "<color=cyan>Lv. MAX</color>";
+                Player_PPUP_ArmorPenetration_Left.text = GameManager.Player_ArmorPenetration + "";
+                Player_PPUP_ArmorPenetration_Right.text = GameManager.Player_ArmorPenetration + "";
+            }
+            else
+            {
+                Player_PPUP_ArmorPenetration_Level.text = "Lv. " + GameManager.Player_PPUP_ArmorPenetrationLevel;
+                Player_PPUP_ArmorPenetration_Left.text = GameManager.Player_ArmorPenetration + "";
+                Player_PPUP_ArmorPenetration_Right.text = GameManager.Player_ArmorPenetration + (int)IncreaseValue[index] + "";
+            }
         }
         Player_CurPassivePoint_Text.text = "PP  :  " + GameManager.Player_PassivePoint;
     }
@@ -147,6 +207,7 @@ public class CharacterShopManager : MonoBehaviour
             {
                 GameManager.Player_PPUP_AttackSpeedLevel += 1;
                 GameManager.Player_AttackSpeed += IncreaseValue[index];
+                if (GameManager.Player_PPUP_AttackSpeedLevel >= 100) Player_Upgrade_AttackSpeedLevelBtn.interactable = false;
             }
             //  플레이어 치명타 확률 업그레이드 | PP 사용
             else if (index == 2)
@@ -189,7 +250,12 @@ public class CharacterShopManager : MonoBehaviour
     {
         holdDuration = 0.5f;
         holdIndex = index;
-        holding = true;
+        if (index == 0 && GameManager.Player_PPUP_DamageLevel < MaxValue[index] + 1) holding = true;
+        else if (index == 1 && GameManager.Player_PPUP_AttackSpeedLevel < MaxValue[index] + 1) holding = true;
+        else if (index == 2 && GameManager.Player_PPUP_CriticalChanceLevel < MaxValue[index] + 1) holding = true;
+        else if (index == 3 && GameManager.Player_PPUP_CriticalDamageLevel < MaxValue[index] + 1) holding = true;
+        else if (index == 4 && GameManager.Player_PPUP_ArmorPenetrationLevel < MaxValue[index] + 1) holding = true;
+        else EndHold();
     }
 
     public void EndHold()
