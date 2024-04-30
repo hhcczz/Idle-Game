@@ -57,6 +57,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
     public GameObject UpgradePanel;
     public Text UpgradeTitleText;
 
+
     public static float RocksNormalDamage;
     public static float RocksCriticalDamage;
 
@@ -100,6 +101,12 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
             "치명적 피해",
         };
 
+    private RockManager rockmanager;
+
+    private void Awake()
+    {
+        rockmanager = RockManager.Instance;
+    }
 
     void Start()
     {
@@ -143,6 +150,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
     }
 
 
+
     // 광물 체력 업데이트 관리
     private void UpdateHealth()
     {
@@ -179,7 +187,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         }
         else if (index == 2)
         {
-            UpdateMineLevelText(GameManager.Mineral_LevelMI, GameManager.Mineral_LevelHP, GameManager.Mineral_LevelRS);
+            UpdateMineLevelText(GameManager.Option_LevelPMA, GameManager.Option_LevelMB, GameManager.Option_LevelPFD);
             UpdateMineLeftRightText(index, GameManager.Option_PMA, GameManager.Option_MB, GameManager.Option_PFD);
             UpdateMineNeedItemText(MineNeedItemText_1, "고급", GameManager.Option_LevelPMA);
             UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Option_LevelMB);
@@ -291,7 +299,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         if (FatalDamage < GameManager.Option_PFD) RockManager.currentHP -= RockManager.currentHP / 3;    // 치명적 피해
 
         if (GameManager.WarrantLevel[7] >= 1 && Warrant <= 1) damageAmount *= GameManager.Warrant_Power[7];
-        if (GameManager.WarrantLevel[8] >= 1) damageAmount += GameManager.Warrant_Power[8];
+        if (GameManager.WarrantLevel[8] >= 1) damageAmount *= (float)(1f + GameManager.Warrant_Power[8] / 100f);
 
         // touchableArea의 RectTransform을 가져옵니다.
         RectTransform touchableRectTransform = touchableArea.GetComponent<RectTransform>();
@@ -325,18 +333,18 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
             StatisticsManager.ImmutabilityMineBreakCount++;
             if (RockManager.Rock_defeatedIndex == 17)
             {
-                if (RockManager.RockFixDifficulty == 0 && GameManager.RockstageClearDict["중급 돌덩이"][0] == false) GameManager.RockstageClearDict["중급"][0] = true;
-                if (RockManager.RockFixDifficulty == 1 && GameManager.RockstageClearDict["상급 돌덩이"][0] == false) GameManager.RockstageClearDict["상급"][0] = true;
-                if (RockManager.RockFixDifficulty == 2 && GameManager.RockstageClearDict["최상급 돌덩이"][0] == false) GameManager.RockstageClearDict["최상급"][0] = true;
+                if (RockManager.RockFixDifficulty == 0 && GameManager.RockstageClearDict["중급 돌덩이"][0] == false) GameManager.RockstageClearDict["중급 돌덩이"][0] = true;
+                if (RockManager.RockFixDifficulty == 1 && GameManager.RockstageClearDict["상급 돌덩이"][0] == false) GameManager.RockstageClearDict["상급 돌덩이"][0] = true;
+                if (RockManager.RockFixDifficulty == 2 && GameManager.RockstageClearDict["최상급 돌덩이"][0] == false) GameManager.RockstageClearDict["최상급 돌덩이"][0] = true;
             }
 
-            else if (GameManager.RockstageClearDict[RockManager.Instance.RockType][RockManager.Rock_defeatedIndex + 1] == false)
+            else if (GameManager.RockstageClearDict[RockManager.RockType][RockManager.Rock_defeatedIndex + 1] == false)
             {
-                GameManager.RockstageClearDict[RockManager.Instance.RockType][RockManager.Rock_defeatedIndex + 1] = true;
+                GameManager.RockstageClearDict[RockManager.RockType][RockManager.Rock_defeatedIndex + 1] = true;
             }
         
-            if (MineralBomb < GameManager.Option_LevelMB) RockManager.Instance.GrantRewards(RockManager.Rock_defeatedIndex, 20);
-            else RockManager.Instance.GrantRewards(RockManager.Rock_defeatedIndex, 1);
+            if (MineralBomb < GameManager.Option_LevelMB) rockmanager.GrantRewards(RockManager.Rock_defeatedIndex, 20);
+            else rockmanager.GrantRewards(RockManager.Rock_defeatedIndex, 1);
         }
 
         // 이펙트를 생성하고 부모 Rect Transform의 좌표계를 기준으로 위치를 설정합니다.
@@ -479,7 +487,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         }
         else if (index == 2)
         {
-            UpdateMineLevelText(GameManager.Mineral_LevelMI, GameManager.Mineral_LevelHP, GameManager.Mineral_LevelRS);
+            UpdateMineLevelText(GameManager.Option_LevelPMA, GameManager.Option_LevelMB, GameManager.Option_LevelPFD);
             UpdateMineLeftRightText(index, GameManager.Option_PMA, GameManager.Option_MB, GameManager.Option_PFD);
             UpdateMineNeedItemText(MineNeedItemText_1, "고급", GameManager.Option_LevelPMA);
             UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Option_LevelMB);
