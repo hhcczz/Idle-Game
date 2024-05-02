@@ -158,24 +158,24 @@ public class EnemyManager : MonoBehaviour
             new Monster("초급 늑대 <color=lime>XVII</color>", 58200, 58200,  9000,  27000,   235,  1.8f,  4),
             new Monster("초급 늑대 <color=lime>BOSS</color>", 63000, 63000,  9200,  27600,   235,  1.8f,  4),
 
-            new Monster("중급 늑대 <color=blue>I</color>",    64700, 64700,  9500,   28500,   240,  2.7f,  5),
-            new Monster("중급 늑대 <color=blue>II</color>",   66400, 66400,  9800,   29400,   240,  2.7f,  5),
-            new Monster("중급 늑대 <color=blue>III</color>",  68100, 68100,  10100,  30300,   245,  2.7f,  5),
-            new Monster("중급 늑대 <color=blue>IV</color>",   69800, 69800,  10400,  31200,   245,  2.7f,  5),
-            new Monster("중급 늑대 <color=blue>V</color>",    73000, 73000,  10700,  32100,   250,  2.7f,  5),
-            new Monster("중급 늑대 <color=blue>VI</color>",   74800, 74800,  11000,  33000,   250,  2.7f,  5),
-            new Monster("중급 늑대 <color=blue>VII</color>",  76600, 76600,  11300,  33900,   255,  2.7f,  5),
-            new Monster("중급 늑대 <color=blue>VIII</color>", 78400, 78400,  11600,  34800,   255,  2.7f,  5),
-            new Monster("중급 늑대 <color=blue>IX</color>",   80200, 80200,  11900,  35700,   260,  2.7f,  5),
-            new Monster("중급 늑대 <color=blue>X</color>",    84000, 84000,  12200,  36600,   260,  3.6f,  5),
-            new Monster("중급 늑대 <color=blue>XI</color>",   85900, 85900,  12500,  37500,   265,  3.6f,  5),
-            new Monster("중급 늑대 <color=blue>XII</color>",  67800, 67800,  12800,  38400,   265,  3.6f,  5),
-            new Monster("중급 늑대 <color=blue>XIII</color>", 69700, 69700,  13100,  39300,   270,  3.6f,  5),
-            new Monster("중급 늑대 <color=blue>XIV</color>",  74000, 74000,  13400,  40200,   270,  3.6f,  5),
-            new Monster("중급 늑대 <color=blue>XV</color>",   76000, 76000,  13700,  41100,   275,  3.6f,  5),
-            new Monster("중급 늑대 <color=blue>XVI</color>",  78000, 78000,  14000,  42000,   275,  3.6f,  5),
-            new Monster("중급 늑대 <color=blue>XVII</color>", 80000, 80000,  14300,  42900,   280,  3.6f,  5),
-            new Monster("중급 늑대 <color=blue>BOSS</color>", 90000, 90000,  14600,  43800,   280,  3.6f,  5),
+            new Monster("중급 늑대 <color=cyan>I</color>",    64700, 64700,  9500,   28500,   240,  2.7f,  5),
+            new Monster("중급 늑대 <color=cyan>II</color>",   66400, 66400,  9800,   29400,   240,  2.7f,  5),
+            new Monster("중급 늑대 <color=cyan>III</color>",  68100, 68100,  10100,  30300,   245,  2.7f,  5),
+            new Monster("중급 늑대 <color=cyan>IV</color>",   69800, 69800,  10400,  31200,   245,  2.7f,  5),
+            new Monster("중급 늑대 <color=cyan>V</color>",    73000, 73000,  10700,  32100,   250,  2.7f,  5),
+            new Monster("중급 늑대 <color=cyan>VI</color>",   74800, 74800,  11000,  33000,   250,  2.7f,  5),
+            new Monster("중급 늑대 <color=cyan>VII</color>",  76600, 76600,  11300,  33900,   255,  2.7f,  5),
+            new Monster("중급 늑대 <color=cyan>VIII</color>", 78400, 78400,  11600,  34800,   255,  2.7f,  5),
+            new Monster("중급 늑대 <color=cyan>IX</color>",   80200, 80200,  11900,  35700,   260,  2.7f,  5),
+            new Monster("중급 늑대 <color=cyan>X</color>",    84000, 84000,  12200,  36600,   260,  3.6f,  5),
+            new Monster("중급 늑대 <color=cyan>XI</color>",   85900, 85900,  12500,  37500,   265,  3.6f,  5),
+            new Monster("중급 늑대 <color=cyan>XII</color>",  67800, 67800,  12800,  38400,   265,  3.6f,  5),
+            new Monster("중급 늑대 <color=cyan>XIII</color>", 69700, 69700,  13100,  39300,   270,  3.6f,  5),
+            new Monster("중급 늑대 <color=cyan>XIV</color>",  74000, 74000,  13400,  40200,   270,  3.6f,  5),
+            new Monster("중급 늑대 <color=cyan>XV</color>",   76000, 76000,  13700,  41100,   275,  3.6f,  5),
+            new Monster("중급 늑대 <color=cyan>XVI</color>",  78000, 78000,  14000,  42000,   275,  3.6f,  5),
+            new Monster("중급 늑대 <color=cyan>XVII</color>", 80000, 80000,  14300,  42900,   280,  3.6f,  5),
+            new Monster("중급 늑대 <color=cyan>BOSS</color>", 90000, 90000,  14600,  43800,   280,  3.6f,  5),
 
             new Monster("상급 늑대 <color=red>I</color>",    93000,  93000,   15000,  45000,   285,  4.5f,  6),
             new Monster("상급 늑대 <color=red>II</color>",   96000,  96000,   15400,  46200,   285,  4.5f,  6),
@@ -214,6 +214,82 @@ public class EnemyManager : MonoBehaviour
             new Monster("최상급 늑대 <color=maroon>XVI</color>",  276500, 276500,  30500,  91500,   365,  9.1f,  7),
             new Monster("최상급 늑대 <color=maroon>XVII</color>", 283000, 283000,  31000,  93000,   370,  9.1f,  7),
             new Monster("최상급 늑대 <color=maroon>BOSS</color>", 300000, 300000,  40000,  120000,  370,  9.1f,  7),
+
+            new Monster("초급 골렘 <color=lime>I</color>",    320000, 320000,  41500,  124500,   375,  0.8f,  8),
+            new Monster("초급 골렘 <color=lime>II</color>",   340000, 340000,  43000,  128000,   375,  0.8f,  8),
+            new Monster("초급 골렘 <color=lime>III</color>",  360000, 360000,  44500,  131500,   380,  0.8f,  8),
+            new Monster("초급 골렘 <color=lime>IV</color>",   380000, 380000,  46000,  135000,   380,  0.8f,  8),
+            new Monster("초급 골렘 <color=lime>V</color>",    400000, 400000,  47500,  138500,   385,  0.8f,  8),
+            new Monster("초급 골렘 <color=lime>VI</color>",   420000, 420000,  49000,  142000,   385,  0.8f,  8),
+            new Monster("초급 골렘 <color=lime>VII</color>",  440000, 440000,  50500,  145500,   390,  0.8f,  8),
+            new Monster("초급 골렘 <color=lime>VIII</color>", 460000, 460000,  52000,  149000,   390,  0.8f,  8),
+            new Monster("초급 골렘 <color=lime>IX</color>",   480000, 480000,  53500,  152500,   395,  0.8f,  8),
+            new Monster("초급 골렘 <color=lime>X</color>",    500000, 500000,  55000,  156000,   395,  1.6f,  8),
+            new Monster("초급 골렘 <color=lime>XI</color>",   520000, 520000,  56500,  159500,   400,  1.6f,  8),
+            new Monster("초급 골렘 <color=lime>XII</color>",  540000, 540000,  58000,  163000,   400,  1.6f,  8),
+            new Monster("초급 골렘 <color=lime>XIII</color>", 560000, 560000,  59500,  166500,   405,  1.6f,  8),
+            new Monster("초급 골렘 <color=lime>XIV</color>",  580000, 580000,  61000,  170000,   405,  1.6f,  8),
+            new Monster("초급 골렘 <color=lime>XV</color>",   600000, 600000,  62500,  173500,   410,  1.6f,  8),
+            new Monster("초급 골렘 <color=lime>XVI</color>",  620000, 620000,  64000,  177000,   410,  1.6f,  8),
+            new Monster("초급 골렘 <color=lime>XVII</color>", 640000, 640000,  65500,  180500,   415,  1.6f,  8),
+            new Monster("초급 골렘 <color=lime>BOSS</color>", 680000, 680000,  70000,  210000,   415,  1.6f,  8),
+
+            new Monster("중급 골렘 <color=cyan>I</color>",    710000,  710000,   72000,   216000,   420,  2.4f,  9),
+            new Monster("중급 골렘 <color=cyan>II</color>",   740000,  740000,   74000,   222000,   420,  2.4f,  9),
+            new Monster("중급 골렘 <color=cyan>III</color>",  770000,  770000,   76000,   228000,   425,  2.4f,  9),
+            new Monster("중급 골렘 <color=cyan>IV</color>",   800000,  800000,   78000,   234000,   425,  2.4f,  9),
+            new Monster("중급 골렘 <color=cyan>V</color>",    830000,  830000,   80000,   240000,   430,  2.4f,  9),
+            new Monster("중급 골렘 <color=cyan>VI</color>",   860000,  860000,   82000,   246000,   430,  2.4f,  9),
+            new Monster("중급 골렘 <color=cyan>VII</color>",  890000,  890000,   84000,   252000,   435,  2.4f,  9),
+            new Monster("중급 골렘 <color=cyan>VIII</color>", 920000,  920000,   86000,   258000,   435,  2.4f,  9),
+            new Monster("중급 골렘 <color=cyan>IX</color>",   950000,  950000,   88000,   264000,   440,  2.4f,  9),
+            new Monster("중급 골렘 <color=cyan>X</color>",    980000,  980000,   90000,   270000,   440,  3.2f,  9),
+            new Monster("중급 골렘 <color=cyan>XI</color>",   1010000, 1010000,  92000,   276000,   445,  3.2f,  9),
+            new Monster("중급 골렘 <color=cyan>XII</color>",  1040000, 1040000,  94000,   282000,   445,  3.2f,  9),
+            new Monster("중급 골렘 <color=cyan>XIII</color>", 1070000, 1070000,  96000,   288000,   450,  3.2f,  9),
+            new Monster("중급 골렘 <color=cyan>XIV</color>",  1100000, 1100000,  98000,   294000,   450,  3.2f,  9),
+            new Monster("중급 골렘 <color=cyan>XV</color>",   1130000, 1130000,  100000,  300000,   455,  3.2f,  9),
+            new Monster("중급 골렘 <color=cyan>XVI</color>",  1160000, 1160000,  102000,  306000,   455,  3.2f,  9),
+            new Monster("중급 골렘 <color=cyan>XVII</color>", 1190000, 1190000,  104000,  312000,   460,  3.2f,  9),
+            new Monster("중급 골렘 <color=cyan>BOSS</color>", 1220000, 1220000,  110000,  330000,   460,  3.2f,  9),
+
+            new Monster("상급 골렘 <color=yellow>I</color>",    1260000, 1260000,  120000,  360000,   465,  4.0f,  10),
+            new Monster("상급 골렘 <color=yellow>II</color>",   1300000, 1300000,  125000,  375000,   465,  4.0f,  10),
+            new Monster("상급 골렘 <color=yellow>III</color>",  1340000, 1340000,  130000,  390000,   470,  4.0f,  10),
+            new Monster("상급 골렘 <color=yellow>IV</color>",   1380000, 1380000,  135000,  405000,   470,  4.0f,  10),
+            new Monster("상급 골렘 <color=yellow>V</color>",    1420000, 1420000,  140000,  420000,   475,  4.0f,  10),
+            new Monster("상급 골렘 <color=yellow>VI</color>",   1460000, 1460000,  145000,  435000,   475,  4.0f,  10),
+            new Monster("상급 골렘 <color=yellow>VII</color>",  1500000, 1500000,  150000,  450000,   480,  4.0f,  10),
+            new Monster("상급 골렘 <color=yellow>VIII</color>", 1540000, 1540000,  155000,  465000,   480,  4.0f,  10),
+            new Monster("상급 골렘 <color=yellow>IX</color>",   1580000, 1580000,  160000,  480000,   485,  4.0f,  10),
+            new Monster("상급 골렘 <color=yellow>X</color>",    1620000, 1620000,  165000,  495000,   485,  4.8f,  10),
+            new Monster("상급 골렘 <color=yellow>XI</color>",   1660000, 1660000,  170000,  510000,   490,  4.8f,  10),
+            new Monster("상급 골렘 <color=yellow>XII</color>",  1700000, 1700000,  175000,  525000,   490,  4.8f,  10),
+            new Monster("상급 골렘 <color=yellow>XIII</color>", 1740000, 1740000,  180000,  540000,   495,  4.8f,  10),
+            new Monster("상급 골렘 <color=yellow>XIV</color>",  1780000, 1780000,  185000,  555000,   495,  4.8f,  10),
+            new Monster("상급 골렘 <color=yellow>XV</color>",   1820000, 1820000,  190000,  570000,   500,  4.8f,  10),
+            new Monster("상급 골렘 <color=yellow>XVI</color>",  1860000, 1860000,  195000,  585000,   500,  4.8f,  10),
+            new Monster("상급 골렘 <color=yellow>XVII</color>", 1900000, 1900000,  200000,  600000,   505,  4.8f,  10),
+            new Monster("상급 골렘 <color=yellow>BOSS</color>", 2000000, 2000000,  220000,  660000,   505,  4.8f,  10),
+
+            new Monster("최상급 골렘 <color=#FF7474>I</color>",    2050000, 2050000,  223000,  669000,  510,  6.4f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>II</color>",   2100000, 2100000,  226000,  678000,  510,  6.4f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>III</color>",  2150000, 2150000,  229000,  687000,  515,  6.4f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>IV</color>",   2200000, 2200000,  232000,  696000,  515,  6.4f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>V</color>",    2250000, 2250000,  235000,  705000,  520,  6.4f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>VI</color>",   2300000, 2300000,  238000,  714000,  520,  6.4f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>VII</color>",  2350000, 2350000,  241000,  723000,  525,  6.4f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  6.4f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>IX</color>",   2450000, 2450000,  247000,  741000,  530,  6.4f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>X</color>",    2500000, 2500000,  250000,  750000,  530,  7.2f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>XI</color>",   2550000, 2550000,  253000,  759000,  535,  7.2f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>XII</color>",  2600000, 2600000,  256000,  768000,  535,  7.2f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  7.2f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  7.2f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>XV</color>",   2750000, 2750000,  265000,  795000,  545,  7.2f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  7.2f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  7.2f,  11),
+            new Monster("최상급 골렘 <color=#FF7474>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  7.2f,  11),
         };
 
         // 다른 몬스터들을 몬스터 리스트에 추가
@@ -316,6 +392,11 @@ public class EnemyManager : MonoBehaviour
         GameManager.stageClearDict["HardWolf"] = new bool[18];
         GameManager.stageClearDict["ExtremeWolf"] = new bool[18];
 
+        GameManager.stageClearDict["EasyGolem"] = new bool[18];
+        GameManager.stageClearDict["NormalGolem"] = new bool[18];
+        GameManager.stageClearDict["HardGolem"] = new bool[18];
+        GameManager.stageClearDict["ExtremeGolem"] = new bool[18];
+
         GameManager.stageClearDict["EasySlime"][0] = true;
 
         GameManager.Enemy_defeatedIndex = 0;
@@ -326,7 +407,7 @@ public class EnemyManager : MonoBehaviour
         MoveDifficulty = 0;
         FixDifficulty = 0;
 
-        EnemyTitleString = new string[8]
+        EnemyTitleString = new string[12]
         {
             "생명의 숲 - <color=lime><size=38>Easy</size></color>",
             "생명의 숲 - <color=cyan><size=38>Normal</size></color>",
@@ -337,11 +418,16 @@ public class EnemyManager : MonoBehaviour
             "깊은 초원 - <color=cyan><size=38>Normal</size></color>",
             "깊은 초원 - <color=red><size=38>Hard</size></color>",
             "깊은 초원 - <color=maroon><size=38>Extreme</size></color>",
+
+            "정글 사원 - <color=lime><size=38>Easy</size></color>",
+            "정글 사원 - <color=cyan><size=38>Normal</size></color>",
+            "정글 사원 - <color=yellow><size=38>Hard</size></color>",
+            "정글 사원 - <color=#FF7474><size=38>Extreme</size></color>",
         };
 
         EnemyTitle.text = EnemyTitleString[FixDifficulty + FixDifficultyInStage * 4];
 
-        DifficultyValue = new string[8]
+        DifficultyValue = new string[12]
         {
             "푸른 초원 - <color=lime>Easy</color>",
             "푸른 초원 - <color=cyan>Normal</color>",
@@ -352,12 +438,19 @@ public class EnemyManager : MonoBehaviour
             "깊은 초원 - <color=cyan>Normal</color>",
             "깊은 초원 - <color=red>Hard</color>",
             "깊은 초원 - <color=maroon>Extreme</color>",
+
+            "정글 사원 - <color=lime>Easy</color>",
+            "정글 사원 - <color=cyan>Normal</color>",
+            "정글 사원 - <color=red>Hard</color>",
+            "정글 사원 - <color=#FF7474>Extreme</color>",
+
         };
 
-        ScrollMobText = new string[2]
+        ScrollMobText = new string[3]
         {
             "슬라임 비급서 획득 가능",
             "늑대 비급서 획득 가능",
+            "골렘 비급서 획득 가능",
         };
 
 
@@ -445,12 +538,19 @@ public class EnemyManager : MonoBehaviour
             else if (index == 2) return "HardSlime";
             else return "ExtremeSlime";
         }
-        else
+        else if(difficultyInstage == 1)
         {
             if (index == 0) return "EasyWolf";
             else if (index == 1) return "NormalWolf";
             else if (index == 2) return "HardWolf";
             else return "ExtremeWolf";
+        }
+        else
+        {
+            if (index == 0) return "EasyGolem";
+            else if (index == 1) return "NormalGolem";
+            else if (index == 2) return "HardGolem";
+            else return "ExtremeGolem";
         }
     }
 
@@ -527,6 +627,9 @@ public class EnemyManager : MonoBehaviour
     {
         MoveDifficulty = index;
         ChangeButtonclick = false;
+
+        // 난이도에서 어떤 몹인지 선택
+
         if (MoveDifficultyInStage == 0) // 난이도에서 어떤 몹인지 선택
         {
             if (index == 0)  // 난이도만 선택
@@ -572,6 +675,30 @@ public class EnemyManager : MonoBehaviour
             {
                 UpdateEnemyButtons("ExtremeWolf", "민트색", "기본색", "투명기본색", 7);
                 EnemyInfoFrame.color = ColorManager.ColorChange("적홍색");
+            }
+        }
+
+        if (MoveDifficultyInStage == 2) 
+        {
+            if (index == 0)  // 난이도만 선택
+            {
+                UpdateEnemyButtons("EasyGolem", "민트색", "기본색", "투명기본색", 8);
+                EnemyInfoFrame.color = ColorManager.ColorChange("라임색");
+            }
+            else if (index == 1)  // 난이도만 선택
+            {
+                UpdateEnemyButtons("NormalGolem", "민트색", "기본색", "투명기본색", 9);
+                EnemyInfoFrame.color = ColorManager.ColorChange("하늘색");
+            }
+            else if (index == 2)  // 난이도만 선택
+            {
+                UpdateEnemyButtons("HardGolem", "민트색", "기본색", "투명기본색", 10);
+                EnemyInfoFrame.color = ColorManager.ColorChange("노란색");
+            }
+            else if (index == 3)  // 난이도만 선택
+            {
+                UpdateEnemyButtons("ExtremeGolem", "민트색", "기본색", "투명기본색", 11);
+                EnemyInfoFrame.color = ColorManager.ColorChange("골렘색");
             }
         }
 
@@ -962,6 +1089,13 @@ public class EnemyManager : MonoBehaviour
                 if (GameManager.stageClearDict["HardWolf"][i] == true) ClearCheck[2]++;
                 if (GameManager.stageClearDict["ExtremeWolf"][i] == true) ClearCheck[3]++;
             }
+            else if(index == 2)
+            {
+                if (GameManager.stageClearDict["EasyGolem"][i] == true) ClearCheck[0]++;
+                if (GameManager.stageClearDict["NormalGolem"][i] == true) ClearCheck[1]++;
+                if (GameManager.stageClearDict["HardGolem"][i] == true) ClearCheck[2]++;
+                if (GameManager.stageClearDict["ExtremeGolem"][i] == true) ClearCheck[3]++;
+            }
         }
         for (int i = 0; i < 4; i++)
         {
@@ -983,7 +1117,7 @@ public class EnemyManager : MonoBehaviour
         if (MoveDifficultyInStage == 0) EnemyDifficulty_ReturnBtn.gameObject.SetActive(false);
         else EnemyDifficulty_ReturnBtn.gameObject.SetActive(true);
 
-        if (MoveDifficultyInStage == 1) EnemyDifficulty_NextBtn.gameObject.SetActive(false);
+        if (MoveDifficultyInStage == Enemy.Length / 4 - 4) EnemyDifficulty_NextBtn.gameObject.SetActive(false);
         else EnemyDifficulty_NextBtn.gameObject.SetActive(true);
 
 
@@ -1032,7 +1166,7 @@ public class EnemyManager : MonoBehaviour
     {
         MoveDifficultyInStage++;
 
-        if (MoveDifficultyInStage == 1) EnemyDifficulty_NextBtn.gameObject.SetActive(false);
+        if (MoveDifficultyInStage == Enemy.Length / 4 - 4) EnemyDifficulty_NextBtn.gameObject.SetActive(false);
         else EnemyDifficulty_NextBtn.gameObject.SetActive(true);
         EnemyListPanel(MoveDifficultyInStage);
     }
