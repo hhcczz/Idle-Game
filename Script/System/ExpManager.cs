@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /*
- * File :   ExpManager.cs
+ * File :   Expmanager.cs
  * Desc :   경험치 관리
  *         
  *
@@ -59,8 +59,8 @@ public class ExpManager : MonoBehaviour
         if(GameManager.Player_CurExp >= GameManager.Player_MaxExp)
         {
             GameManager.Player_CurExp -= GameManager.Player_MaxExp;
-            if (GameManager.WarrantLevel[18] >= 1) GameManager.Player_MaxExp = GameManager.Player_Level * 1.75f * (1 - GameManager.Warrant_Power[18] / 100f);
-            else GameManager.Player_MaxExp = GameManager.Player_Level * 2.25f;
+            if (GameManager.WarrantLevel[18] >= 1) GameManager.Player_MaxExp = GameManager.Player_Level * 6.25f * (1 - GameManager.Warrant_Power[18] / 100f);
+            else GameManager.Player_MaxExp = GameManager.Player_Level * 6.25f;
             GameManager.Player_Level++;
             GameManager.Player_PassivePoint++;
             UpdateText();
@@ -70,7 +70,11 @@ public class ExpManager : MonoBehaviour
     private void UpdateText()
     {
         Level_text.text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Player_Level);
-        LeftLevel.text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Player_Level);
+
+        if(GameManager.Player_Level < 10) LeftLevel.text = "<size=30>Lv. " + TextFormatter.GetThousandCommaText(GameManager.Player_Level) + "</size>";
+        else if(GameManager.Player_Level >= 10 && GameManager.Player_Level < 100) LeftLevel.text = "<size=24>Lv. " + TextFormatter.GetThousandCommaText(GameManager.Player_Level) + "</size>";
+        else LeftLevel.text = "<size=20>Lv." + TextFormatter.GetThousandCommaText(GameManager.Player_Level) + "</size>";
+
         Player_CurPassivePoint_Text.text = "PP  :  " + TextFormatter.GetThousandCommaText(GameManager.Player_PassivePoint);
     }
 
@@ -81,7 +85,7 @@ public class ExpManager : MonoBehaviour
 
     private void Exp_Text()
     {
-        exp_text.text = TextFormatter.GetFloatPointCommaText_00(GameManager.Player_CurExp) + " / " + TextFormatter.GetFloatPointCommaText_00(GameManager.Player_MaxExp);
+        exp_text.text = "Exp : " + TextFormatter.GetFloatPointCommaText_00(GameManager.Player_CurExp) + " / " + TextFormatter.GetFloatPointCommaText_00(GameManager.Player_MaxExp);
 
     }
 }
