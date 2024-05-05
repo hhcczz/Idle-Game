@@ -9,7 +9,7 @@ public class GoldManager : MonoBehaviour
     [System.Obsolete]
     public static long Gold(int MonsterValue)
     {
-        int Warrant_Random = Random.Range(0, 100);  // 경험치 N배 확률
+        int Warrant_Random = Random.Range(0, 100);  // 골드 N배 확률
 
         long gold = (long)(MonsterValue * (1 + ((float)GameManager.Player_MoneyUp_EarnMoney + MobScrollManager.MS_UpEarnGold) / 100f));
 
