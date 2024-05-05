@@ -88,4 +88,19 @@ public class ExpManager : MonoBehaviour
         exp_text.text = "Exp : " + TextFormatter.GetFloatPointCommaText_00(GameManager.Player_CurExp) + " / " + TextFormatter.GetFloatPointCommaText_00(GameManager.Player_MaxExp);
 
     }
+
+    [System.Obsolete]
+    public static float ReturnExp(float MonsterValue)
+    {
+        int Warrant_Random = Random.Range(0, 100);  // 경험치 N배 확률
+
+        float exp;
+        exp = MonsterValue * (1 + ((float)GameManager.AccessoryEquipExperience + (float)MobScrollManager.MS_UpExp + (float)GameManager.AccessoryOwnExperience) / 100);
+        if (GameManager.WarrantLevel[19] >= 1) exp *= 1 + (float)GameManager.Warrant_Power[19] / 100;
+        if (AdManager.AdPlaying[2] == true) exp *= (AdManager.AdPowerValue[2] + 100) / 100f;
+
+        if (GameManager.WarrantLevel[0] >= 1 && Warrant_Random < 8) exp *= 1 + (float)GameManager.Warrant_Power[0] / 100;        // 경험치 2배
+
+        return exp;
+    }
 }
