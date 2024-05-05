@@ -913,39 +913,23 @@ public class EnemyManager : MonoBehaviour
 
         Monster currentMonster = GetMonsterByIndex(_Defeat);
 
-
-
         // 랜덤변수
-        int Warrant_Random1 = Random.Range(0, 100);  // 경험치 N배 확률
-        int Warrant_Random2 = Random.Range(0, 100);  // 골드 N배 확률
         int Warrant_Random3 = Random.Range(0, 100);  // 강화석 N배 확률
         int Warrant_Random4 = Random.Range(0, 100);  // 비급서 N배 확률
         int redStoneRandom = Random.Range(0, 100);  // 붉은 보석 확률
         float scrollDropChance = Random.Range(0, 100); // 비급서 드랍 확률
 
         // 보상 계산
-        float experienceReward = currentMonster.ExperienceValue + (float)GameManager.AccessoryEquipExperience + MobScrollManager.MS_UpExp * (1 + ((float)GameManager.AccessoryOwnExperience / 100));
-        long moneyReward = (long)((currentMonster.MoneyReward + MobScrollManager.MS_UpEarnGold) * (1 + (float)GameManager.Player_MoneyUp_EarnMoney / 100));
-        //if (GameManager.WarrantLevel[12] >= 1) moneyReward *= (long)(1 + (float)GameManager.Warrant_Power[12] / 100);   // 수정하기
-        if (GameManager.WarrantLevel[20] >= 1) moneyReward *= (long)(1 + (float)GameManager.Warrant_Power[12] / 100);
-        if (GameManager.WarrantLevel[19] >= 1) experienceReward *= 1 + (float)GameManager.Warrant_Power[19] / 100;
-
-        if (AdManager.AdPlaying[1] == true) moneyReward *= (long)(AdManager.AdPowerValue[1] / 50f);
-        if (AdManager.AdPlaying[2] == true) experienceReward *= AdManager.AdPowerValue[2] / 50f;
-
-
-        int redStoneReward = currentMonster.RedStoneReward;
-        if (GameManager.WarrantLevel[16] >= 1 && Warrant_Random3 < 8) redStoneReward *= GameManager.Warrant_Power[16];
+        float experienceReward = ExpManager.ReturnExp(currentMonster.ExperienceValue);
+        long moneyReward = GoldManager.Gold(currentMonster.MoneyReward);
 
         float scrollChance = currentMonster.ScrollDrop;
-        int mobScroll;
+        int redStoneReward = currentMonster.RedStoneReward;
+        int mobScroll = 1;
 
-        mobScroll = 1;
+        //if (GameManager.WarrantLevel[12] >= 1) moneyReward *= (long)(1 + (float)GameManager.Warrant_Power[12] / 100);   // 수정하기
 
-        if (GameManager.WarrantLevel[0] >= 1    && Warrant_Random1 < 8) currentMonster.ExperienceValue *= 1 + (float)GameManager.Warrant_Power[0] / 100;        // 경험치 2배
-        if (GameManager.WarrantLevel[11] >= 1    && Warrant_Random2 < 8) currentMonster.MoneyReward *= (int)(1 + (float)GameManager.Warrant_Power[11] / 100);
-        if (GameManager.WarrantLevel[0] >= 1    && Warrant_Random1 < 8) currentMonster.ExperienceValue *= 1 + (float)GameManager.Warrant_Power[0] / 100;
-        if (GameManager.WarrantLevel[0] >= 1    && Warrant_Random1 < 8) currentMonster.ExperienceValue *= 1 + (float)GameManager.Warrant_Power[0] / 100;
+        if (GameManager.WarrantLevel[16] >= 1 && Warrant_Random3 < 8) redStoneReward *= GameManager.Warrant_Power[16];
         if (GameManager.WarrantLevel[17] >= 1 && Warrant_Random4 < 8) mobScroll += GameManager.PlayerHaveMobScroll[FixDifficultyInStage];
         
         // 보상 지급
@@ -953,7 +937,7 @@ public class EnemyManager : MonoBehaviour
         GameManager.Player_Money += moneyReward;
 
         // 비급서 드랍 여부 확인 및 처리
-        if (scrollDropChance < scrollChance + 250)
+        if (scrollDropChance < scrollChance)
         {
             GameManager.PlayerHaveMobScroll[FixDifficultyInStage] += mobScroll;
             Acquisition_MobScrollValue.text = mobScroll.ToString();
@@ -964,7 +948,7 @@ public class EnemyManager : MonoBehaviour
 
         // 붉은 보석 지급 여부 확인 및 처리
 
-        if (redStoneRandom < 250 + GameManager.Player_RedStone_Percent)
+        if (redStoneRandom < GameManager.Player_RedStone_Percent)
         {
             GameManager.Player_RedStone += redStoneReward;
             Acquisition_RedStoneValue.text = redStoneReward.ToString();
