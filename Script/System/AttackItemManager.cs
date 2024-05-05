@@ -20,15 +20,11 @@ public class AttackItemManager : MonoBehaviour
             int Random_Critical = Random.RandomRange(0, 100); // 크리티컬
             int Random_10MaxHP = Random.RandomRange(0,100);
 
-            decimal NormalDamage = PlayerManager.PlayerNormalDamage * (1 + ((GameManager.WeaponOwnDamage + GameManager.Player_RelicsDamageAmplification) / 100));
+            decimal NormalDamage = DamageManager.Damage("일반");
 
-            decimal CriticalDamage = ((PlayerManager.PlayerNormalDamage + GameManager.Warrant_Power[22] - 500) * (1 + GameManager.WeaponOwnDamage / 100) + 1.5m *
-                (GameManager.Player_CriticalDamage + GameManager.Player_MoneyUp_CriticalDamage + GameManager.Warrant_Power[23] - 500) / 100) *
-                (1 + GameManager.Player_RelicsDamageAmplification / 100);
+            decimal CriticalDamage = DamageManager.Damage("크리티컬");
 
-            decimal AddCriticalChance = GameManager.Player_CriticalChance + GameManager.Player_MoneyUp_CriticalChance + (decimal)MobScrollManager.MS_UpAttackSpeed;
-
-            if (GameManager.WarrantLevel[10] >= 1) AddCriticalChance += GameManager.Warrant_Power[10];
+            decimal AddCriticalChance = CriticalChanceManager.CriticalChance();
 
             decimal damageAmount = Random_Critical < AddCriticalChance ? CriticalDamage : NormalDamage;
 
@@ -43,7 +39,7 @@ public class AttackItemManager : MonoBehaviour
             decimal sum = 0;
             for (int i = 0; i < multipliers.Length; i++)
             {
-                if (PackageBuyManager.PackageBuyCheck[i])
+                if (GameManager.PackageBuyCheck[i])
                 {
                     sum += multipliers[i];
                 }
@@ -94,16 +90,11 @@ public class AttackItemManager : MonoBehaviour
             int Random_Critical = Random.RandomRange(0, 100); // 크리티컬
             int Random_10MaxHP = Random.RandomRange(0, 100);
 
-            decimal NormalDamage = PlayerManager.PlayerNormalDamage * (1 + ((GameManager.WeaponOwnDamage + GameManager.Player_RelicsDamageAmplification) / 100));
+            decimal NormalDamage = DamageManager.Damage("일반");
 
-            decimal CriticalDamage = (PlayerManager.PlayerNormalDamage + GameManager.Warrant_Power[22] - 500 + 1.5m * (GameManager.Player_CriticalDamage + GameManager.Player_MoneyUp_CriticalDamage + GameManager.Warrant_Power[23] - 500)) * 
-                (1 + GameManager.WeaponOwnDamage + GameManager.Player_RelicsDamageAmplification / 100);
+            decimal CriticalDamage = DamageManager.Damage("크리티컬");
 
-            decimal AddCriticalChance = GameManager.Player_CriticalChance + GameManager.Player_MoneyUp_CriticalChance + (decimal)MobScrollManager.MS_UpAttackSpeed;
-
-            
-
-            if (GameManager.WarrantLevel[10] >= 1) AddCriticalChance += GameManager.Warrant_Power[10];
+            decimal AddCriticalChance = CriticalChanceManager.CriticalChance();
 
             decimal damageAmount = Random_Critical < AddCriticalChance ? CriticalDamage : NormalDamage;
 
