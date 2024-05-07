@@ -41,15 +41,13 @@ public class MoveSlime : MonoBehaviour
             if (enemyManager.FixDifficulty == 1) CuteImg.color = ColorManager.ColorChange("골렘2번색");
             if (enemyManager.FixDifficulty == 2) CuteImg.color = ColorManager.ColorChange("골렘3번색");
             if (enemyManager.FixDifficulty == 3) CuteImg.color = ColorManager.ColorChange("골렘4번색");
-
         }
-
-        Debug.Log("지금 FixDiff" + enemyManager.FixDifficultyInStage);
+        else CuteImg.color = ColorManager.ColorChange("하얀색");
         
         // 슬라임을 이동 방향으로 이동
         if (movingForward)
         {
-            if (enemyManager.FixDifficultyInStage == 2)
+            if (enemyManager.FixDifficultyInStage == 2 || enemyManager.FixDifficultyInStage >= 4)
             {
                 newslimeTransform.localRotation = Quaternion.Euler(0, 0, 0);
                 newslimeTransform.Translate(speed * Time.deltaTime * Vector2.right);
@@ -65,7 +63,7 @@ public class MoveSlime : MonoBehaviour
         }
         else
         {
-            if (enemyManager.FixDifficultyInStage == 2)
+            if (enemyManager.FixDifficultyInStage == 2 || enemyManager.FixDifficultyInStage >= 4)
             {
                 newslimeTransform.localRotation = Quaternion.Euler(0, 180, 0);
                 newslimeTransform.Translate(speed * Time.deltaTime * Vector2.right);
