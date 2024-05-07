@@ -290,6 +290,310 @@ public class EnemyManager : MonoBehaviour
             new Monster("최상급 골렘 <color=#FF7474>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  11),
             new Monster("최상급 골렘 <color=#FF7474>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  11),
             new Monster("최상급 골렘 <color=#FF7474>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  11),
+
+            new Monster("초급 버섯 <color=lime>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  12),
+            new Monster("초급 버섯 <color=lime>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  12),
+            new Monster("초급 버섯 <color=lime>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  12),
+            new Monster("초급 버섯 <color=lime>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  12),
+            new Monster("초급 버섯 <color=lime>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  12),
+            new Monster("초급 버섯 <color=lime>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  12),
+            new Monster("초급 버섯 <color=lime>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  12),
+            new Monster("초급 버섯 <color=lime>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  12),
+            new Monster("초급 버섯 <color=lime>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  12),
+            new Monster("초급 버섯 <color=lime>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  12),
+            new Monster("초급 버섯 <color=lime>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  12),
+            new Monster("초급 버섯 <color=lime>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  12),
+            new Monster("초급 버섯 <color=lime>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  12),
+            new Monster("초급 버섯 <color=lime>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  12),
+            new Monster("초급 버섯 <color=lime>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  12),
+            new Monster("초급 버섯 <color=lime>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  12),
+            new Monster("초급 버섯 <color=lime>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  12),
+            new Monster("초급 버섯 <color=lime>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  12),
+
+            new Monster("중급 버섯 <color=cyan>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  13),
+            new Monster("중급 버섯 <color=cyan>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  13),
+            new Monster("중급 버섯 <color=cyan>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  13),
+            new Monster("중급 버섯 <color=cyan>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  13),
+            new Monster("중급 버섯 <color=cyan>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  13),
+            new Monster("중급 버섯 <color=cyan>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  13),
+            new Monster("중급 버섯 <color=cyan>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  13),
+            new Monster("중급 버섯 <color=cyan>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  13),
+            new Monster("중급 버섯 <color=cyan>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  13),
+            new Monster("중급 버섯 <color=cyan>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  13),
+            new Monster("중급 버섯 <color=cyan>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  13),
+            new Monster("중급 버섯 <color=cyan>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  13),
+            new Monster("중급 버섯 <color=cyan>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  13),
+            new Monster("중급 버섯 <color=cyan>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  13),
+            new Monster("중급 버섯 <color=cyan>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  13),
+            new Monster("중급 버섯 <color=cyan>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  13),
+            new Monster("중급 버섯 <color=cyan>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  13),
+            new Monster("중급 버섯 <color=cyan>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  13),
+
+            new Monster("상급 버섯 <color=yellow>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  14),
+            new Monster("상급 버섯 <color=yellow>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  14),
+            new Monster("상급 버섯 <color=yellow>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  14),
+            new Monster("상급 버섯 <color=yellow>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  14),
+            new Monster("상급 버섯 <color=yellow>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  14),
+            new Monster("상급 버섯 <color=yellow>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  14),
+            new Monster("상급 버섯 <color=yellow>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  14),
+            new Monster("상급 버섯 <color=yellow>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  14),
+            new Monster("상급 버섯 <color=yellow>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  14),
+            new Monster("상급 버섯 <color=yellow>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  14),
+            new Monster("상급 버섯 <color=yellow>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  14),
+            new Monster("상급 버섯 <color=yellow>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  14),
+            new Monster("상급 버섯 <color=yellow>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  14),
+            new Monster("상급 버섯 <color=yellow>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  14),
+            new Monster("상급 버섯 <color=yellow>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  14),
+            new Monster("상급 버섯 <color=yellow>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  14),
+            new Monster("상급 버섯 <color=yellow>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  14),
+            new Monster("상급 버섯 <color=yellow>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  14),
+
+            new Monster("최상급 버섯 <color=#FF7474>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  15),
+            new Monster("최상급 버섯 <color=#FF7474>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  15),
+
+            new Monster("초급 해골 <color=lime>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  16),
+            new Monster("초급 해골 <color=lime>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  16),
+            new Monster("초급 해골 <color=lime>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  16),
+            new Monster("초급 해골 <color=lime>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  16),
+            new Monster("초급 해골 <color=lime>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  16),
+            new Monster("초급 해골 <color=lime>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  16),
+            new Monster("초급 해골 <color=lime>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  16),
+            new Monster("초급 해골 <color=lime>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  16),
+            new Monster("초급 해골 <color=lime>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  16),
+            new Monster("초급 해골 <color=lime>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  16),
+            new Monster("초급 해골 <color=lime>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  16),
+            new Monster("초급 해골 <color=lime>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  16),
+            new Monster("초급 해골 <color=lime>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  16),
+            new Monster("초급 해골 <color=lime>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  16),
+            new Monster("초급 해골 <color=lime>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  16),
+            new Monster("초급 해골 <color=lime>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  16),
+            new Monster("초급 해골 <color=lime>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  16),
+            new Monster("초급 해골 <color=lime>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  16),
+
+            new Monster("중급 해골 <color=cyan>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  17),
+            new Monster("중급 해골 <color=cyan>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  17),
+            new Monster("중급 해골 <color=cyan>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  17),
+            new Monster("중급 해골 <color=cyan>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  17),
+            new Monster("중급 해골 <color=cyan>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  17),
+            new Monster("중급 해골 <color=cyan>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  17),
+            new Monster("중급 해골 <color=cyan>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  17),
+            new Monster("중급 해골 <color=cyan>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  17),
+            new Monster("중급 해골 <color=cyan>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  17),
+            new Monster("중급 해골 <color=cyan>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  17),
+            new Monster("중급 해골 <color=cyan>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  17),
+            new Monster("중급 해골 <color=cyan>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  17),
+            new Monster("중급 해골 <color=cyan>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  17),
+            new Monster("중급 해골 <color=cyan>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  17),
+            new Monster("중급 해골 <color=cyan>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  17),
+            new Monster("중급 해골 <color=cyan>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  17),
+            new Monster("중급 해골 <color=cyan>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  17),
+            new Monster("중급 해골 <color=cyan>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  17),
+
+            new Monster("상급 해골 <color=yellow>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  18),
+            new Monster("상급 해골 <color=yellow>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  18),
+            new Monster("상급 해골 <color=yellow>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  18),
+            new Monster("상급 해골 <color=yellow>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  18),
+            new Monster("상급 해골 <color=yellow>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  18),
+            new Monster("상급 해골 <color=yellow>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  18),
+            new Monster("상급 해골 <color=yellow>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  18),
+            new Monster("상급 해골 <color=yellow>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  18),
+            new Monster("상급 해골 <color=yellow>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  18),
+            new Monster("상급 해골 <color=yellow>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  18),
+            new Monster("상급 해골 <color=yellow>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  18),
+            new Monster("상급 해골 <color=yellow>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  18),
+            new Monster("상급 해골 <color=yellow>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  18),
+            new Monster("상급 해골 <color=yellow>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  18),
+            new Monster("상급 해골 <color=yellow>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  18),
+            new Monster("상급 해골 <color=yellow>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  18),
+            new Monster("상급 해골 <color=yellow>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  18),
+            new Monster("상급 해골 <color=yellow>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  18),
+
+            new Monster("최상급 해골 <color=#FF7474>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  19),
+            new Monster("최상급 해골 <color=#FF7474>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  19),
+            new Monster("최상급 해골 <color=#FF7474>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  19),
+            new Monster("최상급 해골 <color=#FF7474>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  19),
+            new Monster("최상급 해골 <color=#FF7474>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  19),
+            new Monster("최상급 해골 <color=#FF7474>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  19),
+            new Monster("최상급 해골 <color=#FF7474>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  19),
+            new Monster("최상급 해골 <color=#FF7474>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  19),
+            new Monster("최상급 해골 <color=#FF7474>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  19),
+            new Monster("최상급 해골 <color=#FF7474>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  19),
+            new Monster("최상급 해골 <color=#FF7474>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  19),
+            new Monster("최상급 해골 <color=#FF7474>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  19),
+            new Monster("최상급 해골 <color=#FF7474>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  19),
+            new Monster("최상급 해골 <color=#FF7474>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  19),
+            new Monster("최상급 해골 <color=#FF7474>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  19),
+            new Monster("최상급 해골 <color=#FF7474>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  19),
+            new Monster("최상급 해골 <color=#FF7474>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  19),
+            new Monster("최상급 해골 <color=#FF7474>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  19),
+
+            new Monster("초급 고블린 <color=lime>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  20),
+            new Monster("초급 고블린 <color=lime>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  20),
+            new Monster("초급 고블린 <color=lime>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  20),
+            new Monster("초급 고블린 <color=lime>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  20),
+            new Monster("초급 고블린 <color=lime>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  20),
+            new Monster("초급 고블린 <color=lime>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  20),
+            new Monster("초급 고블린 <color=lime>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  20),
+            new Monster("초급 고블린 <color=lime>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  20),
+            new Monster("초급 고블린 <color=lime>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  20),
+            new Monster("초급 고블린 <color=lime>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  20),
+            new Monster("초급 고블린 <color=lime>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  20),
+            new Monster("초급 고블린 <color=lime>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  20),
+            new Monster("초급 고블린 <color=lime>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  20),
+            new Monster("초급 고블린 <color=lime>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  20),
+            new Monster("초급 고블린 <color=lime>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  20),
+            new Monster("초급 고블린 <color=lime>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  20),
+            new Monster("초급 고블린 <color=lime>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  20),
+            new Monster("초급 고블린 <color=lime>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  20),
+
+            new Monster("중급 고블린 <color=cyan>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  21),
+            new Monster("중급 고블린 <color=cyan>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  21),
+            new Monster("중급 고블린 <color=cyan>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  21),
+            new Monster("중급 고블린 <color=cyan>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  21),
+            new Monster("중급 고블린 <color=cyan>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  21),
+            new Monster("중급 고블린 <color=cyan>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  21),
+            new Monster("중급 고블린 <color=cyan>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  21),
+            new Monster("중급 고블린 <color=cyan>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  21),
+            new Monster("중급 고블린 <color=cyan>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  21),
+            new Monster("중급 고블린 <color=cyan>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  21),
+            new Monster("중급 고블린 <color=cyan>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  21),
+            new Monster("중급 고블린 <color=cyan>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  21),
+            new Monster("중급 고블린 <color=cyan>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  21),
+            new Monster("중급 고블린 <color=cyan>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  21),
+            new Monster("중급 고블린 <color=cyan>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  21),
+            new Monster("중급 고블린 <color=cyan>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  21),
+            new Monster("중급 고블린 <color=cyan>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  21),
+            new Monster("중급 고블린 <color=cyan>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  21),
+
+            new Monster("상급 고블린 <color=yellow>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  22),
+            new Monster("상급 고블린 <color=yellow>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  22),
+            new Monster("상급 고블린 <color=yellow>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  22),
+            new Monster("상급 고블린 <color=yellow>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  22),
+            new Monster("상급 고블린 <color=yellow>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  22),
+            new Monster("상급 고블린 <color=yellow>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  22),
+            new Monster("상급 고블린 <color=yellow>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  22),
+            new Monster("상급 고블린 <color=yellow>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  22),
+            new Monster("상급 고블린 <color=yellow>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  22),
+            new Monster("상급 고블린 <color=yellow>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  22),
+            new Monster("상급 고블린 <color=yellow>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  22),
+            new Monster("상급 고블린 <color=yellow>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  22),
+            new Monster("상급 고블린 <color=yellow>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  22),
+            new Monster("상급 고블린 <color=yellow>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  22),
+            new Monster("상급 고블린 <color=yellow>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  22),
+            new Monster("상급 고블린 <color=yellow>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  22),
+            new Monster("상급 고블린 <color=yellow>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  22),
+            new Monster("상급 고블린 <color=yellow>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  22),
+
+            new Monster("최상급 고블린 <color=#FF7474>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  23),
+            new Monster("최상급 고블린 <color=#FF7474>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  23),
+
+            new Monster("초급 듀크 <color=lime>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  24),
+            new Monster("초급 듀크 <color=lime>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  24),
+            new Monster("초급 듀크 <color=lime>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  24),
+            new Monster("초급 듀크 <color=lime>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  24),
+            new Monster("초급 듀크 <color=lime>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  24),
+            new Monster("초급 듀크 <color=lime>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  24),
+            new Monster("초급 듀크 <color=lime>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  24),
+            new Monster("초급 듀크 <color=lime>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  24),
+            new Monster("초급 듀크 <color=lime>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  24),
+            new Monster("초급 듀크 <color=lime>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  24),
+            new Monster("초급 듀크 <color=lime>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  24),
+            new Monster("초급 듀크 <color=lime>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  24),
+            new Monster("초급 듀크 <color=lime>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  24),
+            new Monster("초급 듀크 <color=lime>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  24),
+            new Monster("초급 듀크 <color=lime>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  24),
+            new Monster("초급 듀크 <color=lime>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  24),
+            new Monster("초급 듀크 <color=lime>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  24),
+            new Monster("초급 듀크 <color=lime>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  24),
+
+            new Monster("중급 듀크 <color=cyan>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  25),
+            new Monster("중급 듀크 <color=cyan>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  25),
+            new Monster("중급 듀크 <color=cyan>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  25),
+            new Monster("중급 듀크 <color=cyan>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  25),
+            new Monster("중급 듀크 <color=cyan>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  25),
+            new Monster("중급 듀크 <color=cyan>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  25),
+            new Monster("중급 듀크 <color=cyan>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  25),
+            new Monster("중급 듀크 <color=cyan>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  25),
+            new Monster("중급 듀크 <color=cyan>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  25),
+            new Monster("중급 듀크 <color=cyan>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  25),
+            new Monster("중급 듀크 <color=cyan>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  25),
+            new Monster("중급 듀크 <color=cyan>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  25),
+            new Monster("중급 듀크 <color=cyan>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  25),
+            new Monster("중급 듀크 <color=cyan>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  25),
+            new Monster("중급 듀크 <color=cyan>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  25),
+            new Monster("중급 듀크 <color=cyan>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  25),
+            new Monster("중급 듀크 <color=cyan>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  25),
+            new Monster("중급 듀크 <color=cyan>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  25),
+
+            new Monster("상급 듀크 <color=yellow>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  26),
+            new Monster("상급 듀크 <color=yellow>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  26),
+            new Monster("상급 듀크 <color=yellow>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  26),
+            new Monster("상급 듀크 <color=yellow>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  26),
+            new Monster("상급 듀크 <color=yellow>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  26),
+            new Monster("상급 듀크 <color=yellow>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  26),
+            new Monster("상급 듀크 <color=yellow>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  26),
+            new Monster("상급 듀크 <color=yellow>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  26),
+            new Monster("상급 듀크 <color=yellow>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  26),
+            new Monster("상급 듀크 <color=yellow>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  26),
+            new Monster("상급 듀크 <color=yellow>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  26),
+            new Monster("상급 듀크 <color=yellow>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  26),
+            new Monster("상급 듀크 <color=yellow>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  26),
+            new Monster("상급 듀크 <color=yellow>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  26),
+            new Monster("상급 듀크 <color=yellow>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  26),
+            new Monster("상급 듀크 <color=yellow>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  26),
+            new Monster("상급 듀크 <color=yellow>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  26),
+            new Monster("상급 듀크 <color=yellow>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  26),
+
+            new Monster("최상급 듀크 <color=#FF7474>I</color>",    2050000, 2050000,  223000,  669000,  510,  32f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>II</color>",   2100000, 2100000,  226000,  678000,  510,  32f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>III</color>",  2150000, 2150000,  229000,  687000,  515,  32f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>IV</color>",   2200000, 2200000,  232000,  696000,  515,  32f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>V</color>",    2250000, 2250000,  235000,  705000,  520,  32f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>VI</color>",   2300000, 2300000,  238000,  714000,  520,  32f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>VII</color>",  2350000, 2350000,  241000,  723000,  525,  32f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>VIII</color>", 2400000, 2400000,  244000,  732000,  525,  32f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>IX</color>",   2450000, 2450000,  247000,  741000,  530,  32f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>X</color>",    2500000, 2500000,  250000,  750000,  530,  36f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>XI</color>",   2550000, 2550000,  253000,  759000,  535,  36f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>XII</color>",  2600000, 2600000,  256000,  768000,  535,  36f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>XIII</color>", 2650000, 2650000,  259000,  777000,  540,  36f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>XIV</color>",  2700000, 2700000,  262000,  786000,  540,  36f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>XV</color>",   2750000, 2750000,  265000,  795000,  545,  36f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>XVI</color>",  2800000, 2800000,  268000,  804000,  545,  36f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>XVII</color>", 2850000, 2850000,  271000,  813000,  550,  36f,  27),
+            new Monster("최상급 듀크 <color=#FF7474>BOSS</color>", 2900000, 2900000,  280000,  840000,  550,  36f,  27),
         };
 
         // 다른 몬스터들을 몬스터 리스트에 추가
@@ -402,6 +706,26 @@ public class EnemyManager : MonoBehaviour
         GameManager.stageClearDict["HardGolem"] = new bool[18];
         GameManager.stageClearDict["ExtremeGolem"] = new bool[18];
 
+        GameManager.stageClearDict["EasyMushRoom"] = new bool[18];
+        GameManager.stageClearDict["NormalMushRoom"] = new bool[18];
+        GameManager.stageClearDict["HardMushRoom"] = new bool[18];
+        GameManager.stageClearDict["ExtremeMushRoom"] = new bool[18];
+
+        GameManager.stageClearDict["EasySkull"] = new bool[18];
+        GameManager.stageClearDict["NormalSkull"] = new bool[18];
+        GameManager.stageClearDict["HardSkull"] = new bool[18];
+        GameManager.stageClearDict["ExtremeSkull"] = new bool[18];
+
+        GameManager.stageClearDict["EasyGoblin"] = new bool[18];
+        GameManager.stageClearDict["NormalGoblin"] = new bool[18];
+        GameManager.stageClearDict["HardGoblin"] = new bool[18];
+        GameManager.stageClearDict["ExtremeGoblin"] = new bool[18];
+
+        GameManager.stageClearDict["EasyFlyingEye"] = new bool[18];
+        GameManager.stageClearDict["NormalFlyingEye"] = new bool[18];
+        GameManager.stageClearDict["HardFlyingEye"] = new bool[18];
+        GameManager.stageClearDict["ExtremeFlyingEye"] = new bool[18];
+
         GameManager.stageClearDict["EasySlime"][0] = true;
 
         GameManager.Enemy_defeatedIndex = 0;
@@ -419,7 +743,7 @@ public class EnemyManager : MonoBehaviour
         }
         
 
-        EnemyTitleString = new string[12]
+        EnemyTitleString = new string[28]
         {
             "넓은 들판 - <color=lime><size=38>Easy</size></color>",
             "넓은 들판 - <color=cyan><size=38>Normal</size></color>",
@@ -435,11 +759,31 @@ public class EnemyManager : MonoBehaviour
             "정글 사원 - <color=cyan><size=38>Normal</size></color>",
             "정글 사원 - <color=yellow><size=38>Hard</size></color>",
             "정글 사원 - <color=#FF7474><size=38>Extreme</size></color>",
+
+            "버섯 군락 - <color=lime><size=38>Easy</size></color>",
+            "버섯 군락 - <color=cyan><size=38>Normal</size></color>",
+            "버섯 군락 - <color=yellow><size=38>Hard</size></color>",
+            "버섯 군락 - <color=#FF7474><size=38>Extreme</size></color>",
+
+            "설산의 숲 - <color=lime><size=38>Easy</size></color>",
+            "설산의 숲 - <color=cyan><size=38>Normal</size></color>",
+            "설산의 숲 - <color=yellow><size=38>Hard</size></color>",
+            "설산의 숲 - <color=#FF7474><size=38>Extreme</size></color>",
+
+            "깊은 설산 - <color=lime><size=38>Easy</size></color>",
+            "깊은 설산 - <color=cyan><size=38>Normal</size></color>",
+            "깊은 설산 - <color=yellow><size=38>Hard</size></color>",
+            "깊은 설산 - <color=#FF7474><size=38>Extreme</size></color>",
+
+            "비명의 숲 - <color=lime><size=38>Easy</size></color>",
+            "비명의 숲 - <color=cyan><size=38>Normal</size></color>",
+            "비명의 숲 - <color=yellow><size=38>Hard</size></color>",
+            "비명의 숲 - <color=#FF7474><size=38>Extreme</size></color>",
         };
 
         EnemyTitle.text = EnemyTitleString[FixDifficulty + FixDifficultyInStage * 4];
 
-        DifficultyValue = new string[12]
+        DifficultyValue = new string[28]
         {
             "넓은 들판 - <color=lime>Easy</color>",
             "넓은 들판 - <color=cyan>Normal</color>",
@@ -456,13 +800,37 @@ public class EnemyManager : MonoBehaviour
             "정글 사원 - <color=red>Hard</color>",
             "정글 사원 - <color=#FF7474>Extreme</color>",
 
+            "버섯 군락 - <color=lime>Easy</color>",
+            "버섯 군락 - <color=cyan>Normal</color>",
+            "버섯 군락 - <color=yellow>Hard</color>",
+            "버섯 군락 - <color=#FF7474>Extreme</color>",
+
+            "설산의 숲 - <color=lime>Easy</color>",
+            "설산의 숲 - <color=cyan>Normal</color>",
+            "설산의 숲 - <color=yellow>Hard</color>",
+            "설산의 숲 - <color=#FF7474>Extreme</color>",
+
+            "깊은 설산 - <color=lime>Easy</color>",
+            "깊은 설산 - <color=cyan>Normal</color>",
+            "깊은 설산 - <color=yellow>Hard</color>",
+            "깊은 설산 - <color=#FF7474>Extreme</color>",
+
+            "비명의 숲 - <color=lime>Easy</color>",
+            "비명의 숲 - <color=cyan>Normal</color>",
+            "비명의 숲 - <color=yellow>Hard</color>",
+            "비명의 숲 - <color=#FF7474>Extreme</color>",
+
         };
 
-        ScrollMobText = new string[3]
+        ScrollMobText = new string[7]
         {
             "슬라임 비급서 획득 가능",
             "늑대 비급서 획득 가능",
             "골렘 비급서 획득 가능",
+            "버섯 비급서 획득 가능",
+            "해골 비급서 획득 가능",
+            "고블린 비급서 획득 가능",
+            "루크 비급서 획득 가능",
         };
 
 
@@ -609,6 +977,32 @@ public class EnemyManager : MonoBehaviour
         EnemyLevelSelPanel.SetActive(false);
     }
 
+    
+    private string EnemyDifFrameColor(int index, int movedifficultyinstage)
+    {
+        if (movedifficultyinstage <= 1)
+        {
+            if (index == 0) return "라임색";
+            else if (index == 1) return "하늘색";
+            else if (index == 2) return "빨간색";
+            else return "적홍색";
+        }
+        else
+        {
+            if (index == 0) return "골렘1번색";
+            else if (index == 1) return "골렘2번색";
+            else if (index == 2) return "골렘3번색";
+            else return "골렘4번색";
+        }
+
+    }
+
+
+    private void EnemyDifficultyCheck(int index, int movedifficultyinstage)
+    {
+        UpdateEnemyButtons(EnemyReturnName(movedifficultyinstage, index), "민트색", "기본색", "투명기본색", index + movedifficultyinstage * 4);
+        EnemyInfoFrame.color = ColorManager.ColorChange(EnemyDifFrameColor(index, movedifficultyinstage));
+    }
 
     // 몹 난이도 관리 - 체크했음
     private void EnemyDifficultyOpen(int index)
@@ -618,79 +1012,7 @@ public class EnemyManager : MonoBehaviour
 
         // 난이도에서 어떤 몹인지 선택
 
-        if (MoveDifficultyInStage == 0) // 난이도에서 어떤 몹인지 선택
-        {
-            if (index == 0)  // 난이도만 선택
-            {
-                UpdateEnemyButtons("EasySlime", "민트색", "기본색", "투명기본색", 0);
-                EnemyInfoFrame.color = ColorManager.ColorChange("라임색");
-            }
-            else if (index == 1)  // 난이도만 선택
-            {
-                UpdateEnemyButtons("NormalSlime", "민트색", "기본색", "투명기본색", 1);
-                EnemyInfoFrame.color = ColorManager.ColorChange("하늘색");
-            }
-            else if (index == 2)  // 난이도만 선택
-            {
-                UpdateEnemyButtons("HardSlime", "민트색", "기본색", "투명기본색", 2);
-                EnemyInfoFrame.color = ColorManager.ColorChange("빨간색");
-            }
-            else if (index == 3)  // 난이도만 선택
-            {
-                UpdateEnemyButtons("ExtremeSlime", "민트색", "기본색", "투명기본색", 3);
-                EnemyInfoFrame.color = ColorManager.ColorChange("적홍색");
-            }
-        }
-
-        if (MoveDifficultyInStage == 1) // 난이도에서 어떤 몹인지 선택
-        {
-            if (index == 0)  // 난이도만 선택
-            {
-                UpdateEnemyButtons("EasyWolf", "민트색", "기본색", "투명기본색", 4);
-                EnemyInfoFrame.color = ColorManager.ColorChange("라임색");
-            }
-            else if (index == 1)  // 난이도만 선택
-            {
-                UpdateEnemyButtons("NormalWolf", "민트색", "기본색", "투명기본색", 5);
-                EnemyInfoFrame.color = ColorManager.ColorChange("하늘색");
-            }
-            else if (index == 2)  // 난이도만 선택
-            {
-                UpdateEnemyButtons("HardWolf", "민트색", "기본색", "투명기본색", 6);
-                EnemyInfoFrame.color = ColorManager.ColorChange("빨간색");
-            }
-            else if (index == 3)  // 난이도만 선택
-            {
-                UpdateEnemyButtons("ExtremeWolf", "민트색", "기본색", "투명기본색", 7);
-                EnemyInfoFrame.color = ColorManager.ColorChange("적홍색");
-            }
-        }
-
-        if (MoveDifficultyInStage == 2) 
-        {
-            if (index == 0)  // 난이도만 선택
-            {
-                UpdateEnemyButtons("EasyGolem", "민트색", "기본색", "투명기본색", 8);
-                EnemyInfoFrame.color = ColorManager.ColorChange("골렘1번색");
-            }
-            else if (index == 1)  // 난이도만 선택
-            {
-                UpdateEnemyButtons("NormalGolem", "민트색", "기본색", "투명기본색", 9);
-                EnemyInfoFrame.color = ColorManager.ColorChange("골렘2번색");
-            }
-            else if (index == 2)  // 난이도만 선택
-            {
-                UpdateEnemyButtons("HardGolem", "민트색", "기본색", "투명기본색", 10);
-                EnemyInfoFrame.color = ColorManager.ColorChange("골렘3번색");
-            }
-            else if (index == 3)  // 난이도만 선택
-            {
-                UpdateEnemyButtons("ExtremeGolem", "민트색", "기본색", "투명기본색", 11);
-                EnemyInfoFrame.color = ColorManager.ColorChange("골렘4번색");
-            }
-
-
-        }
+        EnemyDifficultyCheck(index, MoveDifficultyInStage);
 
         EnemyInfoText.text = DifficultyValue[index + MoveDifficultyInStage * 4];
         
@@ -995,6 +1317,22 @@ public class EnemyManager : MonoBehaviour
         else if (index == 9) name = "골렘2번색";
         else if (index == 10) name = "골렘3번색";
         else if (index == 11) name = "골렘4번색";
+        else if (index == 12) name = "하얀색";
+        else if (index == 13) name = "골렘2번색";
+        else if (index == 14) name = "골렘3번색";
+        else if (index == 15) name = "골렘4번색";
+        else if (index == 16) name = "하얀색";
+        else if (index == 17) name = "골렘2번색";
+        else if (index == 18) name = "골렘3번색";
+        else if (index == 19) name = "골렘4번색";
+        else if (index == 20) name = "하얀색";
+        else if (index == 21) name = "골렘2번색";
+        else if (index == 22) name = "골렘3번색";
+        else if (index == 23) name = "골렘4번색";
+        else if (index == 24) name = "하얀색";
+        else if (index == 25) name = "골렘2번색";
+        else if (index == 26) name = "골렘3번색";
+        else if (index == 27) name = "골렘4번색";
         else name = "하얀색";
 
         return name;
@@ -1007,30 +1345,60 @@ public class EnemyManager : MonoBehaviour
         return monsters[index];
     }
     // 몹 이름 받아서 보내주기
-    private string EnemyReturnName(int difficultyInstage, int index)
+    private string EnemyReturnName(int movedifficultyinstage, int index)
     {
-        if (difficultyInstage == 0)
+        if (movedifficultyinstage == 0)
         {
             if (index == 0) return "EasySlime";
             else if (index == 1) return "NormalSlime";
             else if (index == 2) return "HardSlime";
             else return "ExtremeSlime";
         }
-        else if (difficultyInstage == 1)
+        else if (movedifficultyinstage == 1)
         {
             if (index == 0) return "EasyWolf";
             else if (index == 1) return "NormalWolf";
             else if (index == 2) return "HardWolf";
             else return "ExtremeWolf";
         }
-        else
+        else if (movedifficultyinstage == 2)
         {
             if (index == 0) return "EasyGolem";
             else if (index == 1) return "NormalGolem";
             else if (index == 2) return "HardGolem";
             else return "ExtremeGolem";
         }
+        else if (movedifficultyinstage == 3)
+        {
+            if (index == 0) return "EasyMushRoom";
+            else if (index == 1) return "NormalMushRoom";
+            else if (index == 2) return "HardMushRoom";
+            else return "ExtremeMushRoom";
+        }
+        else if (movedifficultyinstage == 4)
+        {
+            if (index == 0) return "EasySkull";
+            else if (index == 1) return "NormalSkull";
+            else if (index == 2) return "HardSkull";
+            else return "ExtremeSkull";
+        }
+        else if (movedifficultyinstage == 5)
+        {
+            if (index == 0) return "EasyGoblin";
+            else if (index == 1) return "NormalGoblin";
+            else if (index == 2) return "HardGoblin";
+            else return "ExtremeGoblin";
+        }
+        else
+        {
+            if (index == 0) return "EasyFlyingEye";
+            else if (index == 1) return "NormalFlyingEye";
+            else if (index == 2) return "HardFlyingEye";
+            else return "ExtremeFlyingEye";
+        }
     }
+
+
     // 적 리스폰 관리
     private IEnumerator RespawnEnemy()
     {
@@ -1057,6 +1425,7 @@ public class EnemyManager : MonoBehaviour
         else if (currentHP / 3 < maxHP) RegenValue = 70;
         else if (currentHP / 8 < maxHP) RegenValue = 50;
         else if (currentHP / 12 < maxHP) RegenValue = 30;
+        else if (currentHP / 16 < maxHP) RegenValue = 15;
         else RegenValue = 100;
 
         Stop = !Stop;
@@ -1100,7 +1469,15 @@ public class EnemyManager : MonoBehaviour
             if (MoveDifficulty == 2) EnemyInfoImg.color = ColorManager.ColorChange("골렘3번색");
             if (MoveDifficulty == 3) EnemyInfoImg.color = ColorManager.ColorChange("골렘4번색");
 
-        } 
+        }
+        else if (MoveDifficultyInStage >= 3)
+        {
+            if (MoveDifficulty == 0) EnemyInfoImg.color = ColorManager.ColorChange("하얀색");
+            if (MoveDifficulty == 1) EnemyInfoImg.color = ColorManager.ColorChange("골렘2번색");
+            if (MoveDifficulty == 2) EnemyInfoImg.color = ColorManager.ColorChange("골렘3번색");
+            if (MoveDifficulty == 3) EnemyInfoImg.color = ColorManager.ColorChange("골렘4번색");
+
+        }
         else EnemyInfoImg.color = ColorManager.ColorChange("하얀색");
 
 
@@ -1138,28 +1515,10 @@ public class EnemyManager : MonoBehaviour
 
         for (int i = 0; i < 18; i++)
         {
-            if (index == 0)
-            {
-                if (GameManager.stageClearDict["EasySlime"][i] == true) ClearCheck[0]++;
-                if (GameManager.stageClearDict["NormalSlime"][i] == true) ClearCheck[1]++;
-                if (GameManager.stageClearDict["HardSlime"][i] == true) ClearCheck[2]++;
-                if (GameManager.stageClearDict["ExtremeSlime"][i] == true) ClearCheck[3]++;
-            }
-            if (index == 1)
-            {
-                if (GameManager.stageClearDict["EasyWolf"][i] == true) ClearCheck[0]++;
-                if (GameManager.stageClearDict["NormalWolf"][i] == true) ClearCheck[1]++;
-                if (GameManager.stageClearDict["HardWolf"][i] == true) ClearCheck[2]++;
-                if (GameManager.stageClearDict["ExtremeWolf"][i] == true) ClearCheck[3]++;
-            }
-            else if(index == 2)
-            {
-                if (GameManager.stageClearDict["EasyGolem"][i] == true) ClearCheck[0]++;
-                if (GameManager.stageClearDict["NormalGolem"][i] == true) ClearCheck[1]++;
-                if (GameManager.stageClearDict["HardGolem"][i] == true) ClearCheck[2]++;
-                if (GameManager.stageClearDict["ExtremeGolem"][i] == true) ClearCheck[3]++;
-
-            }
+            if (GameManager.stageClearDict[EnemyReturnName(index, 0)][i] == true) ClearCheck[0]++;
+            if (GameManager.stageClearDict[EnemyReturnName(index, 1)][i] == true) ClearCheck[1]++;
+            if (GameManager.stageClearDict[EnemyReturnName(index, 2)][i] == true) ClearCheck[2]++;
+            if (GameManager.stageClearDict[EnemyReturnName(index, 3)][i] == true) ClearCheck[3]++;
         }
 
         if(MoveDifficultyInStage == 0)
@@ -1183,9 +1542,13 @@ public class EnemyManager : MonoBehaviour
             EnemyDifficultyImg[2].color = ColorManager.ColorChange("골렘3번색");
             EnemyDifficultyImg[3].color = ColorManager.ColorChange("골렘4번색");
         }
-
-
-
+        else if (MoveDifficultyInStage >= 3)
+        {
+            EnemyDifficultyImg[0].color = ColorManager.ColorChange("하얀색");
+            EnemyDifficultyImg[1].color = ColorManager.ColorChange("골렘2번색");
+            EnemyDifficultyImg[2].color = ColorManager.ColorChange("골렘3번색");
+            EnemyDifficultyImg[3].color = ColorManager.ColorChange("골렘4번색");
+        }
 
         for (int i = 0; i < 4; i++)
         {
