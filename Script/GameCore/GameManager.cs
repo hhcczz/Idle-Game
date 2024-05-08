@@ -8,6 +8,7 @@ public static class GameConstants
     public static int WeaponNum = 24;
     public static int AccessoryNum = 24;
     public static int WarrantNum = 29;
+    public static int MobNum = 28;
 }
 
 public class GameManager : MonoBehaviour
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
     public static float Player_CurExp = 0;                         //  플레이어 현재 경험치
     public static long Player_Money = 0;                           //  플레이어 현재 소지금
     public static int Player_Diamond = 0;                          //  플레이어 현재 다이아몬드
-    public static float Player_RedStone_Percent = 0;                //  플레이어 다이아몬드 획득 퍼센트
+    public static float Player_RedStone_Percent = 12.5f;                //  플레이어 다이아몬드 획득 퍼센트
     public static int Player_RedStone = 0;                         //  플레이어 붉은 돌
 
     public static int RelicsReinforceScroll = 0;                         // 유물 강화 스크롤
@@ -53,19 +54,9 @@ public class GameManager : MonoBehaviour
     public static bool Enemy_Hit = false;
 
     public static Dictionary<string, bool[]> stageClearDict = new();
-    public static bool[][] MoveInStage = new bool[4][];
-    public static bool[][] PinInStage = new bool[4][];
+    public static bool[][] MoveInStage = new bool[GameConstants.MobNum][];
+    public static bool[][] PinInStage = new bool[GameConstants.MobNum][];
     public static int Enemy_defeatedIndex = 0;
-
-    public static bool[] EasySlimeStageClear;
-    public static bool[] NormalSlimeStageClear;
-    public static bool[] HardSlimeStageClear;
-    public static bool[] ExtremeSlimeStageClear;
-
-    public static bool[] EasyWolfStageClear;
-    public static bool[] NormalWolfStageClear;
-    public static bool[] HardWolfStageClear;
-    public static bool[] ExtremeWolfStageClear;
 
     public static int Enemy_Stage_Difficulty = 0;
 
@@ -73,11 +64,11 @@ public class GameManager : MonoBehaviour
 
     // 플레이어 업그레이드
 
-    public static int Player_PPUP_DamageLevel = 0;              //  플레이어 업그레이드 데미지 레벨
-    public static decimal Player_PPUP_AttackSpeedLevel = 0m;      //  플레이어 업그레이드 공격속도 레벨
-    public static decimal Player_PPUP_CriticalChanceLevel = 0m;    //  플레이어 업그레이드 크리티컬 퍼센트 레벨
-    public static int Player_PPUP_CriticalDamageLevel = 0;     //  플레이어 업그레이드 크리티컬 데미지 레벨
-    public static int Player_PPUP_ArmorPenetrationLevel = 0;    //  플레이어 업그레이드 방관 레벨
+    public static int Player_PPUP_DamageLevel = 1;              //  플레이어 업그레이드 데미지 레벨
+    public static decimal Player_PPUP_AttackSpeedLevel = 1m;      //  플레이어 업그레이드 공격속도 레벨
+    public static decimal Player_PPUP_CriticalChanceLevel = 1m;    //  플레이어 업그레이드 크리티컬 퍼센트 레벨
+    public static int Player_PPUP_CriticalDamageLevel = 1;     //  플레이어 업그레이드 크리티컬 데미지 레벨
+    public static int Player_PPUP_ArmorPenetrationLevel = 1;    //  플레이어 업그레이드 방관 레벨
            
     public static int Player_MoneyUp_EarnMoneyLevel = 1;    //  플레이어 돈 업그레이드 크리티컬 퍼센트 레벨
     public static int Player_MoneyUp_DamageLevel = 1;              //  플레이어 돈 업그레이드 데미지 레벨
@@ -153,6 +144,7 @@ public class GameManager : MonoBehaviour
     // 상점 
 
     public static float[] PackageSpecialUpDamage;
+    public static bool[] PackageBuyCheck;
 
     // 권능
 
@@ -175,11 +167,6 @@ public class GameManager : MonoBehaviour
     // 광산
 
     public static Dictionary<string, bool[]> RockstageClearDict = new();
-
-    public static bool[] EasyRockStageClear;
-    public static bool[] NormalRockStageClear;
-    public static bool[] HardRockStageClear;
-    public static bool[] ExtremeRockStageClear;
 
     public static decimal Pickaxe_Damage = 1;                   //  광산 곡괭이 데미지 올리기
     public static decimal Pickaxe_CriticalDamage = 1;          //  광산 곡괭이 크리티컬 데미지 올리기
@@ -230,6 +217,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        
+
+        PackageBuyCheck = new bool[4];
         // 상점
         PackageSpecialUpDamage = new float[4]
         {
@@ -242,31 +232,13 @@ public class GameManager : MonoBehaviour
         //
 
         BGS_Number = 0;
-        NeedMoney = new long[500];
+        NeedMoney = new long[99999];
         NeedMoney_Level = new int[6];
 
-        int MinerLastLevel = 300;
         DontDestroyOnLoad(gameObject);
 
-        // 몹 종류와 해당 StageClear 여부를 Dictionary에 추가
-        stageClearDict["EasySlime"] = EasySlimeStageClear;
-        stageClearDict["NormalSlime"] = NormalSlimeStageClear;
-        stageClearDict["HardSlime"] = HardSlimeStageClear;
-        stageClearDict["ExtremeSlime"] = ExtremeSlimeStageClear;
-
-        stageClearDict["EasyWolf"] = EasyWolfStageClear;
-        stageClearDict["NormalWolf"] = NormalWolfStageClear;
-        stageClearDict["HardWolf"] = HardWolfStageClear;
-        stageClearDict["ExtremeWolf"] = ExtremeWolfStageClear;
-
-        // 광물 종류와 해당 RockStageClear 여부를 Dictionary에 추가
-        RockstageClearDict["하급 돌덩이"] = EasyRockStageClear;
-        RockstageClearDict["중급 돌덩이"] = NormalRockStageClear;
-        RockstageClearDict["고급 돌덩이"] = HardRockStageClear;
-        RockstageClearDict["최고급 돌덩이"] = ExtremeRockStageClear;
-
         // 각 배열을 초기화합니다.
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < GameConstants.MobNum; i++)
         {
             MoveInStage[i] = new bool[18];
             PinInStage[i] = new bool[18];
@@ -757,7 +729,4 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
-
-    
 }
