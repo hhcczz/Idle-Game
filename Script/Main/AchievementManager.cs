@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 /*
  * 
  * 업적 고칠것
  * 1. 광산 추가하면 고칠것
  */
+
 
 public class AchievementManager : MonoBehaviour
 {
@@ -292,7 +294,13 @@ public class AchievementManager : MonoBehaviour
         else if (index == 24)   return "<color=lime><size=35>Easy FlyingEye</size></color> 클리어 :";
         else if (index == 25)   return "<color=cyan><size=35>Normal FlyingEye</size></color> 클리어 :";
         else if (index == 26)   return "<color=yellow><size=35>Hard FlyingEye</size></color> 클리어 :";
-        else                    return "<color=#FF7474><size=35>Extreme FlyingEye</size></color> 클리어 :";
+        else if (index == 27)   return "<color=#FF7474><size=35>Extreme FlyingEye</size></color> 클리어 :";
+
+
+        else if (index == 28)   return "<color=lime><size=35>Easy Devil</size></color> 클리어 :";
+        else if (index == 29)   return "<color=cyan><size=35>Normal Devil</size></color> 클리어 :";
+        else if (index == 30)   return "<color=yellow><size=35>Hard Devil</size></color> 클리어 :";
+        else                    return "<color=#FF7474><size=35>Extreme Devil</size></color> 클리어 :";
     }
 
 
@@ -331,7 +339,12 @@ public class AchievementManager : MonoBehaviour
         else if (index == 24)   return "<color=white>비명의 숲 - </color><color=lime>Easy</color>";
         else if (index == 25)   return "<color=white>비명의 숲 - </color><color=cyan>Normal</color>";
         else if (index == 26)   return "<color=white>비명의 숲 - </color><color=yellow>Hard</color>";
-        else                    return "<color=white>비명의 숲 - </color><color=#FF7474>Extreme</color>";
+        else if (index == 27)   return "<color=white>비명의 숲 - </color><color=#FF7474>Extreme</color>";
+
+        else if (index == 28)   return "<color=white>멸망의 숲 - </color><color=lime>Easy</color>";
+        else if (index == 29)   return "<color=white>멸망의 숲 - </color><color=cyan>Normal</color>";
+        else if (index == 30)   return "<color=white>멸망의 숲 - </color><color=yellow>Hard</color>";
+        else                    return "<color=white>멸망의 숲 - </color><color=#FF7474>Extreme</color>";
     }
 
 
@@ -452,7 +465,12 @@ public class AchievementManager : MonoBehaviour
         else if (index == 24)   return "EasyFlyingEye";
         else if (index == 25)   return "NormalFlyingEye";
         else if (index == 26)   return "HardFlyingEye";
-        else                    return "ExtremeFlyingEye";
+        else if (index == 27)   return "ExtremeFlyingEye";
+
+        else if (index == 28)   return "EasyDevil";
+        else if (index == 29)   return "NormalDevil";
+        else if (index == 30)   return "HardDevil";
+        else                    return "ExtremeDevil";
 
     }
     private string ReturnRockName(int index)
