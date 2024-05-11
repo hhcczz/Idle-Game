@@ -6,10 +6,7 @@ using UnityEngine.UI;
 /*
  * 
  * 업적 고칠것
- * 1. 스테이지 클리어 18단계 보스 단계에서 무조건 클리어라고뜸
- * 2. 이름 다시 다 지을것 stageclear 난잡함
- * 3. 광산도 똑같음
- * 4. 몬스터든 광산이든 클리어 부분 고치기
+ * 1. 광산 추가하면 고칠것
  */
 
 public class AchievementManager : MonoBehaviour
