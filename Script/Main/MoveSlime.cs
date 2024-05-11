@@ -47,7 +47,7 @@ public class MoveSlime : MonoBehaviour
         // 슬라임을 이동 방향으로 이동
         if (movingForward)
         {
-            if (enemyManager.FixDifficultyInStage == 2 || enemyManager.FixDifficultyInStage >= 4)
+            if (enemyManager.FixDifficultyInStage == 2 || (enemyManager.FixDifficultyInStage >= 4 && enemyManager.FixDifficultyInStage <= 6))
             {
                 newslimeTransform.localRotation = Quaternion.Euler(0, 0, 0);
                 newslimeTransform.Translate(speed * Time.deltaTime * Vector2.right);
@@ -63,7 +63,7 @@ public class MoveSlime : MonoBehaviour
         }
         else
         {
-            if (enemyManager.FixDifficultyInStage == 2 || enemyManager.FixDifficultyInStage >= 4)
+            if (enemyManager.FixDifficultyInStage == 2 || (enemyManager.FixDifficultyInStage >= 4 && enemyManager.FixDifficultyInStage <= 6))
             {
                 newslimeTransform.localRotation = Quaternion.Euler(0, 180, 0);
                 newslimeTransform.Translate(speed * Time.deltaTime * Vector2.right);
