@@ -25,12 +25,14 @@ public class RefineryManager : MonoBehaviour
     public Image RF_TitleImg;
     public GameObject RF_Panel;
 
+    public Image[] RF_Frame;
+
 
     public static int RF_UpPower;
-    public static float RF_UpAttackSpeed;
-    public static int RF_UpExp;
-    public static int RF_UpArmorPenetration;
-    public static int RF_UpEarnGold;
+    public static float RF_Critical;
+    public static int RF_PFD;
+    public static int RF_AddAttack;
+    public static int RF_MineAmount;
 
     private int RF_InPanel = 0;
     private int RF_LastPanel = -1;
@@ -83,48 +85,48 @@ public class RefineryManager : MonoBehaviour
         // 판매 가격
         RF_PriceValue = new int[32]
         {
-            1000,
-            1000,
-            1000,
-            2500,
-
-            1000,
-            1000,
-            1000,
-            2500,
-
-            2000,
-            2000,
-            2000,
-            4000,
-
-            2000,
-            2000,
-            2000,
-            4000,
-
-            3000,
-            3000,
-            3000,
-            6000,
-
-            4000,
-            4000,
-            4000,
-            8000,
-
-            5000,
-            5000,
-            5000,
             10000,
+            10000,
+            10000,
+            25000,
 
-            7000,
-            7000,
-            7000,
+            10000,
+            10000,
+            10000,
+            25000,
+
             15000,
+            15000,
+            15000,
+            30000,
+
+            15000,
+            15000,
+            15000,
+            30000,
+
+            20000,
+            20000,
+            20000,
+            40000,
+
+            20000,
+            20000,
+            20000,
+            40000,
+
+            30000,
+            30000,
+            30000,
+            30000,
+
+            30000,
+            30000,
+            30000,
+            50000,
         };
 
-        // 공격력 
+        // 곡괭이 공격력 
         RF_Power_1 = new int[8]
         {
             100,
@@ -137,103 +139,115 @@ public class RefineryManager : MonoBehaviour
             1200,
 
         };
-        // 공격속도 
+        // 곡괭이 크리티컬 확률 
         RF_Power_2 = new float[8]
         {
-            0.2f,
-            0.2f,
-            0.25f,
-            0.25f,
-            0.3f,
-            0.3f,
-            0.4f,
-            0.5f,
+            5.0f,
+            5.0f,
+            6.0f,
+            6.0f,
+            8.0f,
+            8.0f,
+            16.0f,
+            16.0f,
 
         };
-        // 경험치
+        // 치명적 피해
         RF_Power_3 = new int[8]
         {
-            100,
-            250,
-            200,
-            300,
-            400,
-            600,
-            800,
-            1200,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
 
         };
-        // 방어력 관통력
+        // 추가 공격
         RF_Power_4_1 = new int[8]
         {
-            100,
-            150,
-            200,
-            300,
-            400,
-            600,
-            800,
-            1200,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
 
         };
-        // 골드 획득량 
+        // 광물 획득량
         RF_Power_4_2 = new int[8]
         {
-            100,
-            150,
-            200,
-            300,
-            400,
-            600,
-            800,
-            1200,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
 
         };
         // 영약 이름
         RF_Title = new string[32]
         {
-            "회색 광물 완드",
-            "",
-            "초급 경험의 영약",
-            "초급 강화의 영약",
+            "최하급 완드",
+            "최하급 강화 완드",
+            "최하급 망치 ",
+            "최하급 강화 망치",
 
-            "하급 힘의 영약",
-            "하급 속도의 영약",
-            "하급 경험의 영약",
-            "하급 강화의 영약",
+            "하급 완드",
+            "하급 강화 완드",
+            "하급 망치 ",
+            "하급 강화 망치",
 
-            "중급 힘의 영약",
-            "중급 속도의 영약",
-            "중급 경험의 영약",
-            "중급 강화의 영약",
+            "중급 완드",
+            "중급 스피어",
+            "중급 곡괭이",
+            "중급 강화 곡괭이",
 
-            "중상급 힘의 영약",
-            "중상급 속도의 영약",
-            "중상급 경험의 영약",
-            "중상급 강화의 영약",
+            "중상급 스태프",
+            "중상급 강화 스태프",
+            "중상급 완드",
+            "중상급 강화 완드",
 
-            "상급 힘의 영약",
-            "상급 속도의 영약",
-            "상급 경험의 영약",
-            "상급 강화의 영약",
+            "상급 완드",
+            "상급 망치",
+            "상급 강화 완드",
+            "상급 초월 완드",
 
-            "최상급 힘의 영약",
-            "최상급 속도의 영약",
-            "최상급 경험의 영약",
-            "최상급 강화의 영약",
+            "최상급 완드",
+            "최상급 작살",
+            "최상급 망치",
+            "최상급 강화 망치",
 
-            "비급 힘의 영약",
-            "비급 속도의 영약",
-            "비급 경험의 영약",
-            "비급 강화의 영약",
+            "비급 스태프",
+            "비급 작살",
+            "비급 스피어",
+            "비급 완드",
 
-            "신급 힘의 영약",
-            "신급 속도의 영약",
-            "신급 경험의 영약",
-            "신급 강화의 영약",
+            "신급 피쳐톤",
+            "신급 곡괭이",
+            "신급 스피어",
+            "신급 스태프",
         };
 
 
+    }
+
+    private string ColorText(int index)
+    {
+        if (index == 0) return "제련소0번";
+        else if (index == 1) return "제련소1번";
+        else if (index == 2) return "제련소2번";
+        else if (index == 3) return "제련소3번";
+        else if (index == 4) return "제련소4번";
+        else if (index == 5) return "제련소5번";
+        else if (index == 6) return "제련소6번";
+        else                 return "제련소7번";
     }
 
     private void LackOut()
@@ -267,13 +281,19 @@ public class RefineryManager : MonoBehaviour
                 SoldOut[i].SetActive(true);
                 RF_BuyBtn[i].interactable = false;
             }
+
+            Outline outline = RF_Frame[i].GetComponent<Outline>();
+            RF_Frame[i].color = ColorManager.ColorChange(ColorText(index));
+            outline.effectColor = ColorManager.ColorChange(ColorText(index));
         }
 
-        RF_InfoText[0].text = "곡괭이 공격력 + " + RF_Power_1[RF_InPanel] + "증가";
-        RF_InfoText[1].text = "공격속도 + " + TextFormatter.GetFloatPointCommaText_0(RF_Power_2[RF_InPanel]) + "% 증가";
-        RF_InfoText[2].text = "경험치 + " + RF_Power_3[RF_InPanel] + "% 증가";
-        RF_InfoText[3].text = "방어구 관통력 + " + RF_Power_4_1[RF_InPanel] + "증가";
-        RF_InfoText[4].text = "골드 획득량 + " + RF_Power_4_2[RF_InPanel] + "% 증가";
+        
+
+        RF_InfoText[0].text = "곡괭이 공격력 <color=cyan>+" + RF_Power_1[RF_InPanel] + "</color> 증가";
+        RF_InfoText[1].text = "크리티컬 확률 <color=cyan>+" + TextFormatter.GetFloatPointCommaText_0(RF_Power_2[RF_InPanel]) + "%</color> 증가";
+        RF_InfoText[2].text = "치명적 피해 <color=cyan>+" + RF_Power_3[RF_InPanel] + "%</color> 증가";
+        RF_InfoText[3].text = "추가 공격 <color=cyan>+" + RF_Power_4_1[RF_InPanel] + "</color> 증가";
+        RF_InfoText[4].text = "광물 획득량 <color=cyan>+" + RF_Power_4_2[RF_InPanel] + "</color> 증가";
 
         RF_TitleImg.sprite = GameManager.GemSprites[RF_InPanel];
         RF_HaveImg.sprite = GameManager.GemSprites[RF_InPanel];
@@ -307,14 +327,14 @@ public class RefineryManager : MonoBehaviour
         {
             if (RF_PriceValue[RF_InPanel * 4 + index] <= ReturnStar(RF_InPanel))
             {
-                if(index == 0) GameManager.HaveStarGrey -= RF_PriceValue[RF_InPanel * 4 + index];
-                else if (index == 1) GameManager.HaveStarBrown -= RF_PriceValue[RF_InPanel * 4 + index];
-                else if (index == 2) GameManager.HaveStarBlue -= RF_PriceValue[RF_InPanel * 4 + index];
-                else if (index == 3) GameManager.HaveStarGreen -= RF_PriceValue[RF_InPanel * 4 + index];
-                else if (index == 4) GameManager.HaveStarRed -= RF_PriceValue[RF_InPanel * 4 + index];
-                else if (index == 5) GameManager.HaveStarYellow -= RF_PriceValue[RF_InPanel * 4 + index];
-                else if (index == 6) GameManager.HaveStarPurple -= RF_PriceValue[RF_InPanel * 4 + index];
-                else if (index == 7) GameManager.HaveStarOrange -= RF_PriceValue[RF_InPanel * 4 + index];
+                if(RF_InPanel == 0) GameManager.HaveStarGrey -= RF_PriceValue[RF_InPanel * 4 + index];
+                else if (RF_InPanel == 1) GameManager.HaveStarBrown -= RF_PriceValue[RF_InPanel * 4 + index];
+                else if (RF_InPanel == 2) GameManager.HaveStarBlue -= RF_PriceValue[RF_InPanel * 4 + index];
+                else if (RF_InPanel == 3) GameManager.HaveStarGreen -= RF_PriceValue[RF_InPanel * 4 + index];
+                else if (RF_InPanel == 4) GameManager.HaveStarRed -= RF_PriceValue[RF_InPanel * 4 + index];
+                else if (RF_InPanel == 5) GameManager.HaveStarYellow -= RF_PriceValue[RF_InPanel * 4 + index];
+                else if (RF_InPanel == 6) GameManager.HaveStarPurple -= RF_PriceValue[RF_InPanel * 4 + index];
+                else if (RF_InPanel == 7) GameManager.HaveStarOrange -= RF_PriceValue[RF_InPanel * 4 + index];
 
                 RF_HaveText.text = TextFormatter.GetThousandCommaText((int)ReturnStar(RF_InPanel)) + "";
                 RF_BuyText[index].text = "<color=lightblue>구매완료</color>";
@@ -322,14 +342,14 @@ public class RefineryManager : MonoBehaviour
                 RF_BuyBtn[index].interactable = false;
                 RF_BuyCheck[RF_InPanel * 4 + index] = true;
                 audioSource.PlayOneShot(RFSoundClip[0], 1f); // soundClip은 AudioClip 변수, volume은 소리의 크기 조절값입니다.
-                //if (index == 0) RF_UpPower += RF_Power_1[RF_InPanel];
-                //else if (index == 1) RF_UpAttackSpeed += RF_Power_2[RF_InPanel];
-                //else if (index == 2) RF_UpExp += RF_Power_3[RF_InPanel];
-                //else if (index == 3)
-                //{
-                //    RF_UpArmorPenetration += RF_Power_4_1[RF_InPanel];
-                //    RF_UpEarnGold += RF_Power_4_2[RF_InPanel];
-                //}
+                if (index == 0) RF_UpPower += RF_Power_1[RF_InPanel];
+                else if (index == 1) RF_Critical += RF_Power_2[RF_InPanel];
+                else if (index == 2) RF_PFD += RF_Power_3[RF_InPanel];
+                else if (index == 3)
+                {
+                    RF_AddAttack += RF_Power_4_1[RF_InPanel];
+                    RF_MineAmount += RF_Power_4_2[RF_InPanel];
+                }
             }
             else
             {
