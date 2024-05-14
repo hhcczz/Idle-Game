@@ -265,6 +265,8 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
 
             HandleTouchInput();
 
+            for(int i = 0; i < RefineryManager.RF_AddAttack; i++) HandleTouchInput();
+
             if (MineAdManager.AdPlaying[1] == true)
             {
                 for (int i = 0; i < MineAdManager.AdPowerValue[1]; i++)
@@ -285,21 +287,27 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         executions++;
         audioSource.PlayOneShot(MiningSoundClip, 1f);
 
-        RocksNormalDamage = (float)GameManager.Pickaxe_Damage * (1 + (float)GameManager.Option_PMA / 100);
-        RocksCriticalDamage = (float)(GameManager.Pickaxe_Damage + GameManager.Pickaxe_CriticalDamage) * (1 + (float)GameManager.Option_PMA / 100);
+        RocksNormalDamage = ((float)GameManager.Pickaxe_Damage + RefineryManager.RF_UpPower) * (1 + (float)GameManager.Option_PMA / 100);
+        RocksCriticalDamage = (float)(GameManager.Pickaxe_Damage + GameManager.Pickaxe_CriticalDamage + RefineryManager.RF_UpPower) * (1 + (float)GameManager.Option_PMA / 100);
 
-        int Random_Critical = Random.RandomRange(0, 100); // 크리티컬 확률 조건
-        int FatalDamage = Random.RandomRange(0, 100); // 치명적 피해 확률 조건
-        int Warrant = Random.RandomRange(0, 100);   //  권능 확률 조건
+        int Random_Critical = Random.Range(0, 100); // 크리티컬 확률 조건
+        int FatalDamage = Random.Range(0, 100); // 치명적 피해 확률 조건
+        int Warrant = Random.Range(0, 100);   // 권능 확률 조건
 
-        float damageAmount = Random_Critical < GameManager.Pickaxe_CriticalChance ? RocksCriticalDamage : RocksNormalDamage;
+        bool isCritical = Random_Critical < (float)(GameManager.Pickaxe_CriticalChance + (decimal)RefineryManager.RF_Critical);
+        float damageAmount = isCritical ? RocksCriticalDamage : RocksNormalDamage;
 
-        if (MineAdManager.AdPlaying[0] == true) damageAmount *= (float)(MineAdManager.AdPowerValue[0] / 50f);
+        if (MineAdManager.AdPlaying[0] == true)
+            damageAmount *= (float)((MineAdManager.AdPowerValue[0] + 100) / 100f);
 
-        if (FatalDamage < GameManager.Option_PFD) RockManager.currentHP -= RockManager.currentHP / 3;    // 치명적 피해
+        if (FatalDamage < GameManager.Option_PFD + RefineryManager.RF_PFD)
+            RockManager.currentHP -= RockManager.currentHP / 3; // 치명적 피해
 
-        if (GameManager.WarrantLevel[7] >= 1 && Warrant <= 1) damageAmount *= GameManager.Warrant_Power[7];
-        if (GameManager.WarrantLevel[8] >= 1) damageAmount *= (float)(1f + GameManager.Warrant_Power[8] / 100f);
+        if (GameManager.WarrantLevel[7] >= 1 && Warrant <= 1)
+            damageAmount *= GameManager.Warrant_Power[7];
+
+        if (GameManager.WarrantLevel[8] >= 1)
+            damageAmount *= (float)(1f + GameManager.Warrant_Power[8] / 100f);
 
         // touchableArea의 RectTransform을 가져옵니다.
         RectTransform touchableRectTransform = touchableArea.GetComponent<RectTransform>();
@@ -318,15 +326,13 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         // 데미지 값을 Text에 설정합니다.
         textComponent.text = damageAmount.ToString();
 
-        Color color = Random_Critical < GameManager.Pickaxe_CriticalChance ? Color.blue : Color.white;
-
+        // 크리티컬 여부에 따라 색상을 설정합니다.
+        Color color = isCritical ? Color.cyan : Color.white;
         textComponent.color = color;
 
         RockManager.currentHP -= damageAmount;
 
-        int MineralBomb = Random.RandomRange(0, 100); // 광물 폭탄 확률 조건
-
-        
+        int MineralBomb = Random.Range(0, 100); // 광물 폭탄 확률 조건
 
         if (RockManager.currentHP <= 0)
         {
