@@ -277,6 +277,46 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
 
         }
     }
+    // 다음으로 넘어가기 - 체크했음
+    public void UpdateEnemyStageClear(int difficultyInStage, int fixDifficulty)
+    {
+        // BOSS 처치
+        // 마지막 Extreme단계 클리어시 다음 Easy로 넘어가기
+        if (fixDifficulty == 3 && RockManager.Rock_defeatedIndex == 17 && GameManager.RockstageClearDict[rockmanager.RockName(difficultyInStage + 1, 0)][0] == false)
+        {
+            rockmanager.FixDifficultyInStage++;
+            GameManager.RockstageClearDict[rockmanager.RockName(difficultyInStage + 1, 0)][0] = true;
+            for (int i = 0; i < 17; i++) rockmanager.RockFixStage[fixDifficulty + difficultyInStage * 4][i] = false;
+            RockManager.Rock_defeatedIndex = 0;
+            rockmanager.FixDifficulty = 0;
+            rockmanager.LastBtnIndex = RockManager.Rock_defeatedIndex;
+
+            rockmanager.PowerSummons();
+        }
+
+        else if (RockManager.Rock_defeatedIndex == 17 && GameManager.RockstageClearDict[rockmanager.RockName(difficultyInStage, fixDifficulty + 1)][0] == false)
+        {
+            GameManager.RockstageClearDict[rockmanager.RockName(difficultyInStage, fixDifficulty + 1)][0] = true;
+            for (int i = 0; i < 17; i++) rockmanager.RockFixStage[fixDifficulty + difficultyInStage * 4][i] = false;
+            RockManager.Rock_defeatedIndex = 0;
+            rockmanager.FixDifficulty++;
+            rockmanager.LastBtnIndex = RockManager.Rock_defeatedIndex;
+
+            rockmanager.PowerSummons();
+        }
+
+        else if (RockManager.Rock_defeatedIndex == 17) return;
+
+        // 다음 스테이지가 아직 열리지 않은 경우 열어줌
+        else if (GameManager.RockstageClearDict[rockmanager.RockName(difficultyInStage, fixDifficulty)][RockManager.Rock_defeatedIndex + 1] == false && GameManager.RockstageClearDict[rockmanager.RockName(difficultyInStage, fixDifficulty)][RockManager.Rock_defeatedIndex] == true)
+        {
+            GameManager.RockstageClearDict[rockmanager.RockName(difficultyInStage, fixDifficulty)][RockManager.Rock_defeatedIndex + 1] = true; // 다음 스테이지 열기
+            RockManager.Rock_defeatedIndex++;
+            rockmanager.LastBtnIndex = RockManager.Rock_defeatedIndex;
+
+            rockmanager.PowerSummons();
+        }
+    }
 
 
     // 광물 클릭 관리
@@ -337,20 +377,11 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         if (RockManager.currentHP <= 0)
         {
             StatisticsManager.ImmutabilityMineBreakCount++;
-            if (RockManager.Rock_defeatedIndex == 17)
-            {
-                if (RockManager.RockFixDifficulty == 0 && GameManager.RockstageClearDict["중급 돌덩이"][0] == false) GameManager.RockstageClearDict["중급 돌덩이"][0] = true;
-                if (RockManager.RockFixDifficulty == 1 && GameManager.RockstageClearDict["상급 돌덩이"][0] == false) GameManager.RockstageClearDict["상급 돌덩이"][0] = true;
-                if (RockManager.RockFixDifficulty == 2 && GameManager.RockstageClearDict["최상급 돌덩이"][0] == false) GameManager.RockstageClearDict["최상급 돌덩이"][0] = true;
-            }
 
-            else if (GameManager.RockstageClearDict[RockManager.RockType][RockManager.Rock_defeatedIndex + 1] == false)
-            {
-                GameManager.RockstageClearDict[RockManager.RockType][RockManager.Rock_defeatedIndex + 1] = true;
-            }
-        
             if (MineralBomb < GameManager.Option_LevelMB) rockmanager.GrantRewards(RockManager.Rock_defeatedIndex, 20);
             else rockmanager.GrantRewards(RockManager.Rock_defeatedIndex, 1);
+
+            UpdateEnemyStageClear(rockmanager.FixDifficultyInStage, rockmanager.FixDifficulty); // InStage 값으로 적의 스테이지 클리어 여부 업데이트 메서드 호출
         }
 
         // 이펙트를 생성하고 부모 Rect Transform의 좌표계를 기준으로 위치를 설정합니다.
