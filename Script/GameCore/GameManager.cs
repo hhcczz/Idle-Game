@@ -9,7 +9,7 @@ public static class GameConstants
     public static int AccessoryNum = 24;
     public static int WarrantNum = 29;
     public static int MobNum = 32;
-    public static int RockNum = 8;
+    public static int RockNum = 32;
 }
 
 public class GameManager : MonoBehaviour
