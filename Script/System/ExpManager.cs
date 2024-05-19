@@ -59,8 +59,8 @@ public class ExpManager : MonoBehaviour
         if(GameManager.Player_CurExp >= GameManager.Player_MaxExp)
         {
             GameManager.Player_CurExp -= GameManager.Player_MaxExp;
-            if (GameManager.WarrantLevel[18] >= 1) GameManager.Player_MaxExp = GameManager.Player_Level * 6.25f * (1 - GameManager.Warrant_Power[18] / 100f);
-            else GameManager.Player_MaxExp = GameManager.Player_Level * 6.25f;
+            if (GameManager.WarrantLevel[18] >= 1) GameManager.Player_MaxExp = GameManager.Player_Level * 7.25f * (1 - GameManager.Warrant_Power[18] / 100f);
+            else GameManager.Player_MaxExp = GameManager.Player_Level * 7.25f;
             GameManager.Player_Level++;
             GameManager.Player_PassivePoint++;
             UpdateText();
