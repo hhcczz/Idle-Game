@@ -770,6 +770,36 @@ public class RockManager : MonoBehaviour
         GameManager.RockstageClearDict["상급 광물"] = new bool[18];
         GameManager.RockstageClearDict["최상급 광물"] = new bool[18];
 
+        GameManager.RockstageClearDict["하급 광석"] = new bool[18];
+        GameManager.RockstageClearDict["중급 광석"] = new bool[18];
+        GameManager.RockstageClearDict["상급 광석"] = new bool[18];
+        GameManager.RockstageClearDict["최상급 광석"] = new bool[18];
+
+        GameManager.RockstageClearDict["하급 원석"] = new bool[18];
+        GameManager.RockstageClearDict["중급 원석"] = new bool[18];
+        GameManager.RockstageClearDict["상급 원석"] = new bool[18];
+        GameManager.RockstageClearDict["최상급 원석"] = new bool[18];
+
+        GameManager.RockstageClearDict["하급 영원석"] = new bool[18];
+        GameManager.RockstageClearDict["중급 영원석"] = new bool[18];
+        GameManager.RockstageClearDict["상급 영원석"] = new bool[18];
+        GameManager.RockstageClearDict["최상급 영원석"] = new bool[18];
+
+        GameManager.RockstageClearDict["하급 영혼석"] = new bool[18];
+        GameManager.RockstageClearDict["중급 영혼석"] = new bool[18];
+        GameManager.RockstageClearDict["상급 영혼석"] = new bool[18];
+        GameManager.RockstageClearDict["최상급 영혼석"] = new bool[18];
+
+        GameManager.RockstageClearDict["하급 용암석"] = new bool[18];
+        GameManager.RockstageClearDict["중급 용암석"] = new bool[18];
+        GameManager.RockstageClearDict["상급 용암석"] = new bool[18];
+        GameManager.RockstageClearDict["최상급 용암석"] = new bool[18];
+
+        GameManager.RockstageClearDict["하급 지옥석"] = new bool[18];
+        GameManager.RockstageClearDict["중급 지옥석"] = new bool[18];
+        GameManager.RockstageClearDict["상급 지옥석"] = new bool[18];
+        GameManager.RockstageClearDict["최상급 지옥석"] = new bool[18];
+
         Debug.Log("광산 초기화 했음");
         GameManager.RockstageClearDict["하급 돌덩이"][0] = true;
 
@@ -1193,12 +1223,54 @@ public class RockManager : MonoBehaviour
             else if (index == 2) return "상급 돌덩이";
             else return "최상급 돌덩이";
         }
-        else
+        else if (movedifficultyinstage == 1)
         {
             if (index == 0) return "하급 광물";
             else if (index == 1) return "중급 광물";
             else if (index == 2) return "상급 광물";
             else return "최상급 광물";
+        }
+        else if (movedifficultyinstage == 2)
+        {
+            if (index == 0) return "하급 광석";
+            else if (index == 1) return "중급 광석";
+            else if (index == 2) return "상급 광석";
+            else return "최상급 광석";
+        }
+        else if (movedifficultyinstage == 3)
+        {
+            if (index == 0) return "하급 원석";
+            else if (index == 1) return "중급 원석";
+            else if (index == 2) return "상급 원석";
+            else return "최상급 원석";
+        }
+        else if (movedifficultyinstage == 4)
+        {
+            if (index == 0) return "하급 영원석";
+            else if (index == 1) return "중급 영원석";
+            else if (index == 2) return "상급 영원석";
+            else return "최상급 영원석";
+        }
+        else if (movedifficultyinstage == 5)
+        {
+            if (index == 0) return "하급 영혼석";
+            else if (index == 1) return "중급 영혼석";
+            else if (index == 2) return "상급 영혼석";
+            else return "최상급 영혼석";
+        }
+        else if (movedifficultyinstage == 6)
+        {
+            if (index == 0) return "하급 용암석";
+            else if (index == 1) return "중급 용암석";
+            else if (index == 2) return "상급 용암석";
+            else return "최상급 용암석";
+        }
+        else
+        {
+            if (index == 0) return "하급 지옥석";
+            else if (index == 1) return "중급 지옥석";
+            else if (index == 2) return "상급 지옥석";
+            else return "최상급 지옥석";
         }
     }
 
