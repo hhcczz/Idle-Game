@@ -38,6 +38,19 @@ public class ColorManager : MonoBehaviour
     static Color Golem_3 = new(1, 1f, 0f);
     static Color Golem_4 = new(1f, 166f / 255f, 166f / 255f);
 
+    static Color[] RockColor =
+    {
+        new Color(99f / 255f, 199f / 255f, 77f / 255f),   // #63C74D
+        new Color(184f / 255f, 111f / 255f, 80f / 255f),  // #B86F50
+        new Color(254f / 255f, 162f / 255f, 34f / 255f),  // #FEA222
+        new Color(139f / 255f, 155f / 255f, 180f / 255f), // #8B9BB4
+        new Color(135f / 255f, 142f / 255f, 153f / 255f), // #878E99
+        new Color(44f / 255f, 232f / 255f, 245f / 255f),  // #2CE8F5
+        new Color(160f / 255f, 0f, 68f / 255f),           // #A00044
+        new Color(255f / 255f, 0f, 68f / 255f)            // #FF0044
+    };
+
+
 
     static Color[] RefineryColor =
     {
@@ -62,7 +75,7 @@ public class ColorManager : MonoBehaviour
         new(1f, 0, 0),
     };
 
-public static Color ColorChange(string ColorName)
+    public static Color ColorChange(string ColorName)
     {
         if (ColorName == "기본색") return NormalColor;
         else if (ColorName == "민트색") return SpecialColor;
@@ -98,6 +111,15 @@ public static Color ColorChange(string ColorName)
         else if (ColorName == "제련소5번") return RefineryColor[5];
         else if (ColorName == "제련소6번") return RefineryColor[6];
         else if (ColorName == "제련소7번") return RefineryColor[7];
+
+        else if (ColorName == "광물0번") return RockColor[0];
+        else if (ColorName == "광물1번") return RockColor[1];
+        else if (ColorName == "광물2번") return RockColor[2];
+        else if (ColorName == "광물3번") return RockColor[3];
+        else if (ColorName == "광물4번") return RockColor[4];
+        else if (ColorName == "광물5번") return RockColor[5];
+        else if (ColorName == "광물6번") return RockColor[6];
+        else if (ColorName == "광물7번") return RockColor[7];
 
         else return NormalColor;
     }
