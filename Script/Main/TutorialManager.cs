@@ -32,7 +32,7 @@ using UnityEngine.UI;
 
 public static class Tutorialcontents
 {
-    public static int TutorialNum = 30;
+    public static int TutorialNum = 141;
 }
 
 public class TutorialManager : MonoBehaviour
@@ -222,28 +222,143 @@ public class TutorialManager : MonoBehaviour
         Tutorial_Text[139] = "<size=25>레벨 달성 → <color=yellow>Lv.300</color></size>";
         Tutorial_Text[140] = "<size=25>상급 슬라임 <color=lime>XV</color> 클리어</size>";
 
-        Tutorial_Compensation[0] = 50;      // Money
-        Tutorial_Compensation[1] = 50;      // Money
-        Tutorial_Compensation[2] = 50;      // Money
-        Tutorial_Compensation[3] = 50;      // Money
-        Tutorial_Compensation[4] = 50;      // Money
-        Tutorial_Compensation[5] = 50;      // Money
-        Tutorial_Compensation[6] = 1500;    // Diamond
-        Tutorial_Compensation[7] = 1500;    // Diamond
-        Tutorial_Compensation[8] = 300;     // Money
-        Tutorial_Compensation[9] = 300;     // Money
-        Tutorial_Compensation[10] = 5;     // ReinforceScroll
-        Tutorial_Compensation[11] = 300;     // Money
-        Tutorial_Compensation[12] = 300;     // Money
-        Tutorial_Compensation[13] = 300;     // Money
-        Tutorial_Compensation[14] = 300;     // Money
-        Tutorial_Compensation[15] = 300;     // Money
-        Tutorial_Compensation[16] = 300;     // Money
-        Tutorial_Compensation[17] = 500;     // Money
-        Tutorial_Compensation[18] = 500;     // Money
-        Tutorial_Compensation[19] = 100;     // RedStone
-        Tutorial_Compensation[20] = 100;     // RedStone
-        Tutorial_Compensation[21] = 5;     // ReinforceScroll
+        Tutorial_Compensation[0] =   50;         // Money
+        Tutorial_Compensation[1] =   50;         // Money
+        Tutorial_Compensation[2] =   50;         // Money
+        Tutorial_Compensation[3] =   50;         // Money
+        Tutorial_Compensation[4] =   50;         // Money
+        Tutorial_Compensation[5] =   50;         // Money
+        Tutorial_Compensation[6] =   1500;       // Diamond
+        Tutorial_Compensation[7] =   1500;       // Diamond
+        Tutorial_Compensation[8] =   300;        // Money
+        Tutorial_Compensation[9] =   300;        // Money
+        Tutorial_Compensation[10] =  5;          // ReinforceScroll
+        Tutorial_Compensation[11] =  300;        // Money
+        Tutorial_Compensation[12] =  300;        // Money
+        Tutorial_Compensation[13] =  300;        // Money
+        Tutorial_Compensation[14] =  300;        // Money
+        Tutorial_Compensation[15] =  300;        // Money
+        Tutorial_Compensation[16] =  300;        // Money
+        Tutorial_Compensation[17] =  500;        // Money
+        Tutorial_Compensation[18] =  500;        // Money
+        Tutorial_Compensation[19] =  100;        // RedStone
+        Tutorial_Compensation[20] =  100;        // RedStone
+        Tutorial_Compensation[21] =  5;          // ReinforceScroll
+        Tutorial_Compensation[22] =  1000;       // Money
+        Tutorial_Compensation[23] =  1000;       // Money
+        Tutorial_Compensation[24] =  1000;       // Money
+        Tutorial_Compensation[25] =  1000;       // Money
+        Tutorial_Compensation[26] =  1000;       // Money
+        Tutorial_Compensation[27] =  1000;       // Money
+        Tutorial_Compensation[28] =  1000;       // Money
+        Tutorial_Compensation[29] =  1500;       // Diamond
+        Tutorial_Compensation[30] =  1500;       // Diamond
+        Tutorial_Compensation[31] =  3000;       // Money
+        Tutorial_Compensation[32] =  3000;       // Money
+        Tutorial_Compensation[33] =  3000;       // Money
+        Tutorial_Compensation[34] =  3000;       // Money
+        Tutorial_Compensation[35] =  3000;       // Money
+        Tutorial_Compensation[36] =  3000;       // Money
+        Tutorial_Compensation[37] =  3000;       // Money
+        Tutorial_Compensation[38] =  3000;       // Money
+        Tutorial_Compensation[39] =  3000;       // Money
+        Tutorial_Compensation[40] =  3000;       // Money
+        Tutorial_Compensation[41] =  3000;       // Money
+        Tutorial_Compensation[42] =  100;        // RedStone
+        Tutorial_Compensation[43] =  100;        // RedStone
+        Tutorial_Compensation[44] =  1000;       // Money
+        Tutorial_Compensation[45] =  1000;       // Money
+        Tutorial_Compensation[46] =  1000;       // Money
+        Tutorial_Compensation[47] =  1000;       // Money
+        Tutorial_Compensation[48] =  5;          // ReinforceScroll
+        Tutorial_Compensation[49] =  5000;       // Money
+        Tutorial_Compensation[50] =  5000;       // Money
+        Tutorial_Compensation[51] =  5000;       // Money
+        Tutorial_Compensation[52] =  5000;       // Money
+        Tutorial_Compensation[53] =  5000;       // Money
+        Tutorial_Compensation[54] =  5000;       // Money
+        Tutorial_Compensation[55] =  1500;       // Diamond
+        Tutorial_Compensation[56] =  1500;       // Diamond
+        Tutorial_Compensation[57] =  5000;       // Money
+        Tutorial_Compensation[58] =  300;        // RedStone
+        Tutorial_Compensation[59] =  300;        // RedStone
+        Tutorial_Compensation[60] =  5000;       // Money
+        Tutorial_Compensation[61] =  5000;       // Money
+        Tutorial_Compensation[62] =  5000;       // Money
+        Tutorial_Compensation[63] =  5000;       // Money
+        Tutorial_Compensation[64] =  5;          // ReinforceScroll
+        Tutorial_Compensation[65] =  8000;       // Money
+        Tutorial_Compensation[66] =  8000;       // Money
+        Tutorial_Compensation[67] =  8000;       // Money
+        Tutorial_Compensation[68] =  8000;       // Money
+        Tutorial_Compensation[69] =  8000;       // Money
+        Tutorial_Compensation[70] =  8000;       // Money
+        Tutorial_Compensation[71] =  1500;       // Diamond
+        Tutorial_Compensation[72] =  1500;       // Diamond
+        Tutorial_Compensation[73] =  600;        // RedStone
+        Tutorial_Compensation[74] =  600;        // RedStone
+        Tutorial_Compensation[75] =  8000;       // Money
+        Tutorial_Compensation[76] =  8000;       // Money
+        Tutorial_Compensation[77] =  8000;       // Money
+        Tutorial_Compensation[78] =  8000;       // Money
+        Tutorial_Compensation[79] =  5;          // ReinforceScroll
+        Tutorial_Compensation[80] =  10000;      // Money
+        Tutorial_Compensation[81] =  10000;      // Money
+        Tutorial_Compensation[82] =  10000;      // Money
+        Tutorial_Compensation[83] =  10000;      // Money
+        Tutorial_Compensation[84] =  10000;      // Money
+        Tutorial_Compensation[85] =  10000;      // Money
+        Tutorial_Compensation[86] =  1500;       // Diamond
+        Tutorial_Compensation[87] =  1500;       // Diamond
+        Tutorial_Compensation[88] =  10000;      // Money
+        Tutorial_Compensation[89] =  1200;       // RedStone
+        Tutorial_Compensation[90] =  1200;       // RedStone
+        Tutorial_Compensation[91] =  20000;      // Money
+        Tutorial_Compensation[92] =  20000;      // Money
+        Tutorial_Compensation[93] =  20000;      // Money
+        Tutorial_Compensation[94] =  20000;      // Money
+        Tutorial_Compensation[95] =  5;          // ReinforceScroll
+        Tutorial_Compensation[96] =  40000;      // Money
+        Tutorial_Compensation[97] =  40000;      // Money
+        Tutorial_Compensation[98] =  40000;      // Money
+        Tutorial_Compensation[99] =  40000;      // Money
+        Tutorial_Compensation[100] = 50000;      // Money
+        Tutorial_Compensation[101] = 50000;      // Money
+        Tutorial_Compensation[102] = 1500;       // Diamond
+        Tutorial_Compensation[103] = 1500;       // Diamond
+        Tutorial_Compensation[104] = 2000;       // RedStone
+        Tutorial_Compensation[105] = 2000;       // RedStone
+        Tutorial_Compensation[106] = 60000;      // Money
+        Tutorial_Compensation[107] = 60000;      // Money
+        Tutorial_Compensation[108] = 60000;      // Money
+        Tutorial_Compensation[109] = 60000;      // Money
+        Tutorial_Compensation[110] = 5;          // ReinforceScroll
+        Tutorial_Compensation[111] = 60000;      // Money
+        Tutorial_Compensation[112] = 60000;      // Money
+        Tutorial_Compensation[113] = 60000;      // Money
+        Tutorial_Compensation[114] = 60000;      // Money
+        Tutorial_Compensation[115] = 60000;      // Money
+        Tutorial_Compensation[116] = 60000;      // Money
+        Tutorial_Compensation[117] = 1500;       // Diamond
+        Tutorial_Compensation[118] = 1500;       // Diamond
+        Tutorial_Compensation[119] = 2500;       // RedStone
+        Tutorial_Compensation[120] = 2500;       // RedStone
+        Tutorial_Compensation[121] = 80000;      // Money
+        Tutorial_Compensation[122] = 80000;      // Money
+        Tutorial_Compensation[123] = 80000;      // Money
+        Tutorial_Compensation[124] = 80000;      // Money
+        Tutorial_Compensation[125] = 5;          // ReinforceScroll
+        Tutorial_Compensation[126] = 80000;      // Money
+        Tutorial_Compensation[127] = 80000;      // Money
+        Tutorial_Compensation[128] = 80000;      // Money
+        Tutorial_Compensation[129] = 80000;      // Money
+        Tutorial_Compensation[130] = 80000;      // Money
+        Tutorial_Compensation[131] = 80000;      // Money
+        Tutorial_Compensation[132] = 1500;       // Diamond
+        Tutorial_Compensation[133] = 1500;       // Diamond
+        Tutorial_Compensation[134] = 100000;     // Money
+        Tutorial_Compensation[135] = 100000;     // Money
+
 
         TutorialLevelText.text = "Tutorial Level. <color=lime><size=28>" + PlayerTutorialLevel + "</size></color>";
         TutorialTitle.text = Tutorial_Text[PlayerTutorialLevel];
@@ -589,27 +704,27 @@ public class TutorialManager : MonoBehaviour
                 break;
             case 48:
                 AnnounceTitle.text = "중급 슬라임 <color=lime>V</color>를 클리어 해야합니다.";
-                StartCoroutine(FadeOut(0));
+                StartCoroutine(FadeOut(1));
                 break;
             case 64:
                 AnnounceTitle.text = "중급 슬라임 <color=lime>X</color>를 클리어 해야합니다.";
-                StartCoroutine(FadeOut(0));
+                StartCoroutine(FadeOut(1));
                 break;
             case 79:
                 AnnounceTitle.text = "중급 슬라임 <color=lime>XV</color>를 클리어 해야합니다.";
-                StartCoroutine(FadeOut(0));
+                StartCoroutine(FadeOut(1));
                 break;
             case 95:
                 AnnounceTitle.text = "중급 슬라임 <color=lime>BOSS</color>를 클리어 해야합니다.";
-                StartCoroutine(FadeOut(0));
+                StartCoroutine(FadeOut(1));
                 break;
             case 110:
                 AnnounceTitle.text = "상급 슬라임 <color=lime>V</color>를 클리어 해야합니다.";
-                StartCoroutine(FadeOut(0));
+                StartCoroutine(FadeOut(2));
                 break;
             case 125:
                 AnnounceTitle.text = "상급 슬라임 <color=lime>X</color>를 클리어 해야합니다.";
-                StartCoroutine(FadeOut(0));
+                StartCoroutine(FadeOut(2));
                 break;
 
             // 골드 강화 
