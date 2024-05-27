@@ -54,6 +54,8 @@ public class CharacterMoneyShopManager : MonoBehaviour
     public Text Player_MoneyUp_ArmorPenetrationTextLeft;
     public Text Player_MoneyUp_ArmorPenetrationTextRight;
 
+    public Text[] Player_MoneyUp_MaxLevel;
+
     public long needMoney = 0;
 
     private bool holding = false;
@@ -78,9 +80,9 @@ public class CharacterMoneyShopManager : MonoBehaviour
             2.3m,
             1.1m,
             0.005m,
-            0.05m,
+            0.02m,
             0.25m,
-            1m,
+            0.5m,
         };
 
         MaxValue = new int[6]
@@ -88,10 +90,17 @@ public class CharacterMoneyShopManager : MonoBehaviour
             99999,
             99999,
             200,
-            4000,
+            2000,
             99999,
             500,
         };
+
+        for(int i = 0; i < Player_MoneyUp_MaxLevel.Length; i++)
+        {
+            int index = i;
+
+            Player_MoneyUp_MaxLevel[index].text = "MAX : Lv. " + TextFormatter.GetThousandCommaText(MaxValue[index]);
+        }
 
         for (int i = 0; i < MoneyUpBtn.Length; i++)
         {
@@ -171,36 +180,42 @@ public class CharacterMoneyShopManager : MonoBehaviour
         { 
             GameManager.Player_MoneyUp_EarnMoneyLevel++;                                                                                            //  골드 획득량 레벨 증가 Value
             GameManager.Player_MoneyUp_EarnMoney += (long)IncreaseValue[index];                                                                     //  골드 획득량 증가 Value
+            if (GameManager.Player_MoneyUp_EarnMoneyLevel >= MaxValue[index]) MoneyUpBtn[index].interactable = false;
         }
         // 공격력 증가
         else if (index == 1 && needMoney <= GameManager.Player_Money)
         {                                                                                                                                           
             GameManager.Player_MoneyUp_DamageLevel++;                                                                                               //  공격력 레벨 증가 Value
             GameManager.Player_MoneyUp_Damage += IncreaseValue[index];                                                                              //  공격력 증가 Value
+            if (GameManager.Player_MoneyUp_DamageLevel >= MaxValue[index]) MoneyUpBtn[index].interactable = false;
         }
         // 공격속도 증가
         else if (index == 2 && needMoney <= GameManager.Player_Money)
         {                                                                                                                                           
             GameManager.Player_MoneyUp_AttackSpeedLevel++;                                                                                          //  공격 속도 레벨 증가 Value
             GameManager.Player_MoneyUp_AttackSpeed += IncreaseValue[index];                                                                         //  공격 속도 증가 Value
+            if (GameManager.Player_MoneyUp_AttackSpeedLevel >= MaxValue[index]) MoneyUpBtn[index].interactable = false;
         }
         // 크리티컬 확률 증가
         else if (index == 3 && needMoney <= GameManager.Player_Money)
         {                                                                                                                                           
             GameManager.Player_MoneyUp_CriticalChanceLevel++;                                                                                       //  크리티컬 확률 레벨 증가 Value
             GameManager.Player_MoneyUp_CriticalChance += IncreaseValue[index];                                                                      //  크리티컬 확률 증가 Value
+            if (GameManager.Player_MoneyUp_CriticalChanceLevel >= MaxValue[index]) MoneyUpBtn[index].interactable = false;
         }
         // 크리티컬 데미지 증가
         else if (index == 4 && needMoney <= GameManager.Player_Money)
         {                                                                                                                                           
             GameManager.Player_MoneyUp_CriticalDamageLevel++;                                                                                       //  크리티컬 데미지 레벨 증가 Value
             GameManager.Player_MoneyUp_CriticalDamage += IncreaseValue[index];                                                                      //  크리티컬 데미지 증가 Value
+            if (GameManager.Player_MoneyUp_CriticalDamageLevel >= MaxValue[index]) MoneyUpBtn[index].interactable = false;
         }
         // 방어구 관통력 증가
         else if (index == 5 && needMoney <= GameManager.Player_Money)
         {                                                                                                                                           
             GameManager.Player_MoneyUp_ArmorPenetrationLevel++;                                                                                     //  방어력 관통 레벨 증가 Value
-            GameManager.Player_MoneyUp_ArmorPenetration += (int)IncreaseValue[index];                                                               //  방어력 관통 증가 Value
+            GameManager.Player_MoneyUp_ArmorPenetration += IncreaseValue[index];                                                                    //  방어력 관통 증가 Value
+            if (GameManager.Player_MoneyUp_ArmorPenetrationLevel >= MaxValue[index]) MoneyUpBtn[index].interactable = false;
         }
         else
         {
@@ -213,6 +228,17 @@ public class CharacterMoneyShopManager : MonoBehaviour
         MoneyUpTextUpdate(index);
     }
 
+    private int ReturnFontSize(decimal Value)
+    {
+        if (Value <= 1000) return 43;
+        else if (Value <= 10000) return 40;
+        else if (Value <= 100000) return 38;
+        else if (Value <= 1000000) return 36;
+        else if (Value <= 10000000) return 34;
+        else  return 32;
+    }
+
+
     public void MoneyUpTextUpdate(int index)
     {
         if (GameManager.WarrantLevel[13] >= 1) needMoney = (long)(GameManager.NeedMoney[GameManager.NeedMoney_Level[index]] * (float)(1 - GameManager.Warrant_Power[13] / 100f));
@@ -223,14 +249,20 @@ public class CharacterMoneyShopManager : MonoBehaviour
             if (GameManager.Player_MoneyUp_EarnMoneyLevel >= MaxValue[index])
             {
                 Player_MoneyUp_EarnMoneyLevel.text = "<color=cyan>Lv. MAX</color>";                                                                                         //  골드 획득량 레벨 Text
-                Player_MoneyUp_EarnMoneyTextLeft.text = TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_EarnMoney) + "%";                                     //  골드 획득량 증가 Value Left
-                Player_MoneyUp_EarnMoneyTextRight.text = TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_EarnMoney) + "%";                                    //  골드 획득량 증가 Value Right
+                Player_MoneyUp_EarnMoneyTextLeft.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_EarnMoney) + "%";                                     //  골드 획득량 증가 Value Left
+                Player_MoneyUp_EarnMoneyTextRight.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_EarnMoney) + "%";                                    //  골드 획득량 증가 Value Right
+
+                Player_MoneyUp_EarnMoneyTextLeft.fontSize = ReturnFontSize(GameManager.Player_MoneyUp_EarnMoney);
+                Player_MoneyUp_EarnMoneyTextRight.fontSize = ReturnFontSize(GameManager.Player_MoneyUp_EarnMoney);
             }
             else
             {
-                Player_MoneyUp_EarnMoneyLevel.text = "Lv." + TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_EarnMoneyLevel);                                 //  골드 획득량 레벨 Text
-                Player_MoneyUp_EarnMoneyTextLeft.text = TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_EarnMoney) + "%";                                     //  골드 획득량 증가 Value Left
-                Player_MoneyUp_EarnMoneyTextRight.text = TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_EarnMoney + (long)IncreaseValue[index]) + "%";       //  골드 획득량 증가 Value Right
+                Player_MoneyUp_EarnMoneyLevel.text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_EarnMoneyLevel);                                 //  골드 획득량 레벨 Text
+                Player_MoneyUp_EarnMoneyTextLeft.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_EarnMoney) + "%";                                     //  골드 획득량 증가 Value Left
+                Player_MoneyUp_EarnMoneyTextRight.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_EarnMoney + (long)IncreaseValue[index]) + "%";       //  골드 획득량 증가 Value Right
+
+                Player_MoneyUp_EarnMoneyTextLeft.fontSize = ReturnFontSize(GameManager.Player_MoneyUp_EarnMoney);
+                Player_MoneyUp_EarnMoneyTextRight.fontSize = ReturnFontSize(GameManager.Player_MoneyUp_EarnMoney);
             }
         }
         else if(index == 1)
@@ -240,12 +272,18 @@ public class CharacterMoneyShopManager : MonoBehaviour
                 Player_MoneyUp_DamageLevel.text = "<color=cyan>Lv. MAX</color>";                                //  공격력 레벨 Text
                 Player_MoneyUp_DamageTextLeft.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_Damage) + "";                                      //  공격력 증가 Value Left
                 Player_MoneyUp_DamageTextRight.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_Damage) + "";                                     //  공격력 증가 Value Right
+
+                Player_MoneyUp_DamageTextLeft.fontSize  = ReturnFontSize(GameManager.Player_MoneyUp_Damage);
+                Player_MoneyUp_DamageTextRight.fontSize = ReturnFontSize(GameManager.Player_MoneyUp_Damage);
             }
             else
             {
-                Player_MoneyUp_DamageLevel.text = "Lv." + TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_DamageLevel);                                       //  공격력 레벨 Text
+                Player_MoneyUp_DamageLevel.text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_DamageLevel);                                       //  공격력 레벨 Text
                 Player_MoneyUp_DamageTextLeft.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_Damage) + "";                                      //  공격력 증가 Value Left
                 Player_MoneyUp_DamageTextRight.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_Damage + IncreaseValue[index]) + "";              //  공격력 증가 Value Right
+
+                Player_MoneyUp_DamageTextLeft.fontSize  = ReturnFontSize(GameManager.Player_MoneyUp_Damage);
+                Player_MoneyUp_DamageTextRight.fontSize = ReturnFontSize(GameManager.Player_MoneyUp_Damage);
             }
         }
         else if (index == 2)
@@ -255,12 +293,18 @@ public class CharacterMoneyShopManager : MonoBehaviour
                 Player_MoneyUp_AttackSpeedLevel.text = "<color=cyan>Lv. MAX</color>";                        //  공격 속도 레벨 Text
                 Player_MoneyUp_AttackSpeedTextLeft.text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Player_MoneyUp_AttackSpeed) + "%";                          //  공격 속도 증가 Value Left
                 Player_MoneyUp_AttackSpeedTextRight.text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Player_MoneyUp_AttackSpeed) + "%";                         //  공격 속도 증가 Value Right
+
+                Player_MoneyUp_AttackSpeedTextLeft.fontSize  = ReturnFontSize(GameManager.Player_MoneyUp_AttackSpeed);
+                Player_MoneyUp_AttackSpeedTextRight.fontSize = ReturnFontSize(GameManager.Player_MoneyUp_AttackSpeed);
             }
             else
             {
-                Player_MoneyUp_AttackSpeedLevel.text = "Lv." + TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_AttackSpeedLevel);                             //  공격 속도 레벨 Text
+                Player_MoneyUp_AttackSpeedLevel.text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_AttackSpeedLevel);                             //  공격 속도 레벨 Text
                 Player_MoneyUp_AttackSpeedTextLeft.text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Player_MoneyUp_AttackSpeed) + "%";                          //  공격 속도 증가 Value Left
                 Player_MoneyUp_AttackSpeedTextRight.text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Player_MoneyUp_AttackSpeed + IncreaseValue[index]) + "%";  //  공격 속도 증가 Value Right
+
+                Player_MoneyUp_AttackSpeedTextLeft.fontSize  = ReturnFontSize(GameManager.Player_MoneyUp_AttackSpeed);
+                Player_MoneyUp_AttackSpeedTextRight.fontSize = ReturnFontSize(GameManager.Player_MoneyUp_AttackSpeed);
             }
         }
         else if (index == 3)
@@ -268,14 +312,20 @@ public class CharacterMoneyShopManager : MonoBehaviour
             if (GameManager.Player_MoneyUp_CriticalChanceLevel >= MaxValue[index])
             {
                 Player_MoneyUp_CriticalChanceLevel.text = "<color=cyan>Lv. MAX</color>";                 //  크리티컬 확률 레벨 Text
-                Player_MoneyUp_CriticalChanceTextLeft.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_CriticalChance) + "%";                             //  크리티컬 확률 증가 Value Left
-                Player_MoneyUp_CriticalChanceTextRight.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_CriticalChance) + "%";                            //  크리티컬 확률 증가 Value Right
+                Player_MoneyUp_CriticalChanceTextLeft.text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Player_MoneyUp_CriticalChance) + "%";                             //  크리티컬 확률 증가 Value Left
+                Player_MoneyUp_CriticalChanceTextRight.text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Player_MoneyUp_CriticalChance) + "%";                            //  크리티컬 확률 증가 Value Right
+
+                Player_MoneyUp_CriticalChanceTextLeft.fontSize  = ReturnFontSize(GameManager.Player_MoneyUp_CriticalChance);
+                Player_MoneyUp_CriticalChanceTextRight.fontSize = ReturnFontSize(GameManager.Player_MoneyUp_CriticalChance);
             }
             else
             {
-                Player_MoneyUp_CriticalChanceLevel.text = "Lv." + TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_CriticalChanceLevel);                               //  크리티컬 확률 레벨 Text
-                Player_MoneyUp_CriticalChanceTextLeft.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_CriticalChance) + "%";                             //  크리티컬 확률 증가 Value Left
-                Player_MoneyUp_CriticalChanceTextRight.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_CriticalChance + IncreaseValue[index]) + "%";     //  크리티컬 확률 증가 Value Right
+                Player_MoneyUp_CriticalChanceLevel.text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_CriticalChanceLevel);                               //  크리티컬 확률 레벨 Text
+                Player_MoneyUp_CriticalChanceTextLeft.text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Player_MoneyUp_CriticalChance) + "%";                             //  크리티컬 확률 증가 Value Left
+                Player_MoneyUp_CriticalChanceTextRight.text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Player_MoneyUp_CriticalChance + IncreaseValue[index]) + "%";     //  크리티컬 확률 증가 Value Right
+
+                Player_MoneyUp_CriticalChanceTextLeft.fontSize  = ReturnFontSize(GameManager.Player_MoneyUp_CriticalChance);
+                Player_MoneyUp_CriticalChanceTextRight.fontSize = ReturnFontSize(GameManager.Player_MoneyUp_CriticalChance);
             }
         }
         else if (index == 4)
@@ -283,14 +333,20 @@ public class CharacterMoneyShopManager : MonoBehaviour
             if (GameManager.Player_MoneyUp_CriticalDamageLevel >= MaxValue[index])
             {
                 Player_MoneyUp_CriticalDamageLevel.text = "<color=cyan>Lv. MAX</color>";                  //  크리티컬 데미지 레벨 Text
-                Player_MoneyUp_CriticalDamageTextLeft.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_CriticalDamage) + "";                              //  크리티컬 데미지 증가 Value Left
-                Player_MoneyUp_CriticalDamageTextRight.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_CriticalDamage + IncreaseValue[index]) + "";      //  크리티컬 데미지 증가 Value Right
+                Player_MoneyUp_CriticalDamageTextLeft.text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Player_MoneyUp_CriticalDamage) + "";                              //  크리티컬 데미지 증가 Value Left
+                Player_MoneyUp_CriticalDamageTextRight.text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Player_MoneyUp_CriticalDamage + IncreaseValue[index]) + "";      //  크리티컬 데미지 증가 Value Right
+
+                Player_MoneyUp_CriticalDamageTextLeft.fontSize  = ReturnFontSize(GameManager.Player_MoneyUp_CriticalDamage);
+                Player_MoneyUp_CriticalDamageTextRight.fontSize = ReturnFontSize(GameManager.Player_MoneyUp_CriticalDamage);
             }
             else
             {
-                Player_MoneyUp_CriticalDamageLevel.text = "Lv." + TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_CriticalDamageLevel);                               //  크리티컬 데미지 레벨 Text
-                Player_MoneyUp_CriticalDamageTextLeft.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_CriticalDamage) + "";                              //  크리티컬 데미지 증가 Value Left
-                Player_MoneyUp_CriticalDamageTextRight.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_CriticalDamage + IncreaseValue[index]) + "";      //  크리티컬 데미지 증가 Value Right
+                Player_MoneyUp_CriticalDamageLevel.text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_CriticalDamageLevel);                               //  크리티컬 데미지 레벨 Text
+                Player_MoneyUp_CriticalDamageTextLeft.text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Player_MoneyUp_CriticalDamage) + "";                              //  크리티컬 데미지 증가 Value Left
+                Player_MoneyUp_CriticalDamageTextRight.text = TextFormatter.GetDecimalPointCommaText_00(GameManager.Player_MoneyUp_CriticalDamage + IncreaseValue[index]) + "";      //  크리티컬 데미지 증가 Value Right
+
+                Player_MoneyUp_CriticalDamageTextLeft.fontSize  = ReturnFontSize(GameManager.Player_MoneyUp_CriticalDamage);
+                Player_MoneyUp_CriticalDamageTextRight.fontSize = ReturnFontSize(GameManager.Player_MoneyUp_CriticalDamage);
             }
         }
         else if (index == 5)
@@ -298,14 +354,20 @@ public class CharacterMoneyShopManager : MonoBehaviour
             if (GameManager.Player_MoneyUp_ArmorPenetrationLevel >= MaxValue[index])
             {
                 Player_MoneyUp_ArmorPenetrationLevel.text = "<color=cyan>Lv. MAX</color>";               //  방어력 관통 레벨 Text
-                Player_MoneyUp_ArmorPenetrationTextLeft.text = TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_ArmorPenetration) + "";                                //  방어력 관통 증가 Value Left
-                Player_MoneyUp_ArmorPenetrationTextRight.text = TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_ArmorPenetration + (int)IncreaseValue[index]) + "";   //  방어력 관통 증가 Value Right
+                Player_MoneyUp_ArmorPenetrationTextLeft.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_ArmorPenetration) + "";                                //  방어력 관통 증가 Value Left
+                Player_MoneyUp_ArmorPenetrationTextRight.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_ArmorPenetration + (int)IncreaseValue[index]) + "";   //  방어력 관통 증가 Value Right
+
+                Player_MoneyUp_ArmorPenetrationTextLeft.fontSize  = ReturnFontSize(GameManager.Player_MoneyUp_ArmorPenetration);
+                Player_MoneyUp_ArmorPenetrationTextRight.fontSize = ReturnFontSize(GameManager.Player_MoneyUp_ArmorPenetration);
             }
             else
             {
-                Player_MoneyUp_ArmorPenetrationLevel.text = "Lv." + TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_ArmorPenetrationLevel);                           //  방어력 관통 레벨 Text
-                Player_MoneyUp_ArmorPenetrationTextLeft.text = TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_ArmorPenetration) + "";                                //  방어력 관통 증가 Value Left
-                Player_MoneyUp_ArmorPenetrationTextRight.text = TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_ArmorPenetration + (int)IncreaseValue[index]) + "";   //  방어력 관통 증가 Value Right
+                Player_MoneyUp_ArmorPenetrationLevel.text = "Lv. " + TextFormatter.GetThousandCommaText(GameManager.Player_MoneyUp_ArmorPenetrationLevel);                           //  방어력 관통 레벨 Text
+                Player_MoneyUp_ArmorPenetrationTextLeft.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_ArmorPenetration) + "";                                //  방어력 관통 증가 Value Left
+                Player_MoneyUp_ArmorPenetrationTextRight.text = TextFormatter.GetDecimalPointCommaText_0(GameManager.Player_MoneyUp_ArmorPenetration + (int)IncreaseValue[index]) + "";   //  방어력 관통 증가 Value Right
+
+                Player_MoneyUp_ArmorPenetrationTextLeft.fontSize  = ReturnFontSize(GameManager.Player_MoneyUp_ArmorPenetration);
+                Player_MoneyUp_ArmorPenetrationTextRight.fontSize = ReturnFontSize(GameManager.Player_MoneyUp_ArmorPenetration);
             }
         }
         MoneyUpBtnText[index].text = TextFormatter.GetThousandCommaText(needMoney);                                                                                                 //  골드 획득량 증가 Text
