@@ -34,6 +34,11 @@ public class TextFormatter : MonoBehaviour
         else return string.Format("{0:#,###}", data);
     }
 
+    public static string GetDecimalPointCommaText(decimal data)
+    {
+        return string.Format("{0:#,###}", data);
+    }
+
     public static string GetDecimalPointCommaText_00(decimal data)
     {
         return string.Format("{0:#,##0.00}", data);
