@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using GoogleMobileAds.Api;
 using UnityEngine.UI;
-
+using GoogleMobileAds.Common;
+using UnityEngine.Advertisements;
 /*
  * File :   AdManager.cs
  * Desc :   광고 관리
@@ -29,6 +32,24 @@ using UnityEngine.UI;
 
 public class AdManager : MonoBehaviour
 {
+    private static AdManager instance;
+
+    public static AdManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<AdManager>();
+                if (instance == null)
+                {
+                    Debug.LogError("AdManager 인스턴스를 찾을 수 없습니다.");
+                }
+            }
+            return instance;
+        }
+    }
+
     public Button AdOpenBtn;
     public Button AdCloseBtn;
     public Button[] AdSelBtn;
@@ -45,12 +66,48 @@ public class AdManager : MonoBehaviour
     public static int[] AdPowerValue;
 
     public static bool[] AdPlaying;
-    private int[] AdLevel;
+    public static int[] AdLevel;
+
+    private RewardedAd rewardedAd;
+    private string adUnitId;
 
     // 광고 지속 시간을 나타내는 변수를 설정
     int[] adDurationSeconds; // 3분
 
+    private void Awake()
+    {
+        AdLevel = new int[3]
+        {
+            1,
+            1,
+            1,
+        };
+
+        AdPowerValue = new int[3]
+        {
+            100 + 10 * (AdLevel[0] - 1),
+            100 + 10 * (AdLevel[1] - 1),
+            100 + 10 * (AdLevel[2] - 1),
+        };
+        AdPlaying = new bool[3];
+
+        AdPowerValue = new int[3]
+        {
+            100,
+            100,
+            100,
+        };
+        adDurationSeconds = new int[3]
+        {
+            180,
+            180,
+            180,
+        };
+
+    }
+
     // Start is called before the first frame update
+    [Obsolete]
     void Start()
     {
         AdOpenBtn.onClick.AddListener(AdOpen);
@@ -63,37 +120,13 @@ public class AdManager : MonoBehaviour
         for (int i = 0; i < AdSelBtn.Length; i++)
         {
             int index = i;
-
-            AdSelBtn[index].onClick.AddListener(() => AdPlay(index));
+            
+            MobileAds.Initialize((InitializationStatus initStatus) =>
+            {
+                //초기화 완료
+                AdSelBtn[index].onClick.AddListener(() => AdPlay(index));
+            });
         }
-
-
-        AdPowerValue = new int[3]
-        {
-            100,
-            100,
-            100,
-        };
-
-        AdLevel = new int[3]
-        {
-            1,
-            1,
-            1,
-        };
-
-        AdPlaying = new bool[3];
-
-        AdPowerValue[0] = 100 + 10 * (AdLevel[0] - 1);
-        AdPowerValue[1] = 100 + 10 * (AdLevel[1] - 1);
-        AdPowerValue[2] = 100 + 10 * (AdLevel[2] - 1);
-
-        adDurationSeconds = new int[3]
-        {
-            180,
-            180,
-            180,
-        };
 
         for (int i = 0; i < AdPlayingImg.Length; i++)
         {
@@ -110,9 +143,95 @@ public class AdManager : MonoBehaviour
                 AdTimeText[index].gameObject.SetActive(false);
             }
         }
+
+
+#if UNITY_ANDROID
+        adUnitId = "ca-app-pub-3940256099942544/5224354917";
+#elif UNITY_IOS
+            adUnitId = "ca-app-pub-3940256099942544/5224354917";
+#else
+            adUnitId = "ca-app-pub-3940256099942544/5224354917";
+#endif
+
+        LoadRewardedAd();
+    }
+    [Obsolete]
+    public void LoadRewardedAd() //광고 로드 하기
+    {
+        // Clean up the old ad before loading a new one.
+        if (rewardedAd != null)
+        {
+            rewardedAd.Destroy();
+            rewardedAd = null;
+        }
+
+        Debug.Log("Loading the rewarded ad.");
+
+        // create our request used to load the ad.
+        var adRequest = new AdRequest.Builder().Build();
+
+        // send the request to load the ad.
+        RewardedAd.Load(adUnitId, adRequest,
+            (RewardedAd ad, LoadAdError error) =>
+            {
+                // if error is not null, the load request failed.
+                if (error != null || ad == null)
+                {
+                    Debug.LogError("Rewarded ad failed to load an ad " +
+                                   "with error : " + error);
+                    return;
+                }
+
+                Debug.Log("Rewarded ad loaded with response : "
+                          + ad.GetResponseInfo());
+
+                rewardedAd = ad;
+            });
     }
 
-    private void AdOpen()
+    [Obsolete]
+    public void ShowAd() //광고 보기
+    {
+        const string rewardMsg =
+            "Rewarded ad rewarded the user. Type: {0}, amount: {1}.";
+
+        if (rewardedAd != null && rewardedAd.CanShowAd())
+        {
+            rewardedAd.Show((Reward reward) =>
+            {
+                //보상 획득하기
+                Debug.Log(String.Format(rewardMsg, reward.Type, reward.Amount));
+            });
+        }
+        else
+        {
+            LoadRewardedAd();
+        }
+    }
+
+    [Obsolete]
+    private void RegisterReloadHandler(RewardedAd ad) //광고 재로드
+    {
+        // Raised when the ad closed full screen content.
+        ad.OnAdFullScreenContentClosed += (null);
+        {
+            Debug.Log("Rewarded Ad full screen content closed.");
+    
+            // Reload the ad so that we can show another as soon as possible.
+            LoadRewardedAd();
+        };
+        // Raised when the ad failed to open full screen content.
+        ad.OnAdFullScreenContentFailed += (AdError error) =>
+        {
+            Debug.LogError("Rewarded ad failed to open full screen content " +
+                           "with error : " + error);
+    
+            // Reload the ad so that we can show another as soon as possible.
+            LoadRewardedAd();
+        };
+    }
+
+    public void AdOpen()
     {
         AdValue[0].text = "<color=red>공격력</color> +" + AdPowerValue[0] + "%";
         AdValue[1].text = "<color=yellow>골드</color> +" + AdPowerValue[1] + "%";
@@ -124,14 +243,16 @@ public class AdManager : MonoBehaviour
 
         AdBox.SetActive(true);
     }
-
     private void AdClose()
     {
         AdBox.SetActive(false);
     }
 
+    [Obsolete]
     private void AdPlay(int index)
     {
+        ShowAd();
+        StatisticsManager.ImmutabilityMainAdCount += 1;
         Image btnimg = AdSelBtn[index].GetComponent<Image>();
         if (index == 0 && !AdPlaying[index]) // 광고를 보지 않았을 때만 실행되도록 체크
         {
@@ -175,6 +296,7 @@ public class AdManager : MonoBehaviour
             // 1초마다 광고 지속 시간을 감소시키는 코루틴 시작
             StartCoroutine(DecreaseAdDuration(index, adDurationSeconds[index]));
         }
+        LoadRewardedAd();
     }
 
     private IEnumerator DecreaseAdDuration(int index, int duration)
@@ -207,4 +329,7 @@ public class AdManager : MonoBehaviour
         AdPlaying[index] = false;
         AdPlayingImg[index].color = ColorManager.ColorChange("검정색");
     }
+
 }
+
+
