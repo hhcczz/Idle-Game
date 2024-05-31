@@ -85,9 +85,9 @@ public class MineAdManager : MonoBehaviour
 
         adDurationSeconds = new int[3]
         {
-            180,
-            180,
-            180,
+            1800,
+            1800,
+            1800,
         }; 
         
         for (int i = 0; i < AdPlayingImg.Length; i++)
@@ -129,8 +129,10 @@ public class MineAdManager : MonoBehaviour
         AdBox.SetActive(false);
     }
 
+    [System.Obsolete]
     private void AdPlay(int index)
     {
+        AdManager.Instance.ShowAd();
         StatisticsManager.ImmutabilityMineAdCount++;
         Image btnimg = AdSelBtn[index].GetComponent<Image>();
         if (index == 0 && !AdPlaying[index]) // 광고를 보지 않았을 때만 실행되도록 체크
@@ -175,6 +177,7 @@ public class MineAdManager : MonoBehaviour
             // 1초마다 광고 지속 시간을 감소시키는 코루틴 시작
             StartCoroutine(DecreaseAdDuration(index, adDurationSeconds[index]));
         }
+        AdManager.Instance.LoadRewardedAd();
     }
 
     private IEnumerator DecreaseAdDuration(int index, int duration)
@@ -202,7 +205,7 @@ public class MineAdManager : MonoBehaviour
         btnimg.color = ColorManager.ColorChange("하얀색");
         AdSelBtn[index].interactable = true;
         AdSelText[index].text = "<size=24>광고 보기</size>";
-        adDurationSeconds[index] = 180;
+        adDurationSeconds[index] = 1800;
         // AdPlaying을 false로 설정
         AdPlaying[index] = false;
         AdPlayingImg[index].color = ColorManager.ColorChange("검정색");
