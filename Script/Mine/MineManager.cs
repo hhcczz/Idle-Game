@@ -474,12 +474,13 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
             if (check <= 2) MineLevelUpBtn[check].interactable = false;
             else if (check >= 3 && check <= 5) MineLevelUpBtn[check - 3].interactable = false;
             else if (check >= 6 && check <= 8) MineLevelUpBtn[check - 6].interactable = false;
+            Debug.Log("False했음 : " + check);
         }
         else
         {
-            MineLevelUpBtn[0].interactable = true;
-            MineLevelUpBtn[1].interactable = true;
-            MineLevelUpBtn[2].interactable = true;
+            if (check <= 2) MineLevelUpBtn[check].interactable = true;
+            else if (check >= 3 && check <= 5) MineLevelUpBtn[check - 3].interactable = true;
+            else if (check >= 6 && check <= 8) MineLevelUpBtn[check - 6].interactable = true;
             for (int i = 0; i < 9; i++)
             {
                 if (level >= DevideLevel[i] && i != 0) texts[i].text = TextFormatter.GetThousandCommaText(ExchangeNeedStar(level - DevideLevel[i] + 1, grade)) + "";
@@ -671,7 +672,6 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
 
                 UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Pickaxe_CriticalChance_Level, 1);
                 StatisticsManager.ImmutabilityPickaxeUpgradeCount++;
-                if (GameManager.Pickaxe_DamageLv >= UpgradeMax[1]) MineLevelUpBtn[1].interactable = false;
             }
             else if (index == 2)
             {
