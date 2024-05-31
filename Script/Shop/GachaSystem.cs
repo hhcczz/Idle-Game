@@ -57,6 +57,8 @@ public class GachaSystem : MonoBehaviour
 
     public Button ReceiveOutBtn;
 
+    public Button[] AdDrawBtn;
+
     private int Weapon_AdDayCount = 3;
     private int Accessory_AdDayCount = 3;
     private int absoulteAdDayCount = 3;
@@ -76,6 +78,8 @@ public class GachaSystem : MonoBehaviour
     {
         if (GameManager.Weapon_AdCount == 0) GameManager.Weapon_AdCount = 11; // 또는 다른 초기값으로 설정
         if (GameManager.Accessory_AdCount == 0) GameManager.Accessory_AdCount = 11; // 또는 다른 초기값으로 설정
+
+        Debug.Log("개수 : " + GameManager.Weapon_AdCount);
 
         if (GameManager.WarrantLevel[26] >= 1)
         {
@@ -119,6 +123,13 @@ public class GachaSystem : MonoBehaviour
 
             WeaponLevelReceiveBtn[index].onClick.AddListener(() => ReceiveWeapon(index));
             AccessoryLevelReceiveBtn[index].onClick.AddListener(() => ReceiveAccessory(index));
+        }
+
+        for(int i = 0; i < AdDrawBtn.Length; i++)
+        {
+            int index = i;
+
+            AdDrawBtn[index].onClick.AddListener(() => AdPlayingDraw(index));
         }
 
         if (GameManager.WarrantLevel[14] >= 1)
@@ -179,8 +190,6 @@ public class GachaSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        
-
         if (gameObject.activeSelf == true)
         {
             if (GameManager.WarrantLevel[14] >= 1)
@@ -392,13 +401,38 @@ public class GachaSystem : MonoBehaviour
 
         UpdateButtonInteractivity();
     }
+
+    [System.Obsolete]
+    private void AdPlayingDraw(int index)
+    {
+        AdManager.Instance.ShowAd();
+        int drawCount = 0;
+        if (GameManager.Weapon_AdCount == 0) GameManager.Weapon_AdCount = 11; // 또는 다른 초기값으로 설정
+        if (GameManager.Accessory_AdCount == 0) GameManager.Accessory_AdCount = 11; // 또는 다른 초기값으로 설정
+
+        if (index == 0)
+        {
+            drawCount = GameManager.Weapon_AdCount;
+            Weapon_AdDayCount--;
+            GameManager.Weapon_AdCount++;
+            thisInDrawingState = 1;
+        }
+        else if(index == 1)
+        {
+            drawCount = GameManager.Accessory_AdCount;
+            Accessory_AdDayCount--;
+            GameManager.Accessory_AdCount++;
+            thisInDrawingState = 2;
+        }
+        closeButton.interactable = false;
+        gachaPanel.SetActive(true);
+        if (!GachaRun) StartCoroutine(RunGacha(drawCount));
+        AdManager.Instance.LoadRewardedAd();
+    }
     
     void ChangeDrawCount(int index)
     {
         int drawCount = 0;
-
-        if (GameManager.Weapon_AdCount == 0) GameManager.Weapon_AdCount = 11; // 또는 다른 초기값으로 설정
-        if (GameManager.Accessory_AdCount == 0) GameManager.Accessory_AdCount = 11; // 또는 다른 초기값으로 설정
         int Free = Random.Range(0, 100);
         switch (index)
         {
@@ -434,18 +468,6 @@ public class GachaSystem : MonoBehaviour
                 }
                 else GameManager.Player_Diamond -= NeedDiamondValue1500;
                 break;
-            case 4:
-                if(thisInDrawingState == 1)
-                {
-                    drawCount = GameManager.Weapon_AdCount;
-                    Weapon_AdDayCount--;
-                }
-                else if(thisInDrawingState == 2)
-                {
-                    drawCount = GameManager.Accessory_AdCount;
-                    Accessory_AdDayCount--;
-                }
-                break;
         }
 
         closeButton.interactable = false;
@@ -456,8 +478,6 @@ public class GachaSystem : MonoBehaviour
             StartCoroutine(RunGacha(drawCount));
         }
 
-        if (index == 4 && thisInDrawingState == 1) GameManager.Weapon_AdCount++;
-        else if (index == 4 && thisInDrawingState == 2) GameManager.Accessory_AdCount++;
     }
 
     private void CloseGachaPanel()
@@ -803,11 +823,11 @@ public class GachaSystem : MonoBehaviour
     {
         if(Weapon_AdDayCount == 0)
         {
-            WeaponDrawBtn[4].interactable = false;
+            AdDrawBtn[0].interactable = false;
         }
         if (Accessory_AdDayCount == 0)
         {
-            AccessoryDrawBtn[4].interactable = false;
+            AdDrawBtn[1].interactable = false;
         }
 
         if (GameManager.Player_Diamond >= NeedDiamondValue500 && GachaRun == false)
