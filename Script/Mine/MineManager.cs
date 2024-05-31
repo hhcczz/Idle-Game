@@ -57,6 +57,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
     public GameObject UpgradePanel;
     public Text UpgradeTitleText;
 
+    public Text[] MaxText;
 
     public static float RocksNormalDamage;
     public static float RocksCriticalDamage;
@@ -102,6 +103,21 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         };
 
     private RockManager rockmanager;
+
+    private int[] UpgradeMax = new int[9]
+    {
+        100001,
+        801,
+        100001,
+
+        81,
+        501,
+        1001,
+
+        100001,
+        2001,
+        1001,
+    };
 
     private void Awake()
     {
@@ -173,26 +189,28 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         {
             UpdateMineLevelText(GameManager.Pickaxe_DamageLv, GameManager.Pickaxe_CriticalChance_Level, GameManager.Pickaxe_CriticalDamage_Level);
             UpdateMineLeftRightText(index, GameManager.Pickaxe_Damage, GameManager.Pickaxe_CriticalChance, GameManager.Pickaxe_CriticalDamage);
-            UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Pickaxe_DamageLv);
-            UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Pickaxe_CriticalChance_Level);
-            UpdateMineNeedItemText(MineNeedItemText_3, "일반", GameManager.Pickaxe_CriticalDamage_Level);
+            UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Pickaxe_DamageLv, 0);
+            UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Pickaxe_CriticalChance_Level, 1);
+            UpdateMineNeedItemText(MineNeedItemText_3, "일반", GameManager.Pickaxe_CriticalDamage_Level, 2);
         }
         else if (index == 1)
         {
             UpdateMineLevelText(GameManager.Mineral_LevelMI, GameManager.Mineral_LevelHP, GameManager.Mineral_LevelRS);
             UpdateMineLeftRightText(index, GameManager.Mineral_MI, GameManager.Mineral_HP, GameManager.Mineral_RS);
-            UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Mineral_LevelMI);
-            UpdateMineNeedItemText(MineNeedItemText_2, "일반", GameManager.Mineral_LevelHP);
-            UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Mineral_LevelRS);
+            UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Mineral_LevelMI, 3);
+            UpdateMineNeedItemText(MineNeedItemText_2, "일반", GameManager.Mineral_LevelHP, 4);
+            UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Mineral_LevelRS, 5);
         }
         else if (index == 2)
         {
             UpdateMineLevelText(GameManager.Option_LevelPMA, GameManager.Option_LevelMB, GameManager.Option_LevelPFD);
             UpdateMineLeftRightText(index, GameManager.Option_PMA, GameManager.Option_MB, GameManager.Option_PFD);
-            UpdateMineNeedItemText(MineNeedItemText_1, "고급", GameManager.Option_LevelPMA);
-            UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Option_LevelMB);
-            UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Option_LevelPFD);
+            UpdateMineNeedItemText(MineNeedItemText_1, "고급", GameManager.Option_LevelPMA, 6);
+            UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Option_LevelMB, 7);
+            UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Option_LevelPFD, 8);
         }
+
+        for (int i = 0; i < 3; i++) MaxText[i].text = "MAX Lv." + UpgradeMax[i + index * 3];
 
         for (int i = 0; i < MineUpgradeImg.Length; i++)
         {
@@ -442,13 +460,33 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
     };
 
     // 필요 아이템 개수 업데이트
-    private void UpdateMineNeedItemText(Text[] texts, string grade, int level)
+    private void UpdateMineNeedItemText(Text[] texts, string grade, int level, int check)
     {
-        for(int i = 0; i < 9; i++)
+        if (level >= UpgradeMax[check])
         {
-            if (level >= DevideLevel[i] && i != 0) texts[i].text = TextFormatter.GetThousandCommaText(ExchangeNeedStar(level - DevideLevel[i] + 1, grade)) + "";
-            else if (i == 0) texts[0].text = TextFormatter.GetThousandCommaText(ExchangeNeedStar(level, grade)) + "";
-            else texts[i].text = "0";
+            for (int i = 0; i < 9; i++)
+            {
+                texts[i].text = "MAX";
+            }
+            // 0 1 2
+            // 3 4 5
+            // 6 7 8
+            if (check <= 2) MineLevelUpBtn[check].interactable = false;
+            else if (check >= 3 && check <= 5) MineLevelUpBtn[check - 3].interactable = false;
+            else if (check >= 6 && check <= 8) MineLevelUpBtn[check - 6].interactable = false;
+        }
+        else
+        {
+            MineLevelUpBtn[0].interactable = true;
+            MineLevelUpBtn[1].interactable = true;
+            MineLevelUpBtn[2].interactable = true;
+            for (int i = 0; i < 9; i++)
+            {
+                if (level >= DevideLevel[i] && i != 0) texts[i].text = TextFormatter.GetThousandCommaText(ExchangeNeedStar(level - DevideLevel[i] + 1, grade)) + "";
+                else if (i == 0) texts[0].text = TextFormatter.GetThousandCommaText(ExchangeNeedStar(level, grade)) + "";
+                else texts[i].text = "0";
+            }
+
         }
         
 
@@ -510,26 +548,28 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         {
             UpdateMineLevelText(GameManager.Pickaxe_DamageLv, GameManager.Pickaxe_CriticalChance_Level, GameManager.Pickaxe_CriticalDamage_Level);
             UpdateMineLeftRightText(index, GameManager.Pickaxe_Damage, GameManager.Pickaxe_CriticalChance, GameManager.Pickaxe_CriticalDamage);
-            UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Pickaxe_DamageLv);
-            UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Pickaxe_CriticalChance_Level);
-            UpdateMineNeedItemText(MineNeedItemText_3, "일반", GameManager.Pickaxe_CriticalDamage_Level);
+            UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Pickaxe_DamageLv, 0);
+            UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Pickaxe_CriticalChance_Level, 1);
+            UpdateMineNeedItemText(MineNeedItemText_3, "일반", GameManager.Pickaxe_CriticalDamage_Level, 2);
         }
         else if (index == 1)
         {
             UpdateMineLevelText(GameManager.Mineral_LevelMI, GameManager.Mineral_LevelHP, GameManager.Mineral_LevelRS);
             UpdateMineLeftRightText(index, GameManager.Mineral_MI, GameManager.Mineral_HP, GameManager.Mineral_RS);
-            UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Mineral_LevelMI);
-            UpdateMineNeedItemText(MineNeedItemText_2, "일반", GameManager.Mineral_LevelHP);
-            UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Mineral_LevelRS);
+            UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Mineral_LevelMI, 3);
+            UpdateMineNeedItemText(MineNeedItemText_2, "일반", GameManager.Mineral_LevelHP, 4);
+            UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Mineral_LevelRS, 5);
         }
         else if (index == 2)
         {
             UpdateMineLevelText(GameManager.Option_LevelPMA, GameManager.Option_LevelMB, GameManager.Option_LevelPFD);
             UpdateMineLeftRightText(index, GameManager.Option_PMA, GameManager.Option_MB, GameManager.Option_PFD);
-            UpdateMineNeedItemText(MineNeedItemText_1, "고급", GameManager.Option_LevelPMA);
-            UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Option_LevelMB);
-            UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Option_LevelPFD);
+            UpdateMineNeedItemText(MineNeedItemText_1, "고급", GameManager.Option_LevelPMA, 6);
+            UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Option_LevelMB, 7);
+            UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Option_LevelPFD, 8);
         }
+
+        for (int i = 0; i < 3; i++) MaxText[i].text = "MAX Lv." + UpgradeMax[i + index * 3];
 
         for (int i = 0; i < MineUpgradeImg.Length; i++)
         {
@@ -612,7 +652,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                 GameManager.Pickaxe_DamageLv++;
                 GameManager.Pickaxe_Damage += 1m;
 
-                UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Pickaxe_DamageLv);
+                UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Pickaxe_DamageLv, 0);
                 StatisticsManager.ImmutabilityPickaxeUpgradeCount++;
             }
             else if (index == 1)
@@ -629,8 +669,9 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                 GameManager.Pickaxe_CriticalChance += 0.1m;
 
 
-                UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Pickaxe_CriticalChance_Level);
+                UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Pickaxe_CriticalChance_Level, 1);
                 StatisticsManager.ImmutabilityPickaxeUpgradeCount++;
+                if (GameManager.Pickaxe_DamageLv >= UpgradeMax[1]) MineLevelUpBtn[1].interactable = false;
             }
             else if (index == 2)
             {
@@ -646,7 +687,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                 GameManager.Pickaxe_CriticalDamage_Level++;
                 GameManager.Pickaxe_CriticalDamage += 1m;
 
-                UpdateMineNeedItemText(MineNeedItemText_3, "일반", GameManager.Pickaxe_CriticalDamage_Level);
+                UpdateMineNeedItemText(MineNeedItemText_3, "일반", GameManager.Pickaxe_CriticalDamage_Level, 2);
                 StatisticsManager.ImmutabilityPickaxeUpgradeCount++;
             }
 
@@ -668,7 +709,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                 GameManager.Mineral_LevelMI++;
                 GameManager.Mineral_MI += 0.2m;
 
-                UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Mineral_LevelMI);
+                UpdateMineNeedItemText(MineNeedItemText_1, "일반", GameManager.Mineral_LevelMI, 3);
                 StatisticsManager.ImmutabilityMineralUpgradeCount++;
             }
             else if (index == 1)
@@ -683,7 +724,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                 GameManager.Mineral_HP += 0.1m;
 
 
-                UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Mineral_LevelHP);
+                UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Mineral_LevelHP, 4);
                 StatisticsManager.ImmutabilityMineralUpgradeCount++;
             }
             else if (index == 2)
@@ -698,7 +739,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                 GameManager.Mineral_LevelRS++;
                 GameManager.Mineral_RS += 0.01m;
 
-                UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Mineral_LevelRS);
+                UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Mineral_LevelRS, 5);
                 StatisticsManager.ImmutabilityMineralUpgradeCount++;
             }
 
@@ -720,7 +761,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                 GameManager.Option_LevelPMA++;
                 GameManager.Option_PMA += 1.2m;
 
-                UpdateMineNeedItemText(MineNeedItemText_1, "고급", GameManager.Option_LevelPMA);
+                UpdateMineNeedItemText(MineNeedItemText_1, "고급", GameManager.Option_LevelPMA, 6);
                 StatisticsManager.ImmutabilityOptionUpgradeCount++;
             }
             else if (index == 1)
@@ -735,7 +776,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                 GameManager.Option_MB += 0.05m;
 
 
-                UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Option_LevelMB);
+                UpdateMineNeedItemText(MineNeedItemText_2, "고급", GameManager.Option_LevelMB, 7);
                 StatisticsManager.ImmutabilityOptionUpgradeCount++;
             }
             else if (index == 2)
@@ -750,7 +791,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
                 GameManager.Option_LevelPFD++;
                 GameManager.Option_PFD += 0.01m;
 
-                UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Option_LevelPFD);
+                UpdateMineNeedItemText(MineNeedItemText_3, "고급", GameManager.Option_LevelPFD, 8);
                 StatisticsManager.ImmutabilityOptionUpgradeCount++;
             }
 
