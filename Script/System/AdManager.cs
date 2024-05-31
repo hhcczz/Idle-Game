@@ -99,9 +99,9 @@ public class AdManager : MonoBehaviour
         };
         adDurationSeconds = new int[3]
         {
-            180,
-            180,
-            180,
+            1800,
+            1800,
+            1800,
         };
 
     }
@@ -324,7 +324,7 @@ public class AdManager : MonoBehaviour
         btnimg.color = ColorManager.ColorChange("하얀색");
         AdSelBtn[index].interactable = true;
         AdSelText[index].text = "<size=24>광고 보기</size>";
-        adDurationSeconds[index] = 180;
+        adDurationSeconds[index] = 1800;
         // AdPlaying을 false로 설정
         AdPlaying[index] = false;
         AdPlayingImg[index].color = ColorManager.ColorChange("검정색");
