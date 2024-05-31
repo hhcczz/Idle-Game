@@ -298,6 +298,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
     // 다음으로 넘어가기 - 체크했음
     public void UpdateEnemyStageClear(int difficultyInStage, int fixDifficulty)
     {
+        if (GameManager.RockstageClearDict["최상급 지옥석"][17] == true) return;
         // BOSS 처치
         // 마지막 Extreme단계 클리어시 다음 Easy로 넘어가기
         if (fixDifficulty == 3 && RockManager.Rock_defeatedIndex == 17 && GameManager.RockstageClearDict[rockmanager.RockName(difficultyInStage + 1, 0)][0] == false)
