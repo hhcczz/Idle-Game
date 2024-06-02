@@ -49,7 +49,7 @@ public class RefineryManager : MonoBehaviour
 
     private string[] RF_Title;
 
-    private bool[] RF_BuyCheck = new bool[32];
+    public static bool[] RF_BuyCheck = new bool[32];
 
     private AudioSource audioSource; // AudioSource 변수 추가
     public AudioClip[] RFSoundClip; // AudioClip 변수 선언
@@ -60,6 +60,7 @@ public class RefineryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SaveLoadManager.Instance.LoadMine();
         // AudioSource 컴포넌트 초기화
         audioSource = GetComponent<AudioSource>();
         RF_OpenBtn.onClick.AddListener(() => RF_Open(RF_InPanel));
@@ -292,7 +293,7 @@ public class RefineryManager : MonoBehaviour
         RF_InfoText[0].text = "곡괭이 공격력 <color=cyan>+" + RF_Power_1[RF_InPanel] + "</color> 증가";
         RF_InfoText[1].text = "크리티컬 확률 <color=cyan>+" + TextFormatter.GetFloatPointCommaText_0(RF_Power_2[RF_InPanel]) + "%</color> 증가";
         RF_InfoText[2].text = "치명적 피해 <color=cyan>+" + RF_Power_3[RF_InPanel] + "%</color> 증가";
-        RF_InfoText[3].text = "추가 공격 <color=cyan>+" + RF_Power_4_1[RF_InPanel] + "</color> 증가";
+        RF_InfoText[3].text = "추가 클릭 <color=cyan>+" + RF_Power_4_1[RF_InPanel] + "</color> 증가";
         RF_InfoText[4].text = "광물 획득량 <color=cyan>+" + RF_Power_4_2[RF_InPanel] + "</color> 증가";
 
         RF_TitleImg.sprite = GameManager.GemSprites[RF_InPanel];
@@ -350,6 +351,8 @@ public class RefineryManager : MonoBehaviour
                     RF_AddAttack += RF_Power_4_1[RF_InPanel];
                     RF_MineAmount += RF_Power_4_2[RF_InPanel];
                 }
+                MineSave saveData = new();
+                SaveLoadManager.Instance.SaveMine(saveData);
             }
             else
             {
