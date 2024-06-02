@@ -111,6 +111,8 @@ public class PlayerSave
 
     public bool[] C_Boss;
 
+    public int TutorialLevel;
+
     public PlayerSave()
     {
         Player_BaiscDamage = (float)GameManager.Player_Damage;
@@ -162,6 +164,8 @@ public class PlayerSave
         StarDark = GameManager.HaveStarDark;
 
         C_Boss = BossManager.ClearBoss;
+
+        TutorialLevel = TutorialManager.PlayerTutorialLevel;
 
     }
 
@@ -265,7 +269,99 @@ public class EquipSave
 }
 
 
+[System.Serializable]
+public class ShopSave
+{
 
+    public bool[] PackageCheck;
+    public bool[] W_Receive;
+    public bool[] A_Receive;
+
+    public ShopSave()
+    {
+        PackageCheck = GameManager.PackageBuyCheck;
+        W_Receive = GameManager.WeaponWaitReceiveRoof;
+        A_Receive = GameManager.AccessoryWaitReceiveRoof;
+    }
+}
+
+[System.Serializable]
+public class MineSave
+{
+    public float PickDmg;
+    public float PickCRD;
+    public float PickCRC;
+
+    public float Mineral_MI;
+    public float Mineral_HP;
+    public float Mineral_RS;
+
+    public float Option_PMA;
+    public float Option_MB;
+    public float Option_PFD;
+
+    public int PickDmgLv;
+    public int PickCRDLv;
+    public int PickCRCLv;
+
+    public int Mineral_MILv;
+    public int Mineral_HPLv;
+    public int Mineral_RSLv;
+
+    public int Option_PMALv;
+    public int Option_MBLv;
+    public int Option_PFDLv;
+
+    public List<string> RockSavestageClearList;
+
+    public MineSave()
+    {
+        PickDmg = (float)GameManager.Pickaxe_Damage;
+        PickCRD = (float)GameManager.Pickaxe_CriticalDamage;
+        PickCRC = (float)GameManager.Pickaxe_CriticalChance;
+
+        Mineral_MI = (float)GameManager.Mineral_MI;
+        Mineral_HP = (float)GameManager.Mineral_HP;
+        Mineral_RS = (float)GameManager.Mineral_RS;
+
+        Option_PMA = (float)GameManager.Option_PMA;
+        Option_MB = (float)GameManager.Option_MB;
+        Option_PFD = (float)GameManager.Option_PFD;
+
+        PickDmgLv = GameManager.Pickaxe_DamageLv;
+        PickCRDLv = GameManager.Pickaxe_CriticalDamage_Level;
+        PickCRCLv = GameManager.Pickaxe_CriticalChance_Level;
+
+        Mineral_MILv = GameManager.Mineral_LevelMI;
+        Mineral_HPLv = GameManager.Mineral_LevelHP;
+        Mineral_RSLv = GameManager.Mineral_LevelRS;
+
+        Option_PMALv = GameManager.Option_LevelPMA;
+        Option_MBLv = GameManager.Option_LevelMB;
+        Option_PFDLv = GameManager.Option_LevelPFD;
+
+        RockSavestageClearList = ConvertToDicList(GameManager.RockstageClearDict);
+    }
+
+    private List<string> ConvertToDicList(Dictionary<string, bool[]> dict)
+    {
+        List<string> list = new List<string>();
+        foreach (var kvp in dict)
+        {
+            string key = kvp.Key;
+            string valueString = BoolArrayToString(kvp.Value);
+            string serializedPair = key + ":" + valueString;
+            list.Add(serializedPair);
+        }
+        return list;
+    }
+
+    private string BoolArrayToString(bool[] array)
+    {
+        string arrayString = string.Join(",", Array.ConvertAll(array, b => b ? "1" : "0"));
+        return arrayString;
+    }
+}
 
 
 public class SaveLoadManager : MonoBehaviour
@@ -292,6 +388,8 @@ public class SaveLoadManager : MonoBehaviour
     private string PlayerSaveFilePath;
     private string EquipSaveFilePath;
     private string MSSaveFilePath;
+    private string ShopSaveFilePath;
+    private string MineSaveFilePath;
 
     void Awake()
     {
@@ -299,6 +397,8 @@ public class SaveLoadManager : MonoBehaviour
         PlayerSaveFilePath = Application.persistentDataPath + "/Player.json";
         EquipSaveFilePath = Application.persistentDataPath + "/Equip.json";
         MSSaveFilePath = Application.persistentDataPath + "/MS.json";
+        ShopSaveFilePath = Application.persistentDataPath + "/Shop.json";
+        MineSaveFilePath = Application.persistentDataPath + "/Mine.json";
     }
 
     public void SaveEnemy(EnemySave saveData)
@@ -322,6 +422,16 @@ public class SaveLoadManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(saveData, true); // 들여쓰기 활성화
         File.WriteAllText(MSSaveFilePath, json);
+    }
+    public void SaveShop(ShopSave saveData)
+    {
+        string json = JsonUtility.ToJson(saveData, true); // 들여쓰기 활성화
+        File.WriteAllText(ShopSaveFilePath, json);
+    }
+    public void SaveMine(MineSave saveData)
+    {
+        string json = JsonUtility.ToJson(saveData, true); // 들여쓰기 활성화
+        File.WriteAllText(MineSaveFilePath, json);
     }
 
     public void LoadEnemy()
@@ -402,6 +512,8 @@ public class SaveLoadManager : MonoBehaviour
             GameManager.HaveStarDark = saveData.StarDark;
 
             BossManager.ClearBoss = saveData.C_Boss;
+
+            TutorialManager.PlayerTutorialLevel = saveData.TutorialLevel;
         }
     }
 
@@ -487,6 +599,54 @@ public class SaveLoadManager : MonoBehaviour
             MobScrollManager.MS_UpExp = saveData.Save_UpExp;
             MobScrollManager.MS_UpArmorPenetration = saveData.Save_UpArmorPenetration;
             MobScrollManager.MS_UpEarnGold = saveData.Save_UpEarnGold;
+        }
+    }
+    public void LoadShop()
+    {
+        if (File.Exists(ShopSaveFilePath))
+        {
+            string json = File.ReadAllText(ShopSaveFilePath);
+            ShopSave saveData = JsonUtility.FromJson<ShopSave>(json);
+
+            GameManager.PackageBuyCheck = saveData.PackageCheck;
+            GameManager.WeaponWaitReceiveRoof = saveData.W_Receive;
+            GameManager.AccessoryWaitReceiveRoof = saveData.A_Receive;
+
+            Debug.Log("샵로드했음!!");
+        }
+    }
+    public void LoadMine()
+    {
+        if (File.Exists(MineSaveFilePath))
+        {
+            string json = File.ReadAllText(MineSaveFilePath);
+            MineSave saveData = JsonUtility.FromJson<MineSave>(json);
+
+            GameManager.Pickaxe_Damage = (decimal)saveData.PickDmg;
+            GameManager.Pickaxe_CriticalDamage = (decimal)saveData.PickCRD;
+            GameManager.Pickaxe_CriticalChance = (decimal)saveData.PickCRC;
+
+            GameManager.Mineral_MI = (decimal)saveData.Mineral_MI;
+            GameManager.Mineral_HP = (decimal)saveData.Mineral_HP;
+            GameManager.Mineral_RS = (decimal)saveData.Mineral_RS;
+
+            GameManager.Option_PMA = (decimal)saveData.Option_PMA;
+            GameManager.Option_MB = (decimal)saveData.Option_MB;
+            GameManager.Option_PFD = (decimal)saveData.Option_PFD;
+
+            GameManager.Pickaxe_DamageLv = saveData.PickDmgLv;
+            GameManager.Pickaxe_CriticalDamage_Level = saveData.PickCRDLv;
+            GameManager.Pickaxe_CriticalChance_Level = saveData.PickCRCLv;
+
+            GameManager.Mineral_LevelMI = saveData.Mineral_MILv;
+            GameManager.Mineral_LevelHP = saveData.Mineral_HPLv;
+            GameManager.Mineral_LevelRS = saveData.Mineral_RSLv;
+
+            GameManager.Option_LevelPMA = saveData.Option_PMALv;
+            GameManager.Option_LevelMB = saveData.Option_MBLv;
+            GameManager.Option_LevelPFD = saveData.Option_PFDLv;
+
+            GameManager.RockstageClearDict = ConvertToDictionary(saveData.RockSavestageClearList);
         }
     }
 
