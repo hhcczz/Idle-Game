@@ -67,8 +67,6 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
 
     bool RocksInfoOpen = false;
 
-    int index;
-
     public static int executions = 0;
 
     public GameObject lackBG;
@@ -126,6 +124,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
+        SaveLoadManager.Instance.LoadMine();
         // AudioSource 컴포넌트 초기화
         audioSource = GetComponent<AudioSource>();
 
@@ -633,6 +632,7 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         if (level >= DevideLevel[6]) GameManager.HaveStarPurple -= ExchangeNeedStar(level - DevideLevel[6]  + 1, grade);
         if (level >= DevideLevel[7]) GameManager.HaveStarOrange -= ExchangeNeedStar(level - DevideLevel[7]  + 1, grade);
         if (level >= DevideLevel[8]) GameManager.HaveStarDark -= ExchangeNeedStar(level - DevideLevel[8]    + 1, grade);
+
     }
 
     private void MineLevelUP(int index)
@@ -799,6 +799,9 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
             UpdateMineLevelText(GameManager.Option_LevelPMA, GameManager.Option_LevelMB, GameManager.Option_LevelPFD);
             UpdateMineLeftRightText(InUpgradePanel, GameManager.Option_PMA, GameManager.Option_MB, GameManager.Option_PFD);
         }
+
+        MineSave saveData = new();
+        SaveLoadManager.Instance.SaveMine(saveData);
     }
 
     // 광물 고민
