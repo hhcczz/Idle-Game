@@ -74,8 +74,12 @@ public class GachaSystem : MonoBehaviour
     private AudioSource audioSource; // AudioSource 변수 추가
     public AudioClip GachaSoundClip; // AudioClip 변수 선언
 
+    [System.Obsolete]
     private void Start()
     {
+        SaveLoadManager.Instance.LoadEquip();
+        SaveLoadManager.Instance.LoadShop();
+
         if (GameManager.Weapon_AdCount == 0) GameManager.Weapon_AdCount = 11; // 또는 다른 초기값으로 설정
         if (GameManager.Accessory_AdCount == 0) GameManager.Accessory_AdCount = 11; // 또는 다른 초기값으로 설정
 
@@ -97,12 +101,6 @@ public class GachaSystem : MonoBehaviour
 
         NeedDiamondValue500 = 500;
         NeedDiamondValue1500 = 1500;
-
-        int numWeapons = GameManager.itemSprites.Length;
-        int numAccessory = GameManager.AccessorySprites.Length;
-
-        GameManager.WeaponDrawn = new bool[numWeapons];
-        GameManager.AccessoryDrawn = new bool[numAccessory];
 
         ReceiveOutBtn.onClick.AddListener(ReceiveOut);
 
@@ -162,27 +160,46 @@ public class GachaSystem : MonoBehaviour
         WeaponSlider.value = GameManager.WeaponCounts / GameManager.WeaponMaxCounts[GameManager.WeaponShopLevel];
         AccessorySlider.value = GameManager.AccessoryCounts / GameManager.AccessoryMaxCounts[GameManager.AccessoryShopLevel];
 
-        // WeaponBar 배열의 각 요소를 직접 인스펙터에서 할당
-        // WeaponBar[0]에는 "무기1"의 슬라이더, WeaponBar[1]에는 "무기2"의 슬라이더, ...
-        // 이런 식으로 할당해주세요.
-
-        // GameManager.itemCounts 초기화
-        //GameManager.itemCounts = new Dictionary<Sprite, int>();
-        //GameManager.AccessoryCount = new Dictionary<Sprite, int>();
-        //
-        //foreach (Sprite itemSprite in GameManager.itemSprites)
-        //{
-        //    GameManager.itemCounts[itemSprite] = 0;
-        //}
-        //
-        //foreach (Sprite itemSprite in GameManager.AccessorySprites)
-        //{
-        //    GameManager.AccessoryCount[itemSprite] = 0;
-        //}
-
         if (GameManager.WeaponShopLevel == 7) WeaponText.text = "MAX";
         else WeaponText.text = GameManager.WeaponCounts + "/" + GameManager.WeaponMaxCounts[GameManager.WeaponShopLevel - 1];
-        AccessoryText.text = GameManager.AccessoryCounts + "/" + GameManager.AccessoryMaxCounts[GameManager.AccessoryShopLevel - 1];
+
+        if (GameManager.AccessoryShopLevel == 7) AccessoryText.text = "MAX";
+        else AccessoryText.text = GameManager.AccessoryCounts + "/" + GameManager.AccessoryMaxCounts[GameManager.AccessoryShopLevel - 1];
+
+        if (GameManager.WeaponShopLevel == 7) WeaponLevelText.text = "Lv. MAX";
+        else WeaponLevelText.text = "Lv." + GameManager.WeaponShopLevel;
+
+        if (GameManager.AccessoryShopLevel == 7) AccessoryLevelText.text = "Lv. MAX";
+        else AccessoryLevelText.text = "Lv." + GameManager.AccessoryShopLevel;
+
+        for(int i = 0; i < 6; i++)
+        {
+            Image W_buttonImage = WeaponLevelReceiveBtn[i].GetComponent<Image>();       // 버튼의 이미지 컴포넌트 가져오기
+            Image A_buttonImage = AccessoryLevelReceiveBtn[i].GetComponent<Image>();       // 버튼의 이미지 컴포넌트 가져오기
+
+            if (GameManager.AccessoryWaitReceiveRoof[i] == true)
+            {
+                AccessoryLevelReceiveBtn[i].interactable = true;
+                A_buttonImage.color = ColorManager.ColorChange("초록색");
+            }
+            else
+            {
+                AccessoryLevelReceiveBtn[i].interactable = false;
+                A_buttonImage.color = ColorManager.ColorChange("빨간색");
+            }
+
+            if (GameManager.WeaponWaitReceiveRoof[i] == true)
+            {
+                WeaponLevelReceiveBtn[i].interactable = true;
+                W_buttonImage.color = ColorManager.ColorChange("초록색");
+            }
+            else
+            {
+                WeaponLevelReceiveBtn[i].interactable = false;
+                W_buttonImage.color = ColorManager.ColorChange("빨간색");
+            }
+        }
+
 
         UpdateButtonInteractivity();
         UpdateWeaponProbility();
@@ -220,7 +237,7 @@ public class GachaSystem : MonoBehaviour
         ReceivePanel.SetActive(false);
     }
 
-    int ReceiveNum = 0;
+    int ReceiveNum;
 
     private void ReceiveWeapon(int index)
     {
@@ -258,6 +275,13 @@ public class GachaSystem : MonoBehaviour
         ReceiveText[1].text = "+ " + GameManager.WeaponEquipDmg[ReceiveNum];
         ReceiveText[2].text = "+ " + GameManager.WeaponOwnDmg[ReceiveNum] + "%";
         ReceivePanel.SetActive(true);
+        GameManager.WeaponWaitReceiveRoof[index] = false;
+
+        EquipSave saveEquipData = new();
+        SaveLoadManager.Instance.SaveEquip(saveEquipData);
+
+        ShopSave saveData = new();
+        SaveLoadManager.Instance.SaveShop(saveData);
 
         WeaponLevelReceiveBtn[index].interactable = false;
     }
@@ -298,6 +322,13 @@ public class GachaSystem : MonoBehaviour
         ReceiveText[1].text = "+ " + GameManager.AccessoryEquipExp[ReceiveNum];
         ReceiveText[2].text = "+ " + GameManager.AccessoryOwnExp[ReceiveNum] + "%";
         ReceivePanel.SetActive(true);
+        GameManager.AccessoryWaitReceiveRoof[index] = false;
+
+        EquipSave saveEquipData = new();
+        SaveLoadManager.Instance.SaveEquip(saveEquipData);
+
+        ShopSave saveData = new();
+        SaveLoadManager.Instance.SaveShop(saveData);
 
         AccessoryLevelReceiveBtn[index].interactable = false;
     }
@@ -531,6 +562,7 @@ public class GachaSystem : MonoBehaviour
                 UpdateWeaponProbility();
                 Image buttonImage = WeaponLevelReceiveBtn[GameManager.WeaponShopLevel - 2].GetComponent<Image>();       // 버튼의 이미지 컴포넌트 가져오기
                 WeaponLevelReceiveBtn[GameManager.WeaponShopLevel - 2].interactable = true;
+                GameManager.WeaponWaitReceiveRoof[GameManager.WeaponShopLevel - 2] = true;
 
                 // 버튼의 이미지 색상 변경
 
@@ -679,6 +711,7 @@ public class GachaSystem : MonoBehaviour
                 UpdateWeaponProbility();
                 Image buttonImage = AccessoryLevelReceiveBtn[GameManager.AccessoryShopLevel - 2].GetComponent<Image>();       // 버튼의 이미지 컴포넌트 가져오기
                 AccessoryLevelReceiveBtn[GameManager.AccessoryShopLevel - 2].interactable = true;
+                GameManager.AccessoryWaitReceiveRoof[GameManager.AccessoryShopLevel - 2] = true;
 
                 // 버튼의 이미지 색상 변경
                 buttonImage.color = ColorManager.ColorChange("초록색");
@@ -810,6 +843,9 @@ public class GachaSystem : MonoBehaviour
 
         GachaRun = false;
         closeButton.interactable = true;
+
+        EquipSave saveData = new();
+        SaveLoadManager.Instance.SaveEquip(saveData);
 
         UpdateButtonInteractivity();
 
