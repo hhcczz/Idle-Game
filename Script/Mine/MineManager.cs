@@ -348,12 +348,15 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
         RocksNormalDamage = ((float)GameManager.Pickaxe_Damage + RefineryManager.RF_UpPower) * (1 + (float)GameManager.Option_PMA / 100);
         RocksCriticalDamage = (float)(GameManager.Pickaxe_Damage + GameManager.Pickaxe_CriticalDamage + RefineryManager.RF_UpPower) * (1 + (float)GameManager.Option_PMA / 100);
 
+
         int Random_Critical = Random.Range(0, 100); // 크리티컬 확률 조건
         int FatalDamage = Random.Range(0, 100); // 치명적 피해 확률 조건
         int Warrant = Random.Range(0, 100);   // 권능 확률 조건
 
         bool isCritical = Random_Critical < (float)(GameManager.Pickaxe_CriticalChance + (decimal)RefineryManager.RF_Critical);
         float damageAmount = isCritical ? RocksCriticalDamage : RocksNormalDamage;
+
+        if (GameManager.TrandOwned[7] == true) damageAmount += 3000;
 
         if (MineAdManager.AdPlaying[0] == true)
             damageAmount *= (float)((MineAdManager.AdPowerValue[0] + 100) / 100f);
@@ -366,6 +369,8 @@ public class MinerManager : MonoBehaviour, IPointerClickHandler
 
         if (GameManager.WarrantLevel[8] >= 1)
             damageAmount *= (float)(1f + GameManager.Warrant_Power[8] / 100f);
+
+        if (GameManager.TrandOwned[4] == true) damageAmount *= 4;
 
         // touchableArea의 RectTransform을 가져옵니다.
         RectTransform touchableRectTransform = touchableArea.GetComponent<RectTransform>();
