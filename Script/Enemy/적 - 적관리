@@ -676,6 +676,8 @@ public class EnemyManager : MonoBehaviour
         monsters.AddRange(slimes);
     }
 
+    
+
     public GameObject[] BrokingPanel;
 
     public Slider Enemy_HPBar;
@@ -721,9 +723,9 @@ public class EnemyManager : MonoBehaviour
     public Button ExitBtn;                              // 몹 선택 나가기 버튼
     public Button ExitSelBtn;                           // 몹 선택 나가기 버튼
 
-    public int LastBtnIndex = -1;                      // 이전에 선택한 버튼의 인덱스
-    public int MoveDifficultyInStage = -1;             // 0 슬라임 
-    public int FixDifficultyInStage = -1;              // 0 슬라임 
+    public int LastBtnIndex = 0;                      // 이전에 선택한 버튼의 인덱스
+    public int MoveDifficultyInStage = 0;             // 0 슬라임 
+    public int FixDifficultyInStage = 0;              // 0 슬라임 
     public int MoveDifficulty = 0;
     public int FixDifficulty = 0;
 
@@ -762,11 +764,9 @@ public class EnemyManager : MonoBehaviour
     private AudioSource audioSource; // AudioSource 변수 추가
     public AudioClip DeathSoundClip; // AudioClip 변수 선언
 
-    private void Start()
+    private void InitializeStageClearDict()
     {
-        // AudioSource 컴포넌트 초기화
-        audioSource = GetComponent<AudioSource>();
-
+        // 딕셔너리 초기화
         GameManager.stageClearDict["EasySlime"] = new bool[18];
         GameManager.stageClearDict["NormalSlime"] = new bool[18];
         GameManager.stageClearDict["HardSlime"] = new bool[18];
@@ -806,18 +806,28 @@ public class EnemyManager : MonoBehaviour
         GameManager.stageClearDict["NormalDevil"] = new bool[18];
         GameManager.stageClearDict["HardDevil"] = new bool[18];
         GameManager.stageClearDict["ExtremeDevil"] = new bool[18];
+    }
+    private void Start()
+    {
+        SaveLoadManager.Instance.LoadEnemy();
+
+        // 딕셔너리가 비어 있는지 확인하고, 비어 있으면 초기화합니다.
+        if (GameManager.stageClearDict.Count == 0)
+        {
+            InitializeStageClearDict();
+        }
+
+
+        // AudioSource 컴포넌트 초기화
+        audioSource = GetComponent<AudioSource>();
+
+        // AudioSource 컴포넌트 초기화
+        audioSource = GetComponent<AudioSource>();
+
 
         GameManager.stageClearDict["EasySlime"][0] = true;
 
-        GameManager.Enemy_defeatedIndex = 0;
-
-        FixDifficultyInStage = 0;
-        MoveDifficultyInStage = 0;
-        LastBtnIndex = 0;
-        MoveDifficulty = 0;
-        FixDifficulty = 0;
-
-        for(int i = 0; i < BG.Length; i++)
+        for (int i = 0; i < BG.Length; i++)
         {
             if (FixDifficultyInStage == i) BG[i].SetActive(true);
             else BG[i].SetActive(false);
@@ -866,7 +876,7 @@ public class EnemyManager : MonoBehaviour
             "멸망의 숲 - <color=yellow><size=38>Hard</size></color>",
             "멸망의 숲 - <color=#FF7474><size=38>Extreme</size></color>",
         };
-
+        Debug.Log("F : " + FixDifficulty + " FD : " + FixDifficultyInStage);
         EnemyTitle.text = EnemyTitleString[FixDifficulty + FixDifficultyInStage * 4];
 
         DifficultyValue = new string[32]
@@ -961,6 +971,9 @@ public class EnemyManager : MonoBehaviour
         Acquisition_MobScrollValue.text = "0";
 
     }
+    
+
+
 
     [System.Obsolete]
     // Update is called once per frame
@@ -976,12 +989,15 @@ public class EnemyManager : MonoBehaviour
 
         if (currentHP <= 0)
         {
+            EnemySave saveData = new();
+
             enemyAnimators[FixDifficulty + FixDifficultyInStage * 4].SetTrigger("Death");
 
             if ((ChangeManager.InPanel == 2 || ChangeManager.InPanel == 3) && BossManager.fighting == false) audioSource.PlayOneShot(DeathSoundClip, 0.7f); // soundClip은 AudioClip 변수, volume은 소리의 크기 조절값입니다.
             GrantRewards(GameManager.Enemy_defeatedIndex);
             UpdateEnemyStageClear(FixDifficultyInStage, FixDifficulty); // InStage 값으로 적의 스테이지 클리어 여부 업데이트 메서드 호출
 
+            SaveLoadManager.Instance.SaveEnemy(saveData);
         }
 
         if (Stop == false) StartCoroutine(RegenHP()); // RegenHP 코루틴 호출
@@ -1357,6 +1373,7 @@ public class EnemyManager : MonoBehaviour
 
         if (GameManager.WarrantLevel[16] >= 1 && Warrant_Random3 < 8) redStoneReward *= GameManager.Warrant_Power[16];
         if (GameManager.WarrantLevel[17] >= 1 && Warrant_Random4 < 8) mobScroll += GameManager.PlayerHaveMobScroll[FixDifficultyInStage];
+        if (GameManager.TrandOwned[2] == true) mobScroll += 9;
         
         // 보상 지급
         GameManager.Player_CurExp += experienceReward;
