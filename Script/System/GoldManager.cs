@@ -19,6 +19,8 @@ public class GoldManager : MonoBehaviour
 
         if (GameManager.WarrantLevel[11] >= 1 && Warrant_Random < 8) gold *= (int)(1 + (float)GameManager.Warrant_Power[11] / 100);
 
+        if (GameManager.TrandOwned[5] == true) gold *= 6;
+
         return gold;
     }
 }
