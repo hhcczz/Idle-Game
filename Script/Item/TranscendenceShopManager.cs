@@ -42,13 +42,16 @@ public class TranscendenceShopManager : MonoBehaviour
 
     private string[] TrandInfoTitleText;
     private string[] TrandInfoTitleExplainText;
+    private string[] TrandInfoValueString;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        SaveLoadManager.Instance.LoadEquip();
         TrandInfoTitleText = new string[Trand_Info.Length]; // 배열 초기화
         TrandInfoTitleExplainText = new string[8]; // 배열 초기화
+        TrandInfoValueString = new string[8];
+
 
         for (int i = 0; i < Trand_Info.Length; i++)
         {
@@ -61,7 +64,7 @@ public class TranscendenceShopManager : MonoBehaviour
         BuyingMoney = 500000000;
         
         TrandOutBtn.onClick.AddListener(Trand_Out);
-        
+        UpdateShopItems();
     }
 
     private void OnEnable()
@@ -112,6 +115,15 @@ public class TranscendenceShopManager : MonoBehaviour
         TrandInfoTitleText[5] = "<color=#9C0C9C>여신의 축복 곡괭이</color>";
         TrandInfoTitleText[6] = "<color=#67CDFC>얼어붙은 신성한 수호검</color>";
         TrandInfoTitleText[7] = "<color=#FC1400>군주의 전투 망치</color>";
+
+        TrandInfoValueString[0] = "<color=#9892AD> 공격력 +200% 증가 </color>";
+        TrandInfoValueString[1] = "<color=#EB564B> 총 데미지 +100% 증가 </color>";
+        TrandInfoValueString[2] = "<color=#FCB448> 몹 스크롤 획득량 +9 증가 </color>";
+        TrandInfoValueString[3] = "<color=#C2FF498> 경험치 획득량 +500% 증가 </color>";
+        TrandInfoValueString[4] = "<color=#FCB448> 광산 공격력 +300% 증가 </color>";
+        TrandInfoValueString[5] = "<color=#9C0C9C> 골드 획득량 +500% 증가 </color>";
+        TrandInfoValueString[6] = "<color=#67CDFC> 공격력 +5000 증가 </color>";
+        TrandInfoValueString[7] = "<color=#FC1400> 광산 공격력 +3000 증가 </color>";
 
         TrandInfoTitleExplainText[0] = "고대 나무 망치는 고대 신전에서 발견된다.\n" +
                                        "이 무기는 그리프 종족의 전통적인 무기로, 굵은 나무와 단단한 돌로 만들어져 있다.\n" +
@@ -179,7 +191,7 @@ public class TranscendenceShopManager : MonoBehaviour
         TrandInfoFrame.sprite = TrandFrame[index].sprite;
         TrandInfoTitle.text = TrandInfoTitleText[index];
         TrandInfoExplain.text = TrandInfoTitleExplainText[index];
-        TrandInfoValue.text = "";
+        TrandInfoValue.text = TrandInfoValueString[index];
         TrandInfoEffect.runtimeAnimatorController = TrandEffect[index].runtimeAnimatorController;
         if (index == 7) change_color.color = Color.red;
         else change_color.color = Color.white;
@@ -229,6 +241,9 @@ public class TranscendenceShopManager : MonoBehaviour
                 if (GameManager.Player_Money >= BuyingMoney) _buttonImage.color = ColorManager.ColorChange("구매가능");
                 else _buttonImage.color = ColorManager.ColorChange("기본색");
             }
+
+            EquipSave saveData = new();
+            SaveLoadManager.Instance.SaveEquip(saveData);
             
         }
 
