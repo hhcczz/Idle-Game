@@ -56,10 +56,10 @@ public class ItemManager : MonoBehaviour
     private string[] equipmiddlename = new string[4];
 
     private int Weapon_currentIndex = 0; // 현재 선택된 인덱스를 저장하는 변수
-    private int Weapon_currentEquipIndex = -1;
+    public static int Weapon_currentEquipIndex = -1;
 
     private int Accessory_currentIndex = 0; // 현재 선택된 인덱스를 저장하는 변수
-    private int Accessory_currentEquipIndex = -1;
+    public static int Accessory_currentEquipIndex = -1;
 
     private int thisInfoPanel = -1;       // 0 : Weapon // 1 : Accessory // 2 : Warrant
 
@@ -85,6 +85,7 @@ public class ItemManager : MonoBehaviour
 
     private void Start()
     {
+        SaveLoadManager.Instance.LoadEquip();
         // AudioSource 컴포넌트 초기화
         audioSource = GetComponent<AudioSource>();
 
@@ -141,6 +142,12 @@ public class ItemManager : MonoBehaviour
         {
             WeaponImg[i].sprite = GameManager.itemSprites[i];
             AccessoryImg[i].sprite = GameManager.AccessorySprites[i];
+
+            if (Weapon_currentEquipIndex != i) EquipingWeaponImg[i].SetActive(false);
+            else EquipingWeaponImg[i].SetActive(true);
+
+            if (Accessory_currentEquipIndex != i) EquipingAccessoryImg[i].SetActive(false);
+            else EquipingAccessoryImg[i].SetActive(true);
         }
 
 
@@ -152,6 +159,8 @@ public class ItemManager : MonoBehaviour
             if (EquipReinforceManager.AccessoryReinValue[i] == 0) AccessoryReinText[i].text = "";
             else AccessoryReinText[i].text = "+ " + EquipReinforceManager.AccessoryReinValue[i];
         }
+
+
     }
 
     private void Update()
@@ -311,7 +320,8 @@ public class ItemManager : MonoBehaviour
             else NoDrawnLackPanel.SetActive(true);
 
         }
-        
+        EquipSave saveData = new();
+        SaveLoadManager.Instance.SaveEquip(saveData);
     }
 
     private void OnClickChangeBtn(int index)
@@ -441,17 +451,17 @@ public class ItemManager : MonoBehaviour
             EquipingAccessoryImg[index].SetActive(true);
 
             Accessory_currentEquipIndex = index;
-            //GameManager.AccessoryEquipExperience = GameManager.AccessoryEquipExp[Accessory_currentEquipIndex];
 
             Debug.Log("악세서리 장착 후 index : " + index);
             Debug.Log("악세서리 장착 후 Accessory_currentEquipIndex : " + Accessory_currentEquipIndex);
         }
         GradeImg[index].SetActive(false);
         EquipInfoPanel.SetActive(false);
+
+        EquipSave saveData = new();
+        SaveLoadManager.Instance.SaveEquip(saveData);
     }
 
-    private bool Weapon_SuccessBatchsysthesis;
-    private bool Accessory_SuccessBatchsysthesis;
 
     void System_Batchsynthesis()
     {
@@ -549,6 +559,9 @@ public class ItemManager : MonoBehaviour
         UpdateItemCountText();
         UpdateWeaponBarValue();
         Debug.Log("합성 완료!");
+
+        EquipSave saveData = new();
+        SaveLoadManager.Instance.SaveEquip(saveData);
     }
 
     public void UpdateWeaponBarValue()
