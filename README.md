@@ -48,7 +48,7 @@
 
 | 이름 | 설명 |
 |:---:|:---|
-| Grade | UnCommon, Common, Rare, ---- 추가해야함 |
+| Grade | Common, Rare, UnCommon, Artifact, Mythical, Legend |
 | Sword | 36개 |
 | Accessory | 36개 |
 | Warrant | 29개 |
@@ -73,8 +73,11 @@
      - Devil
    - Boss
      - Pigeon
-+ 
-- 게임 포인트
++
+
+<br>
+
+# 5. 게임 포인트
   - 광산 + Main PVE 조화롭게 잘 사용
   - 패시브 활용 ( 다른 게임들에서는 주로 유물로 사용 중 )
     - 현재 ＂권능＂이라는 타이틀로 제작해뒀음 29개 ( 추후 계속 추가 예정 )
