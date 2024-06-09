@@ -113,6 +113,8 @@ public class PlayerSave
 
     public int TutorialLevel;
 
+    public int[] needMoney_Level;
+
     public PlayerSave()
     {
         Player_BaiscDamage = (float)GameManager.Player_Damage;
@@ -166,6 +168,8 @@ public class PlayerSave
         C_Boss = BossManager.ClearBoss;
 
         TutorialLevel = TutorialManager.PlayerTutorialLevel;
+
+        needMoney_Level = GameManager.NeedMoney_Level;
 
     }
 
@@ -230,6 +234,8 @@ public class EquipSave
 
     public int[] WarrantLevel;
 
+    public bool[] TrandOwn;
+
     public EquipSave()
     {
         A_Sprites = new List<Sprite>(GameManager.AccessoryCount.Keys); // 키에 해당하는 Sprite 리스트 초기화
@@ -263,6 +269,8 @@ public class EquipSave
 
         RelicsRank = GameManager.Relics_Rank;
         WarrantLevel = GameManager.WarrantLevel;
+
+        TrandOwn = GameManager.TrandOwned;
     }
 
 
@@ -314,6 +322,8 @@ public class MineSave
 
     public List<string> RockSavestageClearList;
 
+    public bool[] refineryCheck;
+
     public MineSave()
     {
         PickDmg = (float)GameManager.Pickaxe_Damage;
@@ -341,6 +351,8 @@ public class MineSave
         Option_PFDLv = GameManager.Option_LevelPFD;
 
         RockSavestageClearList = ConvertToDicList(GameManager.RockstageClearDict);
+
+        refineryCheck = RefineryManager.RF_BuyCheck;
     }
 
     private List<string> ConvertToDicList(Dictionary<string, bool[]> dict)
@@ -360,6 +372,81 @@ public class MineSave
     {
         string arrayString = string.Join(",", Array.ConvertAll(array, b => b ? "1" : "0"));
         return arrayString;
+    }
+}
+
+[System.Serializable]
+public class AchSave
+{
+    public int[] achClear_monster;
+    public int[] achClear_equip;
+    public int[] achClear_mine;
+
+    public int MainAd;
+
+    public int AccessoryCount;
+    public int WeaponCount;
+
+    public int AccessoryReinCount;
+    public int WeaponReinCount;
+
+    public int PickUpgradeCount;
+    public int MineralUpgradeCount;
+    public int OptionUpgradeCount;
+
+    public int MineClickCount;
+    public int MineBreakCount;
+    public int MineAdCount;
+
+    public int RelicsTryCount;
+
+    public int[] MineAdLevel;
+    public int[] MainAdLevel;
+
+    public int stageclear;
+    public int mobstage;
+    public int mineclear;
+    public int minestage;
+
+    public int mineClearStage;
+    public int monsterClearStage;
+    public int bossClearStage;
+
+    public AchSave()
+    {
+        achClear_monster = AchievementManager.AchClear_Monster;
+        achClear_equip = AchievementManager.AchClear_Equipment;
+        achClear_mine = AchievementManager.AchClear_Mine;
+
+        MainAd = StatisticsManager.ImmutabilityMainAdCount;
+
+        AccessoryCount = StatisticsManager.ImmutabilityAccessoryCount;
+        WeaponCount = StatisticsManager.ImmutabilityWeaponCount;
+
+        AccessoryReinCount = StatisticsManager.ImmutabilityAccessoryReinforceCount;
+        WeaponReinCount = StatisticsManager.ImmutabilityWeaponReinforceCount;
+
+        PickUpgradeCount = StatisticsManager.ImmutabilityPickaxeUpgradeCount;
+        MineralUpgradeCount = StatisticsManager.ImmutabilityMineralUpgradeCount;
+        OptionUpgradeCount = StatisticsManager.ImmutabilityOptionUpgradeCount;
+
+        MineClickCount = StatisticsManager.ImmutabilityMineClickCount;
+        MineBreakCount = StatisticsManager.ImmutabilityMineBreakCount;
+        MineAdCount = StatisticsManager.ImmutabilityMineAdCount;
+
+        RelicsTryCount = StatisticsManager.RelicsTry;
+
+        MineAdLevel = MineAdManager.AdLevel;
+        MainAdLevel = AdManager.AdLevel;
+
+        stageclear = AchievementManager.StageClear;
+        mobstage = AchievementManager.MobStage;
+        mineclear = AchievementManager.MineClear;
+        minestage = AchievementManager.MineStage;
+
+        mineClearStage = AchievementManager.AchMineClearStage;
+        monsterClearStage = AchievementManager.AchMonsterClearStage;
+        bossClearStage = AchievementManager.AchBossClearStage;
     }
 }
 
@@ -390,6 +477,7 @@ public class SaveLoadManager : MonoBehaviour
     private string MSSaveFilePath;
     private string ShopSaveFilePath;
     private string MineSaveFilePath;
+    private string AchSaveFilePath;
 
     void Awake()
     {
@@ -399,6 +487,7 @@ public class SaveLoadManager : MonoBehaviour
         MSSaveFilePath = Application.persistentDataPath + "/MS.json";
         ShopSaveFilePath = Application.persistentDataPath + "/Shop.json";
         MineSaveFilePath = Application.persistentDataPath + "/Mine.json";
+        AchSaveFilePath = Application.persistentDataPath + "/Ach.json";
     }
 
     public void SaveEnemy(EnemySave saveData)
@@ -432,6 +521,11 @@ public class SaveLoadManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(saveData, true); // 들여쓰기 활성화
         File.WriteAllText(MineSaveFilePath, json);
+    }
+    public void SaveAch(AchSave saveData)
+    {
+        string json = JsonUtility.ToJson(saveData, true); // 들여쓰기 활성화
+        File.WriteAllText(AchSaveFilePath, json);
     }
 
     public void LoadEnemy()
@@ -514,6 +608,8 @@ public class SaveLoadManager : MonoBehaviour
             BossManager.ClearBoss = saveData.C_Boss;
 
             TutorialManager.PlayerTutorialLevel = saveData.TutorialLevel;
+
+            GameManager.NeedMoney_Level = saveData.needMoney_Level;
         }
     }
 
@@ -583,6 +679,8 @@ public class SaveLoadManager : MonoBehaviour
 
             GameManager.Relics_Rank = saveData.RelicsRank;
             GameManager.WarrantLevel = saveData.WarrantLevel;
+
+            GameManager.TrandOwned = saveData.TrandOwn;
         }
     }
 
@@ -647,6 +745,50 @@ public class SaveLoadManager : MonoBehaviour
             GameManager.Option_LevelPFD = saveData.Option_PFDLv;
 
             GameManager.RockstageClearDict = ConvertToDictionary(saveData.RockSavestageClearList);
+
+            RefineryManager.RF_BuyCheck = saveData.refineryCheck;
+        }
+    }
+    public void LoadAch()
+    {
+        if (File.Exists(MineSaveFilePath))
+        {
+            string json = File.ReadAllText(AchSaveFilePath);
+            AchSave saveData = JsonUtility.FromJson<AchSave>(json);
+
+            AchievementManager.AchClear_Monster = saveData.achClear_monster;
+            AchievementManager.AchClear_Equipment = saveData.achClear_equip;
+            AchievementManager.AchClear_Mine = saveData.achClear_mine;
+
+            StatisticsManager.ImmutabilityMainAdCount = saveData.MainAd;
+
+            StatisticsManager.ImmutabilityAccessoryCount = saveData.AccessoryCount;
+            StatisticsManager.ImmutabilityWeaponCount = saveData.WeaponCount;
+
+            StatisticsManager.ImmutabilityAccessoryReinforceCount = saveData.AccessoryReinCount;
+            StatisticsManager.ImmutabilityWeaponReinforceCount = saveData.WeaponReinCount;
+
+            StatisticsManager.ImmutabilityPickaxeUpgradeCount = saveData.PickUpgradeCount;
+            StatisticsManager.ImmutabilityMineralUpgradeCount = saveData.MineralUpgradeCount;
+            StatisticsManager.ImmutabilityOptionUpgradeCount = saveData.OptionUpgradeCount;
+
+            StatisticsManager.ImmutabilityMineClickCount = saveData.MineClickCount;
+            StatisticsManager.ImmutabilityMineBreakCount = saveData.MineBreakCount;
+            StatisticsManager.ImmutabilityMineAdCount = saveData.MineAdCount;
+
+            StatisticsManager.RelicsTry = saveData.RelicsTryCount;
+
+            MineAdManager.AdLevel = saveData.MineAdLevel;
+            AdManager.AdLevel = saveData.MainAdLevel;
+
+            AchievementManager.StageClear = saveData.stageclear;
+            AchievementManager.MobStage = saveData.mobstage;
+            AchievementManager.MineClear = saveData.mineclear;
+            AchievementManager.MineStage = saveData.minestage;
+
+            AchievementManager.AchMineClearStage = saveData.mineClearStage;
+            AchievementManager.AchMonsterClearStage = saveData.monsterClearStage;
+            AchievementManager.AchBossClearStage = saveData.bossClearStage;
         }
     }
 
