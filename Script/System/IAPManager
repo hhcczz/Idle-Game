@@ -1,0 +1,225 @@
+using UnityEngine;
+using UnityEngine.Purchasing;
+
+public class IAPManager : MonoBehaviour, IStoreListener
+{
+    private static IAPManager instance;
+
+    public static IAPManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<IAPManager>();
+                if (instance == null)
+                {
+                    Debug.LogError("ShopDiamondBuySystem 인스턴스를 찾을 수 없습니다.");
+                }
+            }
+            return instance;
+        }
+    }
+
+    [Header("Product ID")]
+    public readonly string[] productIds = {
+        "easy_package",
+        "normal_package",
+        "hard_package",
+        "extreme_package",
+        "diamond_2000",
+        "diamond_5000",
+        "diamond_13000",
+        "diamond_29000",
+        "diamond_49000",
+        "diamond_99000",
+        "gold_2000",
+        "gold_5000",
+        "gold_13000",
+        "gold_29000",
+        "gold_49000",
+        "gold_99000"
+    };
+
+    [Header("Cache")]
+    private IStoreController storeController;
+    private IExtensionProvider storeExtensionProvider;
+
+    private int[] GoldValue = new int[6];
+    private int[] DiamondValue = new int[6];
+
+    [System.Obsolete]
+    private void Start()
+    {
+        InitUnityIAP();
+
+        GoldValue = new int[6]
+        {
+            100000,
+            300000,
+            1500000,
+            4500000,
+            9000000,
+            20000000,
+        };
+
+        DiamondValue = new int[6]
+        {
+            3000,
+            9000,
+            27000,
+            80000,
+            150000,
+            400000,
+        };
+    }
+
+    [System.Obsolete]
+    private void InitUnityIAP()
+    {
+        var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
+        foreach (var productId in productIds)
+        {
+            builder.AddProduct(productId, ProductType.Consumable, new IDs() { { productId, GooglePlay.Name } });
+        }
+
+        UnityPurchasing.Initialize(this, builder);
+    }
+
+    public void Purchase(Product product)
+    {
+        int diamondIndex = -1;
+        int goldIndex = -1;
+
+        switch (product.definition.id)
+        {
+            case "diamond_2000":
+                diamondIndex = 0;
+                break;
+            case "diamond_5000":
+                diamondIndex = 1;
+                break;
+            case "diamond_13000":
+                diamondIndex = 2;
+                break;
+            case "diamond_29000":
+                diamondIndex = 3;
+                break;
+            case "diamond_49000":
+                diamondIndex = 4;
+                break;
+            case "diamond_99000":
+                diamondIndex = 5;
+                break;
+            case "gold_2000":
+                goldIndex = 0;
+                break;
+            case "gold_5000":
+                goldIndex = 1;
+                break;
+            case "gold_13000":
+                goldIndex = 2;
+                break;
+            case "gold_29000":
+                goldIndex = 3;
+                break;
+            case "gold_49000":
+                goldIndex = 4;
+                break;
+            case "gold_99000":
+                goldIndex = 5;
+                break;
+        }
+
+        if (diamondIndex != -1)
+        {
+            ShopDiamondBuySystem.Instance.GiveDiamond(diamondIndex, DiamondValue[diamondIndex]);
+        }
+        else if (goldIndex != -1)
+        {
+            ShopDiamondBuySystem.Instance.GiveGold(goldIndex, GoldValue[goldIndex]);
+        }
+    }
+
+    public void OnInitialized(IStoreController controller, IExtensionProvider extension)
+    {
+        storeController = controller;
+        storeExtensionProvider = extension;
+        Debug.Log("Unity IAP is initialized.");
+    }
+
+    public void OnInitializeFailed(InitializationFailureReason error)
+    {
+        Debug.LogError("Unity IAP initialization failed: " + error);
+    }
+
+    public void OnInitializeFailed(InitializationFailureReason error, string message)
+    {
+        Debug.LogError($"Unity IAP initialization failed: {error}. Message: {message}");
+    }
+
+    public void OnPurchaseFailed(Product product, PurchaseFailureReason reason)
+    {
+        Debug.LogError("Purchase failed: " + reason);
+    }
+
+
+    public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
+    {
+        Debug.Log("Purchase successful: " + args.purchasedProduct.definition.id);
+    
+        int diamondIndex = -1;
+        int goldIndex = -1;
+    
+        switch (args.purchasedProduct.definition.id)
+        {
+            case "diamond_2000":
+                diamondIndex = 0;
+                break;
+            case "diamond_5000":
+                diamondIndex = 1;
+                break;
+            case "diamond_13000":
+                diamondIndex = 2;
+                break;
+            case "diamond_29000":
+                diamondIndex = 3;
+                break;
+            case "diamond_49000":
+                diamondIndex = 4;
+                break;
+            case "diamond_99000":
+                diamondIndex = 5;
+                break;
+            case "gold_2000":
+                goldIndex = 0;
+                break;
+            case "gold_5000":
+                goldIndex = 1;
+                break;
+            case "gold_13000":
+                goldIndex = 2;
+                break;
+            case "gold_29000":
+                goldIndex = 3;
+                break;
+            case "gold_49000":
+                goldIndex = 4;
+                break;
+            case "gold_99000":
+                goldIndex = 5;
+                break;
+        }
+    
+        if (diamondIndex != -1)
+        {
+            ShopDiamondBuySystem.Instance.GiveDiamond(diamondIndex, DiamondValue[diamondIndex]);
+        }
+        else if (goldIndex != -1)
+        {
+            ShopDiamondBuySystem.Instance.GiveGold(goldIndex, GoldValue[goldIndex]);
+        }
+    
+        return PurchaseProcessingResult.Complete;
+    }
+}
