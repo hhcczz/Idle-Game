@@ -37,8 +37,12 @@ public class ExpManager : MonoBehaviour
     public Text Player_CurPassivePoint_Text;
     public Text LeftLevel;
 
+    AdManager adManager;
+
     void Start()
     {
+        SaveLoadManager.Instance.LoadShop();
+        adManager = FindObjectOfType<AdManager>();
 
         expbar = GetComponent<Slider>();
         expbar.value = GameManager.Player_CurExp / GameManager.Player_MaxExp;
@@ -59,11 +63,19 @@ public class ExpManager : MonoBehaviour
         if(GameManager.Player_CurExp >= GameManager.Player_MaxExp)
         {
             GameManager.Player_CurExp -= GameManager.Player_MaxExp;
-            if (GameManager.WarrantLevel[18] >= 1) GameManager.Player_MaxExp = GameManager.Player_Level * 7.25f * (1 - GameManager.Warrant_Power[18] / 100f);
-            else GameManager.Player_MaxExp = GameManager.Player_Level * 7.25f;
+            if (GameManager.WarrantLevel[18] >= 1) GameManager.Player_MaxExp += GameManager.Player_Level * 6.25f * (1 - GameManager.Warrant_Power[18] / 100f);
+            else GameManager.Player_MaxExp = GameManager.Player_Level * 6.25f;
             GameManager.Player_Level++;
             GameManager.Player_PassivePoint++;
+
+            if (GameManager.Player_Level % 10 == 0 && GameManager.Player_Level % 100 == 0) GameManager.Player_MaxExp *= 1.3f;
+            if (GameManager.Player_Level % 100 == 0) GameManager.Player_MaxExp *= 1.75f;
+
             UpdateText();
+
+            PlayerSave saveData = new();
+            SaveLoadManager.Instance.SavePlayer(saveData);
+
         }
     }
 
@@ -92,6 +104,8 @@ public class ExpManager : MonoBehaviour
     [System.Obsolete]
     public static float ReturnExp(float MonsterValue)
     {
+        Debug.Log("AdPlaying[2] = " + AdManager.AdPlaying[2]);
+        Debug.Log("AdPowerValue[2] = " + AdManager.AdPowerValue[2]);
         int Warrant_Random = Random.Range(0, 100);  // 경험치 N배 확률
 
         float exp;
@@ -100,6 +114,7 @@ public class ExpManager : MonoBehaviour
         if (AdManager.AdPlaying[2] == true) exp *= (AdManager.AdPowerValue[2] + 100) / 100f;
 
         if (GameManager.WarrantLevel[0] >= 1 && Warrant_Random < 8) exp *= 1 + (float)GameManager.Warrant_Power[0] / 100;        // 경험치 2배
+        if (GameManager.TrandOwned[3] == true) exp *= 6;
 
         return exp;
     }
