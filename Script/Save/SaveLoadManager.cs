@@ -542,8 +542,8 @@ public class SaveLoadManager : MonoBehaviour
             EnemyManager.Instance.LastBtnIndex = saveData.EnemySaveLastBtnIndex;
             EnemyManager.Instance.FixDifficultyInStage = saveData.EnemySaveFixDifficultyInStage;
             EnemyManager.Instance.FixDifficulty = saveData.EnemySaveFixDifficulty;
-            EnemyManager.Instance.MoveDifficultyInStage = saveData.EnemySaveMoveDifficultyInStage;
-            EnemyManager.Instance.MoveDifficulty = saveData.EnemySaveMoveDifficulty;
+            //EnemyManager.Instance.MoveDifficultyInStage = saveData.EnemySaveMoveDifficultyInStage;
+            //EnemyManager.Instance.MoveDifficulty = saveData.EnemySaveMoveDifficulty;
 
             Debug.Log("로드했음!!!!");
         }
