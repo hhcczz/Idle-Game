@@ -110,11 +110,6 @@
     
 <br>
 
-## 6. 기술 문서
-+ [기술 문서](https://docs.google.com/presentation/d/1OxCl0bJIKyvYzbxSeNopfwMmnAloNvj3LspZA9AwG6E/edit#slide=id.p)
-
-## 7. 소개 영상
+## 6. 소개 영상
 + [소개 영상](https://www.youtube.com/watch?v=_BroSnrOvzk)
 
-## 8. 게임 다운로드
-+ 링크 추가 예정
