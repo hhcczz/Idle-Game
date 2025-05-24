@@ -113,7 +113,7 @@
 # 📄 기술 문서
 
 + 📘 [문서 보기](./GameDesign.pdf)  
-+ ⬇️ [다운로드하기](https://raw.githubusercontent.com/hhcczz/Idle-Game/main/나만의%20작은%20용사%20기술%20문서.pdf)
++ ⬇️ [다운로드하기](https://raw.githubusercontent.com/hhcczz/Idle-Game/main/GameDesign.pdf)
 
 <br>
 
