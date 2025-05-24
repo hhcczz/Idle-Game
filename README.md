@@ -112,8 +112,10 @@
 
 # 📄 기술 문서
 
-[👉 PDF로 보기 (GameDesign.pdf)](./GameDesign.pdf)
-[⬇️ 다운로드하기](https://raw.githubusercontent.com/hhcczz/Idle-Game/main/%EB%82%98%EB%A7%8C%EC%9D%98%20%EC%9E%91%EC%9D%80%20%EC%9A%A9%EC%82%AC%20%EA%B8%B0%EC%88%A0%20%EB%AC%B8%EC%84%9C.pdf)
++ [📘 문서 보기](./%EB%82%98%EB%A7%8C%EC%9D%98%20%EC%9E%91%EC%9D%80%20%EC%9A%A9%EC%82%AC%20%EA%B8%B0%EC%88%A0%20%EB%AC%B8%EC%84%9C.pdf) 
++ [⬇️ 다운로드하기](https://raw.githubusercontent.com/hhcczz/Idle-Game/main/%EB%82%98%EB%A7%8C%EC%9D%98%20%EC%9E%91%EC%9D%80%20%EC%9A%A9%EC%82%AC%20%EA%B8%B0%EC%88%A0%20%EB%AC%B8%EC%84%9C.pdf)
+
+<br>
 
 # ▶️ 소개 영상
 + [소개 영상](https://www.youtube.com/watch?v=_BroSnrOvzk)
