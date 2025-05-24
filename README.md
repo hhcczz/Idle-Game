@@ -4,16 +4,32 @@
 <br>
 
 # 📘 소개
-<div align="center">
-
-  <img src="https://github.com/hhcczz/Idle-Game/assets/101077489/84ceb5ed-053f-45bf-9dad-1d3dc638b050" width="19%" height="20%"/>
-  <img src="https://github.com/hhcczz/Idle-Game/assets/101077489/f745a0d2-69ed-4770-8275-a5b22c4e103c" width="19%" height="20%"/>
-  <img src="https://github.com/hhcczz/Idle-Game/assets/101077489/1fd88a07-4683-40ef-92b9-0208a55be075" width="19%" height="20%"/>
-  <img src="https://github.com/hhcczz/Idle-Game/assets/101077489/3a589a00-d3ac-4fc3-afce-d7430ee658a8" width="19%" height="20%"/>
-  <img src="https://github.com/hhcczz/Idle-Game/assets/101077489/7aaf8433-ac93-4c27-8963-664944501fbd" width="19%" height="20%"/>
-
-  < 게임 플레이 사진 >
-</div>
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="https://github.com/hhcczz/Idle-Game/assets/101077489/84ceb5ed-053f-45bf-9dad-1d3dc638b050" width="175px"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/hhcczz/Idle-Game/assets/101077489/f745a0d2-69ed-4770-8275-a5b22c4e103c" width="175px"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/hhcczz/Idle-Game/assets/101077489/1fd88a07-4683-40ef-92b9-0208a55be075" width="175px"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/hhcczz/Idle-Game/assets/101077489/3a589a00-d3ac-4fc3-afce-d7430ee658a8" width="175px"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/hhcczz/Idle-Game/assets/101077489/7aaf8433-ac93-4c27-8963-664944501fbd" width="175px"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">전투</td>
+    <td align="center">스텟</td>
+    <td align="center">광산</td>
+    <td align="center">강화</td>
+    <td align="center">상점</td>
+  </tr>
+</table>
 
 + Unity 2D Idle RPG 게임입니다.
 
