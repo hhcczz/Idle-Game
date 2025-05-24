@@ -3,7 +3,7 @@
 
 <br>
 
-# 1. 소개
+# 📘 소개
 <div align="center">
 
   <img src="https://github.com/hhcczz/Idle-Game/assets/101077489/84ceb5ed-053f-45bf-9dad-1d3dc638b050" width="19%" height="20%"/>
@@ -25,14 +25,14 @@
 
 <br>
 
-# 2. 개발 환경
+# 🛠️ 개발 환경
 + Unity 2021.3.21f1 LTS
 + C#
 + Android
 
   <br>
 
-# 3. 사용 기술
+# 🧪 사용 기술
 | 기술 | 설명 |
 |:---:|:---|
 | 디자인 패턴 | ● **싱글톤** + **Static** 2가지를 사용하여 Manager 관리 |
@@ -41,7 +41,7 @@
 
 <br>
 
-# 4. 게임 설명
+# 📖 게임 설명
 
 > Enemy  
 
@@ -81,7 +81,7 @@
 
 <br>
 
-# 5. 게임 포인트
+# 🚀 게임 포인트
   - 광산 : PVE 이외에 컨텐츠 추가로 제작하였습니다.
      - 광산에서 얻는 아이템들이 캐릭터 성장에 필수입니다.
      - 광산에서 얻는 효과 대부분은 대기만성입니다.
@@ -110,6 +110,11 @@
     
 <br>
 
-## 6. 소개 영상
+# 📄 기술 문서
+
+[👉 PDF로 보기 (GameDesign.pdf)](./GameDesign.pdf)
+[⬇️ 다운로드하기](https://raw.githubusercontent.com/hhcczz/Idle-Game/main/%EB%82%98%EB%A7%8C%EC%9D%98%20%EC%9E%91%EC%9D%80%20%EC%9A%A9%EC%82%AC%20%EA%B8%B0%EC%88%A0%20%EB%AC%B8%EC%84%9C.pdf)
+
+# ▶️ 소개 영상
 + [소개 영상](https://www.youtube.com/watch?v=_BroSnrOvzk)
 
